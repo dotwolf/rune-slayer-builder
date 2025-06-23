@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>organizer de Builds - Rune Slauer</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="html/organizer.html">organizer</a>
+                </li>
+            </ul>
+        </nav>
+    <div class="container">
+        <h1>organizer de Builds - Rune Slauer</h1>
+
+        <form id="buildForm">
+        <input type="text" placeholder="Nome da Build" id="nome" required />
+        <input type="text" placeholder="Estilo (PvP, PvE...)" id="estilo" required />
+        <input type="text" placeholder="Arma principal" id="arma" />
+        <input type="text" placeholder="Runas usadas" id="runas" />
+        <input type="text" placeholder="Skills" id="skills" />
+        <input type="text" placeholder="Atributos (Força/Dex/Vida...)" id="atributos" />
+        <textarea placeholder="Notas adicionais" id="notas"></textarea>
+        <button type="submit">Adicionar Build</button>
+        </form>
+
+        <hr/>
+
+        <h2>Minhas Builds</h2>
+        <div id="buildsContainer"></div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>

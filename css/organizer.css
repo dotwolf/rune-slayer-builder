@@ -1,0 +1,91 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  color: #ffcc00;
+}
+
+nav{
+    background-color: rgb(60, 0, 95);
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+nav ul{
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: #ffffff;
+    display: flex;
+    padding: 10px 20px;
+    align-items: center;
+}
+
+nav ul li a:hover{
+    color: lightgray;
+    background-color: #6a3812;
+}
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.inventory {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 10px;
+}
+
+.slot {
+  width: 100px;
+  height: 100px;
+  background-color: #333;
+  border: 2px dashed #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.slot.filled {
+  border-style: solid;
+  background-color: #222;
+  color: #fff;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item {
+  background-color: #444;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: grab;
+  color: #fff;
+  border: 1px solid #777;
+  transition: background 0.3s;
+}
+
+.item:active {
+  cursor: grabbing;
+  background-color: #666;
+}
