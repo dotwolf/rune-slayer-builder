@@ -38,10 +38,3 @@ document.querySelectorAll('.slot').forEach(slot => {
   });
 });
 
-function getEmojiForSlot(slot) {
-  const emotes = {
-    head: "🎭", chest: "🛡️", boots: "🥾", ring: "💍",
-    back: "🎒", weapon: "⚔️", offhand: "🛡️", lamp: "🪔"
-  };
-  return emotes[slot] || "🎲";
-}

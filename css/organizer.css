@@ -10,6 +10,8 @@ h1 {
   color: #ffcc00;
 }
 
+/* LAYOUT DOS EQUIPAMENTOS (IMAGEM + SLOTS) */
+
 .LayoutEquipments {
   display: flex;
   justify-content: center;
@@ -17,46 +19,13 @@ h1 {
   margin-top: 20px;
 }
 
-.item-menu {
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #222;
-  border: 2px solid #ffcc00;
-  border-radius: 10px;
-  padding: 20px;
-  z-index: 999;
-}
-
-.item-menu button {
-  display: block;
-  margin: 5px auto;
-  padding: 10px;
-  background: #444;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.item-menu button:hover {
-  background: #666;
-}
-
-
 .LayoutEquipments img{
   height: 400px;
-  width: 300px;
-}
-
-.inventory {
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  gap: 10px;
+  width: 309px;
 }
 
 .hotbar{
+  margin-top: 2px;
   display: flex;
   justify-content: center;
 }
@@ -98,4 +67,34 @@ h1 {
 .item:active {
   cursor: grabbing;
   background-color: #666;
+}
+
+
+/* MENU DE ITENS DO SLOT */
+
+.item-menu {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  border: 2px solid #ffcc00;
+  border-radius: 10px;
+  padding: 20px;
+  z-index: 999;
+}
+
+.item-menu button {
+  display: block;
+  margin: 5px auto;
+  padding: 10px;
+  background: #444;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.item-menu button:hover {
+  background: #666;
 }

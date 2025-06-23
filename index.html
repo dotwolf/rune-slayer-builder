@@ -9,27 +9,30 @@
 </head>
 <body>
     <h1>Organizer de Equipamentos</h1>
-        <div class="LayoutEquipments">
-            <div class="coluna1">
-                <div class="slot" data-slot="head">Head</div>
-                <div class="slot" data-slot="chest">Chest</div>
-                <div class="slot" data-slot="cape">Cape</div>
-                <div class="slot" data-slot="boots">Boots</div>
-            </div>
-            <img src="image/80DBEB90-D4F7-49AA-8724-9CC36BC7BAD7.png" alt="">
-            <div class="coluna2">
-                <div class="slot" data-slot="ring">Ring 1</div>
-                <div class="slot" data-slot="ring">Ring 2</div>
-                <div class="slot" data-slot="ring">Ring 3</div>
-                <div class="slot" data-slot="ring">Ring 4</div>
-            </div>
+    <div class="LayoutEquipments">
+        <div class="coluna1">
+            <div class="slot" data-slot="head">Head</div>
+            <div class="slot" data-slot="chest">Chest</div>
+            <div class="slot" data-slot="cape">Cape</div>
+            <div class="slot" data-slot="boots">Boots</div>
         </div>
-        <div class="hotbar">
-                <div class="slot" data-slot="weapon1">Weapon1</div>
-                <div class="slot" data-slot="offhand">Offhand</div>
-                <div class="slot" data-slot="weapon2">Weapon2</div>
-            </div>
-            <script type="module">
+        <img src="image/80DBEB90-D4F7-49AA-8724-9CC36BC7BAD7.png" alt="">
+        <div class="coluna2">
+            <div class="slot" data-slot="ring">Ring 1</div>
+            <div class="slot" data-slot="ring">Ring 2</div>
+            <div class="slot" data-slot="ring">Ring 3</div>
+            <div class="slot" data-slot="ring">Ring 4</div>
+        </div>
+    </div>
+    <div class="hotbar">
+            <div class="slot" data-slot="race">Race</div>
+            <div class="slot" data-slot="weapon1">Weapon1</div>
+            <div class="slot" data-slot="offhand">Offhand</div>
+            <div class="slot" data-slot="weapon2">Weapon2</div>
+            <div class="slot" data-slot="lantern">Lantern</div>
+        </div>
+    </div>
+    <script type="module">
         import itemsDatabase from '../data/itensDatabase.js'; // Corrija o caminho se necessário
 
         window.itemsDatabase = itemsDatabase;
@@ -44,14 +47,6 @@
             cape: 'back',
             };
             return mapa[slotType] || slotType;
-        }
-
-        function getEmojiForSlot(slot) {
-            const emotes = {
-            head: "🎭", chest: "🛡️", boots: "🥾", ring: "💍",
-            back: "🎒", weapon: "⚔️", offhand: "🛡️"
-            };
-            return emotes[slot] || "🎲";
         }
 
         slots.forEach(slot => {
@@ -71,13 +66,12 @@
             for (const key in banco) {
                 const item = banco[key];
                 const nome = item.name || key;
-                const emoji = getEmojiForSlot(slotChave);
                 const botao = document.createElement('button');
-                botao.textContent = `${emoji} ${nome}`;
+                botao.textContent = `${nome}`;
                 botao.onclick = () => {
-                slot.textContent = `${emoji} ${nome}`;
-                slot.classList.add('filled');
-                document.body.removeChild(menu);
+                    slot.textContent = `${nome}`;
+                    slot.classList.add('filled');
+                    document.body.removeChild(menu);
                 };
                 menu.appendChild(botao);
             }
@@ -91,7 +85,6 @@
             });
         });
     </script>
-
 </body>
 
 </html>
