@@ -1,35 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Inventory - Rune Slayer</title>
-  <link rel="stylesheet" href="../css/organizer.css" />
-    <script src="js/script.js" defer></script>
-    <script src="js/types.js" defer></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Inventory - Rune Slayer</title>
+    <link rel="stylesheet" href="../css/organizer.css" />
+    
 </head>
 <body>
     <h1>Organizer de Equipamentos</h1>
-        <div class="container">
-            <div class="inventory">
-                <button class="slot" data-slot="mask">Máscara</button>
-                <button class="slot" data-slot="chest">Peitoral</button>
-                <button class="slot" data-slot="cape">Capa</button>
-                <button class="slot" data-slot="boots">Botas</button>
-                <button class="slot" data-slot="ring1">Anel 1</button>
-                <button class="slot" data-slot="ring2">Anel 2</button>
-                <button class="slot" data-slot="bag1">Bolsa 1</button>
-                <button class="slot" data-slot="bag2">Bolsa 2</button>
-                <button class="slot" data-slot="weapon">Arma</button>
+        <div class="LayoutEquipments">
+            <div class="coluna1">
+                <div class="slot" data-slot="head">Head</div>
+                <div class="slot" data-slot="chest">Chest</div>
+                <div class="slot" data-slot="cape">Cape</div>
+                <div class="slot" data-slot="boots">Boots</div>
             </div>
-
-            <div class="items" id="items-container">
-                <div class="item" draggable="true" data-item="Elder Mask">🎭 Elder Mask</div>
-                <div class="item" draggable="true" data-item="Drogar's Vest">🛡️ Drogar's Vest</div>
-                <div class="item" draggable="true" data-item="Slime Bag">🧪 Slime Bag</div>
-                <div class="item" draggable="true" data-item="Focus Ring">💍 Focus Ring</div>
-                <div class="item" draggable="true" data-item="Thieves Sash">🧣 Thieves Sash</div>
+            <img src="image/80DBEB90-D4F7-49AA-8724-9CC36BC7BAD7.png" alt="">
+            <div class="coluna2">
+                <div class="slot" data-slot="ring">Ring 1</div>
+                <div class="slot" data-slot="ring">Ring 2</div>
+                <div class="slot" data-slot="ring">Ring 3</div>
+                <div class="slot" data-slot="ring">Ring 4</div>
             </div>
         </div>
+        <div class="hotbar">
+                <div class="slot" data-slot="weapon1">Weapon1</div>
+                <div class="slot" data-slot="offhand">Offhand</div>
+                <div class="slot" data-slot="weapon2">Weapon2</div>
+            </div>
+            <script type="module">
+        import itemsDatabase from '../data/itensDatabase.js'; // Corrija o caminho se necessário
+
+        window.itemsDatabase = itemsDatabase;
+
+        // Agora seu script principal aqui dentro:
+        const slots = document.querySelectorAll('.slot');
+
+        function normalizarSlot(slotType) {
+            const mapa = {
+            weapon1: 'weapon',
+            weapon2: 'weapon',
+            cape: 'back',
+            };
+            return mapa[slotType] || slotType;
+        }
+
+        function getEmojiForSlot(slot) {
+            const emotes = {
+            head: "🎭", chest: "🛡️", boots: "🥾", ring: "💍",
+            back: "🎒", weapon: "⚔️", offhand: "🛡️"
+            };
+            return emotes[slot] || "🎲";
+        }
+
+        slots.forEach(slot => {
+            slot.addEventListener('click', () => {
+            const slotType = slot.dataset.slot;
+            const slotChave = normalizarSlot(slotType);
+
+            const banco = window.itemsDatabase?.[slotChave];
+            if (!banco || Object.keys(banco).length === 0) {
+                alert("Nenhum item disponível para esse slot.");
+                return;
+            }
+
+            const menu = document.createElement('div');
+            menu.className = 'item-menu';
+
+            for (const key in banco) {
+                const item = banco[key];
+                const nome = item.name || key;
+                const emoji = getEmojiForSlot(slotChave);
+                const botao = document.createElement('button');
+                botao.textContent = `${emoji} ${nome}`;
+                botao.onclick = () => {
+                slot.textContent = `${emoji} ${nome}`;
+                slot.classList.add('filled');
+                document.body.removeChild(menu);
+                };
+                menu.appendChild(botao);
+            }
+
+            const cancelar = document.createElement('button');
+            cancelar.textContent = "Cancelar";
+            cancelar.onclick = () => document.body.removeChild(menu);
+            menu.appendChild(cancelar);
+
+            document.body.appendChild(menu);
+            });
+        });
+    </script>
+
 </body>
+
 </html>
