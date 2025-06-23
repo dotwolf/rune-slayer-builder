@@ -1,4 +1,4 @@
-import { Rune } from '../js/types.js';
+import { Rune } from './types.js';
 
 const runesDatabase = {
   LesserStrengthRune: new Rune({
