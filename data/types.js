@@ -1,4 +1,17 @@
 // Tipos base
+class Race {
+  constructor({
+    name,
+    rarity,
+    stats,
+    runes,
+    runeslots,
+  }) {
+    this.name = name;
+    this.stats = stats || {};
+  }
+}
+
 class Item {
   constructor({
     name,
@@ -24,11 +37,13 @@ class Rune {
     type,
     rarity,
     stats,
+    description,
   }) {
     this.name = name;
     this.rarity = rarity || 'uncommon';
-    this.type = type || null; // Head, Chest, Legs, Weapon, null
+    this.type = type || null; // Helmet, Chest, Legs, Weapon, null
     this.stats = stats || {};
+    this.description = description || null
   }
 
   getTooltip() {
@@ -36,7 +51,7 @@ class Rune {
   }
 }
 
-class Lamp extends Item {
+class Lantern extends Item {
   constructor({
     ...item
   }) {
@@ -78,7 +93,7 @@ class Armor extends Item {
   }
 }
 
-class Head extends Armor {
+class Helmet extends Armor {
     constructor({
     ...item
   }) {
@@ -120,9 +135,11 @@ class Back extends Armor {
 
 class Shield extends Armor {
     constructor({
+    posture,
     ...item
   }) {
     super({ ...item, runeslots: 0});
+    this.posture = posture;
   }
 }
 
@@ -144,4 +161,4 @@ class Ring extends Item {
 }
 
 
-export { Item, Rune, Weapon, Armor, Head, Chest, Boots, Offhand, Shield, Sash, Ring, Lamp, Back };
+export { Item, Rune, Weapon, Armor, Helmet, Chest, Boots, Offhand, Shield, Sash, Ring, Lantern, Back, Race };
