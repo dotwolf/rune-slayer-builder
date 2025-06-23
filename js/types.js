@@ -144,4 +144,4 @@ class Ring extends Item {
 }
 
 
-export { Item, Rune, Weapon, Armor, Head, Chest, Boots, Offhand, Shield, Sash, Ring, Lamp };
+export { Item, Rune, Weapon, Armor, Head, Chest, Boots, Offhand, Shield, Sash, Ring, Lamp, Back };

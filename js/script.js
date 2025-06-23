@@ -16,6 +16,5 @@ slots.forEach(slot => {
     const itemName = e.dataTransfer.getData('text/plain');
     const itemLabel = e.dataTransfer.getData('text/id');
     slot.textContent = itemLabel;
-    slot.classList.add('filled');
   });
 });

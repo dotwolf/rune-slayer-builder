@@ -1,4 +1,4 @@
-import { Item, Weapon, Armor, Head, Chest, Boots, Offhand, Shield, Sash, Ring, Lamp } from '../types/types.js';
+import { Item, Weapon, Armor, Head, Chest, Boots, Offhand, Shield, Sash, Ring, Lamp, Back } from '../js/types.js';
 
 const itemsDatabase = {
   CottonHeadband: new Head({
@@ -55,7 +55,7 @@ const itemsDatabase = {
 
 
 
-  CottonPants: new Pants({
+  CottonPants: new Boots({
     name: 'Cotton Pants',
     stats: {
       'intellect': 1
