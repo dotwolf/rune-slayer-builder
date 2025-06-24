@@ -1775,19 +1775,666 @@ const itemsDatabaseWeapons = {
     name: 'Tyle',
     damage: {physical: 11},
     stats: {strength: 18, stamina: 6, critChance: 0.01, physicalPierce: 0.03},
-    type: 'sword',
+    type: 'tyle',
     level: 40,
     rarity: 'legendary',
     description: '3% Hemorrhage buildup on each hit.'
   }),
 
+
+
+
+
   SplintedClub: new Weapon({
     name: 'Splinted Club',
     damage: {physical: 10},
     stats: {strength: 7},
-    type: 'club',
+    type: 'hatchet',
     level: 12,
     rarity: 'uncommon'
+  }),
+
+
+
+
+    CopperGreatsword: new Weapon({
+    name: 'Copper Greatsword',
+    damage: {physical: 8},
+    type: 'greatsword',
+  }),
+  IronGreatsword: new Weapon({
+    name: 'Iron Greatsword',
+    damage: {physical: 10},
+    type: 'greatsword',
+    level: 8,
+  }),
+  SilverGreatsword: new Weapon({
+    name: 'Silver Greatsword',
+    damage: {physical: 12},
+    type: 'greatsword',
+    level: 17,
+    rarity: 'uncommon'
+  }),
+  ChampionCleaver: new Weapon({
+    name: 'Champion Cleaver',
+    damage: {physical: 14},
+    stats: {strength: 8},
+    type: 'greatsword',
+    level: 19,
+    rarity: 'uncommon'
+  }),
+  PlatinumGreatsword: new Weapon({
+    name: 'Platinum Greatsword',
+    damage: {physical: 14},
+    type: 'greatsword',
+    level: 27,
+    rarity: 'uncommon'
+  }),
+  MithrilGreatsword: new Weapon({
+    name: 'Mithril Greatsword',
+    damage: {physical: 17},
+    type: 'greatsword',
+    level: 33,
+    rarity: 'uncommon'
+  }),
+  ZircGreatsword: new Weapon({
+    name: 'Zirc Greatsword',
+    damage: {physical: 20},
+    type: 'greatsword',
+    level: 42,
+    rarity: 'uncommon'
+  }),
+  CobaltGreatsword: new Weapon({
+    name: 'Cobalt Greatsword',
+    damage: {physical: 23},
+    type: 'greatsword',
+    level: 45,
+    rarity: 'uncommon'
+  }),
+  BasiliskGreatblade: new Weapon({
+    name: 'Basilisk Greatblade',
+    damage: {physical: 15},
+    stats: {strength: 10, spirit: 6, stamina: 6},
+    type: 'greatsword',
+    level: 30,
+    rarity: 'rare'
+  }),
+  DemonicGreatsword: new Weapon({
+    name: 'Demonic Greatsword',
+    damage: {physical: 12, fire: 3},
+    stats: {strength: 13, stamina: 2},
+    type: 'greatsword',
+    level: 38,
+    rarity: 'rare'
+  }),
+  Judicator: new Weapon({
+    name: 'Judicator',
+    damage: {physical: 16},
+    stats: {strength: 18, critChance: 0.02, phypierce: 0.03},
+    type: 'greatsword',
+    level: 40,
+    rarity: 'epic',
+  }),
+  DoomCarver: new Weapon({
+    name: 'Doom Carver',
+    damage: {physical: 16},
+    stats: {strength: 18, critChance: 0.02, phypierce: 0.03},
+    type: 'greatsword',
+    level: 40,
+    rarity: 'epic',
+  }),
+  SanguineGreatsword: new Weapon({
+    name: 'Sanguine Greatsword',
+    damage: {physical: 18},
+    stats: {strength: 27, stamina: 12, holyres: 0.075},
+    type: 'greatsword',
+    level: 40,
+    rarity: 'epic',
+    description: 'Chance to cause severe bleeding.'
+  }),
+  SandShooter: new Weapon({
+    name: 'Sand Shooter',
+    damage: {physical: 18},
+    stats: {strength: 16, stamina: 4},
+    type: 'greatsword',
+    level: 40,
+    rarity: 'legendary',
+    description: 'Summons damaging sandstorm around user'
+  }),
+  GoblinKingsClub: new Weapon({
+    name: 'Goblin Kings Club',
+    damage: {physical: 19},
+    stats: {strength: 24, phypierce: 0.03, critChance: 0.02},
+    type: 'greatsword',
+    level: 40,
+    rarity: 'legendary'
+  }),
+
+  SuveriasRuneblade: new Weapon({
+    name: 'Suveria\'s Runeblade',
+    damage: {physical: 11, holy: 8},
+    stats: {strength: 14, spirit: 20},
+    type: 'greatsword',
+    level: 40,
+    rarity: 'legendary'
+  }),
+  Rimehowl: new Weapon({
+    name: 'Rimehowl',
+    damage: {physical: 20},
+    stats: {strength: 28, stamina: 8, phypierce: 0.04},
+    type: 'greatsword',
+    level: 50,
+    rarity: 'legendary',
+    description: 'Running attacks grant 18% speed boost (12s duration, 9s cooldown).'
+  }),
+
+
+
+
+  IronGreataxe: new Weapon({
+    name: 'Iron Greataxe',
+    damage: {physical: 10},
+    type: 'greataxe',
+    level: 8,
+  }),
+  Anchor: new Weapon({
+    name: 'Anchor',
+    damage: {physical: 16},
+    stats: {stamina: 5},
+    type: 'greataxe',
+    level: 30,
+    rarity: 'rare',
+  }),
+  TrollsStoneColumn: new Weapon({
+    name: 'Troll\'s Stone Column',
+    damage: {physical: 17},
+    stats: {phypierce: 0.05},
+    type: 'greataxe',
+    level: 39,
+    rarity: 'rare'
+  }),
+  EdgeWing: new Weapon({
+    name: 'Edge Wing',
+    damage: {physical: 16},
+    stats: {strength: 16, stamina: 2},
+    type: 'greataxe',
+    level: 35,
+    rarity: 'epic'
+  }),
+  DariusGreataxe: new Weapon({
+    name: 'Darius\' Greataxe',
+    damage: {physical: 12, fire: 10},
+    stats: {strength: 16, stamina: 5},
+    type: 'greataxe',
+    level: 45,
+    rarity: 'epic'
+  }),
+  YetiAxe: new Weapon({
+    name: 'Yeti Axe',
+    damage: {physical: 23},
+    stats: {strength: 35, spirit: 15, stamina: 15},
+    type: 'greataxe',
+    level: 48,
+    rarity: 'epic'
+  }),
+  Cataclysm: new Weapon({
+    name: 'Cataclysm',
+    damage: {physical: 18},
+    stats: {strength: 20, stamina: 5, phypierce: 0.03},
+    type: 'greataxe',
+    level: 40,
+    rarity: 'legendary'
+  }),
+  RubyReaver: new Weapon({
+    name: 'Ruby Reaver',
+    damage: {physical: 16},
+    stats: {strength: 14, stamina: 4, fireres: 0.07},
+    type: 'greataxe',
+    level: 40,
+    rarity: 'legendary'
+  }),
+
+
+
+
+  CopperKatana: new Weapon({
+    name: 'Copper Katana',
+    damage: {physical: 5},
+    type: 'katana',
+  }),
+  IronKatana: new Weapon({
+    name: 'Iron Katana',
+    damage: {physical: 7},
+    type: 'katana',
+    level: 8,
+  }),
+  SimpleKatana: new Weapon({
+    name: 'Simple Katana',
+    damage: {physical: 9},
+    stats: {spirit: 2, agility: 4},
+    type: 'katana',
+    level: 15,
+    rarity: 'uncommon',
+  }),
+  SilverKatana: new Weapon({
+    name: 'Silver Katana',
+    damage: {physical: 9},
+    type: 'katana',
+    level: 17,
+    rarity: 'uncommon'
+  }),
+  PlatinumKatana: new Weapon({
+    name: 'Platinum Katana',
+    damage: {physical: 11},
+    type: 'katana',
+    level: 27,
+    rarity: 'uncommon'
+  }),
+  MithrilKatana: new Weapon({
+    name: 'Mithril Katana',
+    damage: {physical: 14},
+    type: 'katana',
+    level: 33,
+    rarity: 'uncommon'
+  }),
+  ZircKatana: new Weapon({
+    name: 'Zirc Katana',
+    damage: {physical: 17},
+    type: 'katana',
+    level: 42,
+    rarity: 'uncommon'
+  }),
+  CobaltKatana: new Weapon({
+    name: 'Cobalt Katana',
+    damage: {physical: 20},
+    type: 'katana',
+    level: 45,
+    rarity: 'uncommon'
+  }),
+  TraditionalKatana: new Weapon({
+    name: 'Traditional Katana',
+    damage: {physical: 12},
+    stats: {strength: 4, agility: 10, stamina: 4},
+    type: 'katana',
+    level: 20,
+    rarity: 'rare',
+    description: 'Critical hits unleash fiery arrows that strike nearby enemies.'
+  }),
+  SerpentKatana: new Weapon({
+    name: 'Serpent Katana',
+    damage: {physical: 13},
+    stats: {strength: 6, agility: 10, stamina: 2},
+    type: 'katana',
+    level: 24,
+    rarity: 'rare',
+    description: '10% chance to poison target.'
+  }),
+  Shizukari: new Weapon({
+    name: 'Shizukari',
+    damage: {physical: 17},
+    stats: {strength: 10, agility: 17, stamina: 8},
+    type: 'katana',
+    level: 45,
+    rarity: 'rare'
+  }),
+  SanguineKen: new Weapon({
+    name: 'Sanguine Ken',
+    damage: {physical: 14},
+    stats: {strength: 8, agility: 18, stamina: 8, holyres: 0.02},
+    type: 'katana',
+    level: 35,
+    rarity: 'epic',
+    description: 'Chance to cause bleeding.'
+  }),
+  TarnishedKubikiri: new Weapon({
+    name: 'Tarnished Kubikiri',
+    damage: {physical: 16},
+    stats: {strength: 10, agility: 25, stamina: 10},
+    type: 'katana',
+    level: 50,
+    rarity: 'legendary',
+    description: '6% Hemorrhage buildup and chance to bleed.'
+  }),
+  Sanguinaire: new Weapon({
+    name: 'Sanguinaire',
+    damage: {physical: 18, fire: 4},
+    stats: {strength: 18, agility: 27, stamina: 10, holyres: -0.05},
+    type: 'katana',
+    level: 50,
+    rarity: 'legendary',
+    description: 'Chance to bleed and agility scales with strength.'
+  }),
+
+
+
+
+
+  OakBow: new Weapon({
+    name: 'Oak Bow',
+    damage: {physical: 3},
+    type: 'bow',
+  }),
+  PineBow: new Weapon({
+    name: 'Pine Bow',
+    damage: {physical: 5},
+    type: 'bow',
+    level: 8,
+  }),
+  AdventurersBow: new Weapon({
+    name: 'Adventurer\'s Bow',
+    damage: {physical: 7},
+    stats: {agility: 6, critChance: 0.01},
+    type: 'bow',
+    level: 15,
+    rarity: 'uncommon'
+  }),
+  HuntingBow: new Weapon({
+    name: 'Hunting Bow',
+    damage: {physical: 7},
+    stats: {agility: 2, spirit: 2},
+    type: 'bow',
+    level: 15,
+    rarity: 'uncommon',
+  }),
+  ElderwoodBow: new Weapon({
+    name: 'Elderwood Bow',
+    damage: {physical: 7},
+    type: 'bow',
+    level: 17,
+    rarity: 'uncommon'
+  }),
+  BearBow: new Weapon({
+    name: 'Bear Bow',
+    damage: {physical: 7},
+    stats: {agility: 4, spirit: 4},
+    type: 'bow',
+    level: 19,
+    rarity: 'uncommon'
+  }),
+  TuskhornBow: new Weapon({
+    name: 'Tuskhorn Bow',
+    damage: {physical: 9},
+    stats: {agility: 4, stamina: 4},
+    type: 'bow',
+    level: 20,
+    rarity: 'uncommon'
+  }),
+  SpiderLegBow: new Weapon({
+    name: 'Spider Leg Bow',
+    damage: {physical: 9},
+    stats: {agility: 8, spirit: 2},
+    type: 'bow',
+    level: 23,
+    rarity: 'uncommon'
+  }),
+  LakewoodBow: new Weapon({
+    name: 'Lakewood Bow',
+    damage: {physical: 9},
+    type: 'bow',
+    level: 27,
+    rarity: 'uncommon'
+  }),
+  CrabBow: new Weapon({
+    name: 'Crab Bow',
+    damage: {physical: 10},
+    stats: {agility: 8, spirit: 8},
+    type: 'bow',
+    level: 28,
+    rarity: 'uncommon'
+  }),
+  PalmBow: new Weapon({
+    name: 'Palm Bow',
+    damage: {physical: 11},
+    stats: {agility: 18, spirit: 5, critChance: 0.01},
+    type: 'bow',
+    level: 42,
+    rarity: 'uncommon'
+  }),
+  TrollTuskBow: new Weapon({
+    name: 'Troll Tusk Bow',
+    damage: {physical: 12},
+    stats: {agility: 12, stamina: 1, phypierce: 0.05},
+    type: 'bow',
+    level: 39,
+    rarity: 'rare'
+  }),
+  SabertoothBow: new Weapon({
+    name: 'Sabertooth Bow',
+    damage: {physical: 14},
+    stats: {agility: 24, spirit: 4, critChance: 0.01},
+    type: 'bow',
+    level: 43,
+    rarity: 'rare'
+  }),
+  ArachnidsShot: new Weapon({
+    name: 'Arachnids Shot',
+    damage: {physical: 12},
+    stats: {agility: 19, spirit: 3, critChance: 0.02},
+    type: 'bow',
+    level: 40,
+    rarity: 'epic',
+    description: 'Chance to fire a spread of string shots.'
+  }),
+  DireBearBow: new Weapon({
+    name: 'Dire Bear Bow',
+    damage: {physical: 12},
+    stats: {agility: 16, spirit: 3, stamina: 3},
+    type: 'bow',
+    level: 40,
+    rarity: 'epic',
+    description: 'Physical damage buff scales with hunger.'
+  }),
+  HallowedBow: new Weapon({
+    name: 'Hallowed Bow',
+    damage: {physical: 12},
+    stats: {agility: 21, critChance: 0.02, phypierce: 0.03},
+    type: 'bow',
+    level: 40,
+    rarity: 'epic',
+  }),
+  VoidPiercer: new Weapon({
+    name: 'Void Piercer',
+    damage: {physical: 12},
+    stats: {agility: 21, critChance: 0.02, phypierce: 0.03},
+    type: 'bow',
+    level: 40,
+    rarity: 'epic',
+  }),
+  SanguineGreatbow: new Weapon({
+    name: 'Sanguine Greatbow',
+    damage: {physical: 14},
+    stats: {agility: 26, stamina: 5, critDamage: 0.05, critChance: 0.02, holyres: 0.05},
+    type: 'bow',
+    level: 40,
+    rarity: 'epic',
+    description: 'Chance to cause bleeding.'
+  }),
+  Vermillion: new Weapon({
+    name: 'Vermillion',
+    damage: {physical: 13},
+    stats: {agility: 26, spirit: 8, critChance: 0.02},
+    type: 'bow',
+    level: 40,
+    rarity: 'legendary',
+    description: 'Critical hits unleash fiery arrows that strike nearby enemies.'
+  }),
+  Hiveseeker: new Weapon({
+    name: 'Hiveseeker',
+    damage: {physical: 15},
+    stats: {spirit: 5, agility: 26, critChance: 0.03},
+    type: 'bow',
+    level: 40,
+    rarity: 'legendary',
+    description: 'Critical hits summon a bee companion (40s duration, 5s cooldown).'
+  }),
+  Boreastria: new Weapon({
+    name: 'Boreastria',
+    damage: {physical: 15},
+    stats: {agility: 30, spirit: 10, critChance: 0.04},
+    type: 'bow',
+    level: 50,
+    rarity: 'legendary',
+    description: 'Attacks summon Ice Spikes (10s cooldown).'
+  }),
+
+
+
+
+  OakStaff: new Weapon({
+    name: 'Oak Staff',
+    damage: {physical: 4},
+    stats: {intellect: 4},
+    type: 'staff',
+    level: 1,
+  }),
+  PineStaff: new Weapon({
+    name: 'Pine Staff',
+    damage: {physical: 6},
+    stats: {intellect: 8},
+    type: 'staff',
+    level: 8,
+  }),
+  RootStaff: new Weapon({
+    name: 'Root Staff',
+    damage: {physical: 8},
+    stats: {intellect: 10},
+    type: 'staff',
+    level: 10,
+  }),
+  QuarterStaff: new Weapon({
+    name: 'Quarter Staff',
+    damage: {physical: 8},
+    stats: {intellect: 12, spirit: 2},
+    type: 'staff',
+    level: 15,
+    rarity: 'uncommon',
+  }),
+  SlimeStaff: new Weapon({
+    name: 'Slime Staff',
+    damage: {physical: 8},
+    stats: {intellect: 12},
+    type: 'staff',
+    level: 16,
+    rarity: 'uncommon',
+    description: 'Melee attacks on poisoned enemies heal you.'
+  }),
+  ElderwoodStaff: new Weapon({
+    name: 'Elderwood Staff',
+    damage: {physical: 8},
+    stats: {intellect: 12},
+    type: 'staff',
+    level: 17,
+    rarity: 'uncommon'
+  }),
+  SpiderStaff: new Weapon({
+    name: 'Spider Staff',
+    damage: {physical: 9},
+    stats: {intellect: 14, spirit: 2},
+    type: 'staff',
+    level: 23,
+    rarity: 'uncommon'
+  }),
+  LakewoodStaff: new Weapon({
+    name: 'Lakewood Staff',
+    damage: {physical: 10},
+    stats: {intellect: 16},
+    type: 'staff',
+    level: 27,
+    rarity: 'uncommon'
+  }),
+  SpectreStaff: new Weapon({
+    name: 'Spectre Staff',
+    damage: {physical: 10},
+    stats: {intellect: 14, spirit: 8},
+    type: 'staff',
+    level: 31,
+    rarity: 'uncommon',
+    description: 'Chance to fire spectre bolts.'
+  }),
+  PalmStaff: new Weapon({
+    name: 'Palm Staff',
+    damage: {physical: 12},
+    stats: {intellect: 24, spirit: 10, magcritchance: 0.01},
+    type: 'staff',
+    level: 42,
+    rarity: 'uncommon'
+  }),
+  FrostpineStaff: new Weapon({
+    name: 'Frostpine Staff',
+    damage: {physical: 16},
+    stats: {intellect: 28, spirit: 14, magicCritChance: 0.02},
+    type: 'staff',
+    level: 45,
+    rarity: 'uncommon'
+  }),
+  ImpStaff: new Weapon({
+    name: 'Imp Staff',
+    damage: {physical: 10},
+    stats: {intellect: 16, spirit: 8, fireAttack: 0.10},
+    type: 'staff',
+    level: 35,
+    rarity: 'rare'
+  }),
+  KingSlimeStaff: new Weapon({
+    name: 'King Slime Staff',
+    damage: {physical: 11},
+    stats: {intellect: 23, spirit: 2},
+    type: 'staff',
+    level: 35,
+    rarity: 'epic',
+    description: 'Melee attacks on poisoned enemies heal you.'
+  }),
+  ArachnidsStaff: new Weapon({
+    name: 'Arachnids Staff',
+    damage: {physical: 11},
+    stats: {intellect: 26, spirit: 4, magicCritChance: 0.01},
+    type: 'staff',
+    level: 40,
+    rarity: 'epic',
+    description: 'Chance to summon venom pools.'
+  }),
+  DivineConcord: new Weapon({
+    name: 'Divine Concord',
+    damage: {physical: 11},
+    stats: {intellect: 25, magicCritChance: 0.02, magpierce: 0.03},
+    type: 'staff',
+    level: 40,
+    rarity: 'epic',
+  }),
+  InfernalCovenant: new Weapon({
+    name: 'Infernal Covenant',
+    damage: {physical: 11},
+    stats: {intellect: 25, magicCritChance: 0.02, magicPierce: 0.03},
+    type: 'staff',
+    level: 40,
+    rarity: 'epic'
+  }),
+  Armageddon: new Weapon({
+    name: 'Armageddon',
+    damage: {physical: 12},
+    stats: {intellect: 34, spirit: 8, magicCritChance: 0.03},
+    type: 'staff',
+    level: 40,
+    rarity: 'legendary',
+    description: 'Chance to erupt hellfire (6s cooldown).'
+  }),
+  RevenantsGrasp: new Weapon({
+    name: 'Revenant\'s Grasp',
+    damage: {physical: 13},
+    stats: {intellect: 25, spirit: 15, magicCritChance: 0.03},
+    type: 'staff',
+    level: 40,
+    rarity: 'legendary',
+    description: 'Magical strikes build Dread (5% max HP damage at max stacks).'
+  }),
+  SuveriasStaff: new Weapon({
+    name: 'Suveria\'s Staff',
+    damage: {physical: 11},
+    stats: {intellect: 10, spirit: 25, magicCritChance: 0.02},
+    type: 'staff',
+    level: 40,
+    rarity: 'legendary',
+    description: 'Perfect strikes create healing circles.'
   })
 };
 
