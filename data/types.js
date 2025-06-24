@@ -1,11 +1,7 @@
-// Tipos base
 class Race {
   constructor({
     name,
-    rarity,
     stats,
-    runes,
-    runeslots,
   }) {
     this.name = name;
     this.stats = stats || {};
@@ -19,12 +15,14 @@ class Item {
     stats,
     runes,
     runeslots,
+    description,
   }) {
     this.name = name;
     this.rarity = rarity || 'common';
     this.stats = stats || {};
     this.runes = runes || {};
     this.runeslots = runeslots || 0;
+    this.description = description || null;
   }
   getTooltip() {
     return 1; //Fazer return com todas as informaçoes relevantes
@@ -154,9 +152,11 @@ class Sash extends Item {
 
 class Ring extends Item {
   constructor({
+    level,
     ...item
   }) {
     super({ ...item, runeslots: 0});
+    this.level = level || null;
   }
 }
 
