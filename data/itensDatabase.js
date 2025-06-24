@@ -863,210 +863,936 @@ const itemsDatabaseChest = {
 };
 
 const itemsDatabaseBoots = {  
-  CottonPants: new Boots({
+   CottonPants: new Legs({
     name: 'Cotton Pants',
     stats: {intellect: 1},
     armor: 15,
-    type: 'light'
-  })
+    type: 'light',
+  }),
+  CottonGiPants: new Legs({
+    name: 'Cotton Gi Pants',
+    stats: {strength: 1},
+    armor: 30,
+    type: 'light',
+  }),
+  SlimeBoots: new Legs({
+    name: 'Slime Boots',
+    stats: {agility: 5},
+    armor: 20,
+    type: 'light',
+    level: 7,
+  }),
+  FlaxPants: new Legs({
+    name: 'Flax Pants',
+    stats: {intellect: 3},
+    armor: 30,
+    type: 'light',
+    level: 8,
+  }),
+  FlaxGiPants: new Legs({
+    name: 'Flax Gi Pants',
+    stats: {strength: 3},
+    armor: 60,
+    type: 'light',
+    level: 8,
+  }),
+  SilkPants: new Legs({
+    name: 'Silk Pants',
+    stats: {intellect: 4},
+    armor: 60,
+    type: 'light',
+    level: 17,
+    rarity: 'uncommon'
+  }),
+  SilkGiPants: new Legs({
+    name: 'Silk Gi Pants',
+    stats: {strength: 4},
+    armor: 120,
+    type: 'light',
+    level: 17,
+    rarity: 'uncommon'
+  }),
+  LilyleafPants: new Legs({
+    name: 'Lilyleaf Pants',
+    stats: {intellect: 8},
+    armor: 80,
+    type: 'light',
+    level: 27,
+    rarity: 'uncommon'
+  }),
+  LilyleafGiPants: new Legs({
+    name: 'Lilyleaf Gi Pants',
+    stats: {strength: 8},
+    armor: 160,
+    type: 'light',
+    level: 27,
+    rarity: 'uncommon'
+  }),
+  ScorchleafPants: new Legs({
+    name: 'Scorchleaf Pants',
+    stats: {intellect: 10, spirit: 1},
+    armor: 87,
+    type: 'light',
+    level: 34,
+    rarity: 'uncommon'
+  }),
+  ScorchleafGiPants: new Legs({
+    name: 'Scorchleaf Gi Pants',
+    stats: {strength: 9, stamina: 1, heatres: 0.10},
+    armor: 187,
+    type: 'light',
+    level: 34,
+    rarity: 'uncommon'
+  }),
+  CocoleafPants: new Legs({
+    name: 'Cocoleaf Pants',
+    stats: {intellect: 11, spirit: 1},
+    armor: 185,
+    type: 'light',
+    level: 42,
+    rarity: 'uncommon'
+  }),
+  CocoleafGiPants: new Legs({
+    name: 'Cocoleaf Gi Pants',
+    stats: {strength: 11, stamina: 1},
+    armor: 372,
+    type: 'light',
+    level: 42,
+    rarity: 'uncommon'
+  }),
+  ArachnidsPants: new Legs({
+    name: 'Arachnids Pants',
+    stats: {intellect: 12, spirit: 2},
+    armor: 97,
+    type: 'light',
+    level: 40,
+    rarity: 'epic'
+  }),
+  DireBearBoots: new Legs({
+    name: 'Dire Bear Boots',
+    stats: {strength: 12, stamina: 1},
+    armor: 226,
+    type: 'light',
+    level: 40,
+    rarity: 'epic'
+  }),
+  LichtPants: new Legs({
+    name: 'Licht Pants',
+    stats: {intellect: 10, spirit: 8},
+    armor: 97,
+    type: 'light',
+    level: 40,
+    rarity: 'epic'
+  }),
+  MaleficPants: new Legs({
+    name: 'Malefic Pants',
+    stats: {intellect: 11, buffDuration: 0.05},
+    armor: 94,
+    type: 'light',
+    level: 40,
+    rarity: 'epic'
+  }),
+  HellfangGiPants: new Legs({
+    name: 'Hellfang Gi Pants',
+    stats: {strength: 11, critChance: 0.01},
+    armor: 423,
+    type: 'light',
+    level: 40,
+    rarity: 'epic'
+  }),
+  SanctifiedPants: new Legs({
+    name: 'Sanctified Pants',
+    stats: {intellect: 11, buffDuration: 0.05},
+    armor: 94,
+    type: 'light',
+    level: 40,
+    rarity: 'epic'
+  }),
+  SeraphGiPants: new Legs({
+    name: 'Seraph Gi Pants',
+    stats: {strength: 11, critChance: 0.01},
+    armor: 263,
+    type: 'light',
+    level: 40,
+    rarity: 'epic'
+  }),
+  MammothRangersPants: new Legs({
+    name: 'Mammoth Ranger\'s Pants',
+    stats: {agility: 11, stamina: 4, speedboost: 0.02},
+    armor: 265,
+    type: 'light',
+    level: 45,
+    rarity: 'epic'
+  }),
+  BorealInquisitorPants: new Legs({
+    name: 'Boreal Inquisitor Pants',
+    stats: {intellect: 13, coldres: 0.1, buffDuration: 0.09},
+    armor: 140,
+    type: 'light',
+    level: 50,
+    rarity: 'epic'
+  }),
+  FrostleafPants: new Legs({
+    name: 'Frostleaf Pants',
+    stats: {intellect: 15, spirit: 2, coldres: 0.15, magicCrit: 1},
+    armor: 140,
+    type: 'light',
+    level: 45,
+    rarity: 'uncommon'
+  }),
+  FrostleafGiPants: new Legs({
+    name: 'Frostleaf Gi Pants',
+    stats: {strength: 15, stamina: 2, coldres: 0.1, phypierce: 0.02},
+    armor: 240,
+    type: 'light',
+    level: 45,
+    rarity: 'uncommon'
+  }),
+  LightYetiBoots: new Legs({
+    name: 'Light Yeti Pants',
+    stats: {strength: 22, stamina: 11, speedboost: 0.02, coldres: 0.1},
+    armor: 362,
+    type: 'light',
+    level: 45,
+    rarity: 'epic'
+  }),
+
+
+
+
+  LightLeatherBoots: new Boots({
+    name: 'Light Leather Boots',
+    stats: {agility: 1},
+    armor: 30,
+    type: 'medium',
+  }),
+  MediumLeatherBoots: new Boots({
+    name: 'Medium Leather Boots',
+    stats: {agility: 3},
+    armor: 65,
+    type: 'medium',
+    level: 8,
+  }),
+  HeavyLeatherBoots: new Boots({
+    name: 'Heavy Leather Boots',
+    stats: {agility: 4},
+    armor: 125,
+    type: 'medium',
+    level: 17,
+    rarity: 'uncommon'
+  }),
+  BulkyLeatherBoots: new Boots({
+    name: 'Bulky Leather Boots',
+    stats: {strength: 8, stamina: 3},
+    armor: 154,
+    type: 'medium',
+    level: 20,
+    rarity: 'uncommon'
+  }),
+  WingedBoots: new Boots({
+    name: 'Winged Boots',
+    stats: {spirit: 5, agility: 7},
+    armor: 75,
+    type: 'medium',
+    level: 21,
+    rarity: 'uncommon'
+  }),
+  AssassinsBoots: new Boots({
+    name: 'Assassin\'s Boots',
+    stats: {spirit: 2, agility: 8},
+    armor: 220,
+    type: 'medium',
+    level: 25,
+    rarity: 'rare',
+  }),
+  ThickLeatherBoots: new Boots({
+    name: 'Thick Leather Boots',
+    stats: {agility: 6},
+    armor: 170,
+    type: 'medium',
+    level: 27,
+    rarity: 'uncommon'
+  }),
+  ElderBoots: new Boots({
+    name: 'Elder Boots',
+    stats: {spirit: 5, agility: 10},
+    armor: 235,
+    type: 'medium',
+    level: 35,
+    rarity: 'epic'
+  }),
+  StalkerBoots: new Boots({
+    name: 'Stalker Boots',
+    stats: {agility: 9, stamina: 2, buffDuration: 0.06},
+    armor: 225,
+    type: 'medium',
+    level: 40,
+    rarity: 'epic'
+  }),
+  ForeswornBoots: new Boots({
+    name: 'Foresworn Boots',
+    stats: {agility: 9, stamina: 2, buffDuration: 0.06},
+    armor: 225,
+    type: 'medium',
+    level: 40,
+    rarity: 'epic'
+  }),
+  MediumYetiBoots: new Boots({
+    name: 'Medium Yeti Boots',
+    stats: {agility: 14, stamina: 4, speedboost: 0.03, coldres: 0.1},
+    armor: 330,
+    type: 'medium',
+    level: 45,
+    rarity: 'epic'
+  }),
+  EverwinterBoots: new Boots({
+    name: 'Everwinter Boots',
+    stats: {strength: 5, agility: 15, stamina: 2, speedboost: 0.02,
+      coldres: 0.15, buffDuration: 0.03},
+    armor: 360,
+    type: 'medium',
+    level: 50,
+    rarity: 'epic'
+  }),
+
+
+
+
+  CopperBoots: new Boots({
+    name: 'Copper Boots',
+    stats: {strength: 1},
+    armor: 55,
+    type: 'heavy',
+  }),
+  IronBoots: new Boots({
+    name: 'Iron Boots',
+    stats: {strength: 3},
+    armor: 120,
+    type: 'heavy',
+    level: 8,
+  }),
+  SilverBoots: new Boots({
+    name: 'Silver Boots',
+    stats: {strength: 4},
+    armor: 200,
+    type: 'heavy',
+    level: 17,
+    rarity: 'uncommon'
+  }),
+  PlatinumBoots: new Boots({
+    name: 'Platinum Boots',
+    stats: {strength: 6},
+    armor: 300,
+    type: 'heavy',
+    level: 27,
+    rarity: 'uncommon'
+  }),
+  CrabBoots: new Boots({
+    name: 'Crab Boots',
+    stats: {strength: 6, spirit: 6, stamina: 1, speedBoost: -0.02},
+    armor: 475,
+    type: 'heavy',
+    level: 28,
+    rarity: 'uncommon'
+  }),
+  MithrilBoots: new Boots({
+    name: 'Mithril Boots',
+    stats: {strength: 10, stamina: 3},
+    armor: 400,
+    type: 'heavy',
+    level: 33,
+    rarity: 'uncommon'
+  }),
+  WarTrollBoots: new Boots({
+    name: 'War Troll Boots',
+    stats: {strength: 11, stamina: 4},
+    armor: 425,
+    type: 'heavy',
+    level: 39,
+    rarity: 'rare'
+  }),
+  ZircBoots: new Boots({
+    name: 'Zirc Boots',
+    stats: {strength: 12, stamina: 5, physicalPierce: 0.01, physicalAttack: 0.01},
+    armor: 400,
+    type: 'heavy',
+    level: 42,
+    rarity: 'uncommon'
+  }),
+  AbyssalBoots: new Boots({
+    name: 'Abyssal Boots',
+    stats: {strength: 22, critDefense: 0.04},
+    armor: 500,
+    type: 'heavy',
+    level: 40,
+    rarity: 'epic'
+  }),
+  BastionBoots: new Boots({
+    name: 'Bastion Boots',
+    stats: {strength: 22, critDefense: 0.04},
+    armor: 500,
+    type: 'heavy',
+    level: 40,
+    rarity: 'epic'
+  }),
+  FrostscaleGreaves: new Boots({
+    name: 'Frostscale Greaves',
+    stats: {strength: 20, critChance: 0.02, holyres: 0.05, coldres: 0.12},
+    armor: 625,
+    type: 'heavy',
+    level: 40,
+    rarity: 'epic'
+  }),
+  MammothWarriorsBoots: new Boots({
+    name: 'Mammoth Warrior\'s Boots',
+    stats: {strength: 18, critChance: 0.01, speedboost: -0.02,
+      holyres: 0.1, coldres: 0.15},
+    armor: 700,
+    type: 'heavy',
+    level: 45,
+    rarity: 'epic'
+  }),
+  BrimfrostBoots: new Boots({
+    name: 'Brimfrost Boots',
+    stats: {strength: 24, critChance: 0.02, coldres: 0.1},
+    armor: 600,
+    type: 'heavy',
+    level: 45,
+    rarity: 'epic'
+  }),
+  
 };
 
-const itemsDatabaseWeapon = {};
+const itemsDatabaseWeapons = {
+  CopperDagger: new Weapon({
+    name: 'Copper Dagger',
+    damage: {physical: 3},
+    type: 'dagger',
+  }),
+  IronDagger: new Weapon({
+    name: 'Iron Dagger',
+    damage: {physical: 5},
+    type: 'dagger',
+    level: 8,
+  }),
+  WolfToothDagger: new Weapon({
+    name: 'Wolf Tooth Dagger',
+    damage: {physical: 6},
+    stats: {agility: 4},
+    type: 'dagger',
+    level: 11,
+    rarity: 'uncommon'
+  }),
+  SplintedDagger: new Weapon({
+    name: 'Splinted Dagger',
+    damage: {physical: 7},
+    stats: {agility: 7},
+    type: 'dagger',
+    level: 14,
+    rarity: 'uncommon'
+  }),
+  RatCarver: new Weapon({
+    name: 'Rat Carver',
+    damage: {physical: 7},
+    stats: {agility: 4},
+    type: 'dagger',
+    level: 15,
+    rarity: 'uncommon',
+    description: 'Chance on hit to make your target bleed.'
+  }),
+  SimpleDagger: new Weapon({
+    name: 'Simple Dagger',
+    damage: {physical: 8},
+    stats: {spirit: 2, agility: 4},
+    type: 'dagger',
+    level: 15,
+    rarity: 'uncommon',
+  }),
+  SilverDagger: new Weapon({
+    name: 'Silver Dagger',
+    damage: {physical: 7},
+    type: 'dagger',
+    level: 17,
+    rarity: 'uncommon'
+  }),
+  SpidersClaw: new Weapon({
+    name: 'Spider\'s Claw',
+    damage: {physical: 8},
+    stats: {spirit: 2, agility: 9},
+    type: 'dagger',
+    level: 23,
+    rarity: 'uncommon'
+  }),
+  SerpentDagger: new Weapon({
+    name: 'Serpent Dagger',
+    damage: {physical: 10},
+    stats: {spirit: 4, agility: 8},
+    type: 'dagger',
+    level: 25,
+    rarity: 'uncommon',
+    description: '8% Chance to inflict poison'
+  }),
+  CrocSlicer: new Weapon({
+    name: 'Croc Slicer',
+    damage: {physical: 9},
+    stats: {strength: 7, spirit: 4},
+    type: 'dagger',
+    level: 25,
+    rarity: 'uncommon'
+  }),
+  PlatinumDagger: new Weapon({
+    name: 'Platinum Dagger',
+    damage: {physical: 9},
+    type: 'dagger',
+    level: 27,
+    rarity: 'uncommon'
+  }),
+  ButcherKnife: new Weapon({
+    name: 'Butcher Knife',
+    damage: {physical: 11},
+    stats: {strength: 6, spirit: 4},
+    type: 'dagger',
+    level: 30,
+    rarity: 'uncommon',
+    description: 'Chance on hit to make your target bleed.',
+  }),
+  MithrilDagger: new Weapon({
+    name: 'Mithril Dagger',
+    damage: {physical: 12},
+    type: 'dagger',
+    level: 33,
+    rarity: 'uncommon'
+  }),
+  ZircDagger: new Weapon({
+    name: 'Zirc Dagger',
+    damage: {physical: 15},
+    type: 'dagger',
+    level: 42,
+    rarity: 'uncommon'
+  }),
+  CobaltDagger: new Weapon({
+    name: 'Cobalt Dagger',
+    damage: {physical: 18},
+    type: 'dagger',
+    level: 45,
+    rarity: 'uncommon'
+  }),
+  SabertoothDagger: new Weapon({
+    name: 'Sabertooth Dagger',
+    damage: {physical: 12},
+    stats: {agility: 21, critChance: 0.03},
+    type: 'dagger',
+    level: 43,
+    rarity: 'rare'
+  }),
+  SanguineThorn: new Weapon({
+    name: 'Sanguine Thorn',
+    damage: {physical: 12},
+    stats: {agility: 28, stamina: 5, critChance: 0.035, holyres: 0.05},
+    type: 'dagger',
+    level: 35,
+    rarity: 'epic',
+    description: 'Chance on hit to make your target bleed badly.'
+  }),
+  ArachnidsBite: new Weapon({
+    name: 'Arachnids Bite',
+    damage: {physical: 12},
+    stats: {spirit: 4, agility: 18, critChance: 0.01},
+    type: 'dagger',
+    level: 40,
+    rarity: 'epic',
+    description: 'Chance on hit to create a venom pool on the floor.'
+  }),
+  DireBearDagger: new Weapon({
+    name: 'Dire Bear Dagger',
+    damage: {physical: 12},
+    stats: {agility: 15, stamina: 3},
+    type: 'dagger',
+    level: 40,
+    rarity: 'epic',
+    description: 'The more hungry you are the bigger the physical damage buff.'
+  }),
+  ElysianDagger: new Weapon({
+    name: 'Elysian Dagger',
+    damage: {physical: 12},
+    stats: {agility: 20, critChance: 0.02, physicalPierce: 0.03},
+    type: 'dagger',
+    level: 40,
+    rarity: 'epic',
+  }),
+  NightPiercer: new Weapon({
+    name: 'Night Piercer',
+    damage: {physical: 12},
+    stats: {agility: 20, critChance: 0.02, physicalPierce: 0.03},
+    type: 'dagger',
+    level: 40,
+    rarity: 'epic',
+  }),
+  Ragnarok: new Weapon({
+    name: 'Ragnarok',
+    damage: {physical: 13},
+    stats: {agility: 23, stamina: 5, critChance: 0.02},
+    type: 'dagger',
+    level: 40,
+    rarity: 'legendary',
+    description: 'Critical hits unleash a dragon\'s roar, slowing all targets hit by 40% for 6 seconds.'
+  }),
+  Hivepiercer: new Weapon({
+    name: 'Hivepiercer',
+    damage: {physical: 12},
+    stats: {agility: 25, stamina: 2, critChance: 0.03},
+    type: 'dagger',
+    level: 40,
+    rarity: 'legendary',
+    description: 'Critical hits give 30% physical pierce for 10 seconds (5s cooldown).'
+  }),
+  DreadDagger: new Weapon({
+    name: 'Dread Dagger',
+    damage: {physical: 15},
+    stats: {spirit: 5, agility: 20, critChance: 0.03},
+    type: 'dagger',
+    level: 40,
+    rarity: 'legendary',
+    description: 'Stacks Lesser Dread on enemies, causing bonus damage at max stacks.'
+  }),
+  VoidFrost: new Weapon({
+    name: 'Void Frost',
+    damage: {physical: 14},
+    stats: {agility: 20, stamina: 2, critChance: 0.02, physicalPierce: 0.01},
+    type: 'dagger',
+    level: 50,
+    rarity: 'mythic',
+    description: 'Builds Void stacks on hit, reducing enemy damage (max 10%)'
+  }),
+
+
+
+
+  LightLeatherGloves: new Weapon({
+    name: 'Light Leather Gloves',
+    damage: {physical: 4},
+    type: 'gauntlet',
+  }),
+  MediumLeatherGloves: new Weapon({
+    name: 'Medium Leather Gloves',
+    damage: {physical: 6},
+    type: 'gauntlet',
+    level: 8,
+  }),
+  KnuckleDusters: new Weapon({
+    name: 'Knuckle Dusters',
+    damage: {physical: 8},
+    stats: {strength: 4, spirit: 2},
+    type: 'gauntlet',
+    level: 15,
+    rarity: 'uncommon',
+  }),
+  HeavyLeatherGloves: new Weapon({
+    name: 'Heavy Leather Gloves',
+    damage: {physical: 8},
+    type: 'gauntlet',
+    level: 17,
+    rarity: 'uncommon'
+  }),
+  BearClaws: new Weapon({
+    name: 'Bear Claws',
+    damage: {physical: 9},
+    stats: {strength: 4, spirit: 4},
+    type: 'gauntlet',
+    level: 19,
+    rarity: 'uncommon'
+  }),
+  PantherClaws: new Weapon({
+    name: 'Panther Claws',
+    damage: {physical: 11},
+    stats: {strength: 7, spirit: 4},
+    type: 'gauntlet',
+    level: 23,
+    rarity: 'uncommon'
+  }),
+  DemonGauntlets: new Weapon({
+    name: 'Demon Gauntlets',
+    damage: {physical: 9, fire: 2},
+    stats: {strength: 10},
+    type: 'gauntlet',
+    level: 35,
+    rarity: 'uncommon'
+  }),
+  ElderGauntlets: new Weapon({
+    name: 'Elder Gauntlets',
+    damage: {physical: 13},
+    stats: {strength: 19, spirit: 10},
+    type: 'gauntlet',
+    level: 35,
+    rarity: 'epic'
+  }),
+  DireBearGloves: new Weapon({
+    name: 'Dire Bear Gloves',
+    damage: {physical: 12},
+    stats: {strength: 15, stamina: 2},
+    type: 'gauntlet',
+    level: 40,
+    rarity: 'epic',
+    description: 'The more hungry you are the bigger the physical damage buff.'
+  }),
+  GauntletsOfDevotion: new Weapon({
+    name: 'Gauntlets of Devotion',
+    damage: {physical: 13},
+    stats: {agility: 8, critChance: 0.02, physicalPierce: 0.03},
+    type: 'gauntlet',
+    level: 40,
+    rarity: 'epic',
+  }),
+  ProfanedGauntlets: new Weapon({
+    name: 'Profaned Gauntlets',
+    damage: {physical: 13},
+    stats: {agility: 8, critChance: 0.02, physicalPierce: 0.03},
+    type: 'gauntlet',
+    level: 40,
+    rarity: 'epic',
+  }),
+  AsurasGauntlets: new Weapon({
+    name: 'Asura\'s Gauntlets',
+    damage: {physical: 14},
+    stats: {strength: 27, spirit: 14, physicalPierce: 0.05},
+    type: 'gauntlet',
+    level: 40,
+    rarity: 'legendary',
+    description: 'Gain Fury stacks when hit, dealing bonus damage at max stacks.'
+  }),
+
+
+
+
+  CopperSword: new Weapon({
+    name: 'Copper Sword',
+    damage: {physical: 5},
+    type: 'sword',
+  }),
+  IronSword: new Weapon({
+    name: 'Iron Sword',
+    damage: {physical: 7},
+    type: 'sword',
+    level: 8,
+  }),
+  Klinge: new Weapon({
+    name: 'Klinge',
+    damage: {physical: 9},
+    stats: {strength: 4},
+    type: 'sword',
+    level: 15,
+    rarity: 'uncommon',
+    description: 'Chance on hit to make your target bleed'
+  }),
+  SilverSword: new Weapon({
+    name: 'Silver Sword',
+    damage: {physical: 8},
+    type: 'sword',
+    level: 17,
+    rarity: 'uncommon'
+  }),
+  SimpleSword: new Weapon({
+    name: 'Simple Sword',
+    damage: {physical: 8},
+    stats: {strength: 4, spirit: 2},
+    type: 'sword',
+    level: 18,
+    rarity: 'uncommon',
+  }),
+  TuskenBlade: new Weapon({
+    name: 'Tusken Blade',
+    damage: {physical: 11},
+    stats: {strength: 4, spirit: 2},
+    type: 'sword',
+    level: 20,
+    rarity: 'uncommon'
+  }),
+  LionsClaw: new Weapon({
+    name: 'Lions Claw',
+    damage: {physical: 12},
+    stats: {strength: 7, spirit: 5},
+    type: 'sword',
+    level: 23,
+    rarity: 'uncommon',
+  }),
+  PlatinumSword: new Weapon({
+    name: 'Platinum Sword',
+    damage: {physical: 11},
+    type: 'sword',
+    level: 27,
+    rarity: 'uncommon'
+  }),
+  MythrilSword: new Weapon({
+    name: 'Mythril Sword',
+    damage: {physical: 14},
+    type: 'sword',
+    level: 33,
+    rarity: 'uncommon'
+  }),
+  ZircSword: new Weapon({
+    name: 'Zirc Sword',
+    damage: {physical: 17},
+    type: 'sword',
+    level: 42,
+    rarity: 'uncommon'
+  }),
+  CobaltSword: new Weapon({
+    name: 'Cobalt Sword',
+    damage: {physical: 20},
+    type: 'sword',
+    level: 45,
+    rarity: 'uncommon'
+  }),
+  BasilisksBlade: new Weapon({
+    name: 'Basilisk\'s Blade',
+    damage: {physical: 13},
+    stats: {strength: 8, stamina: 3},
+    type: 'sword',
+    level: 30,
+    rarity: 'rare',
+    description: 'The more hungry you are the bigger the physical damage buff.'
+  }),
+  BeastmanSword: new Weapon({
+    name: 'Beastman Sword',
+    damage: {physical: 14},
+    stats: {strength: 16, stamina: 10, spirit: 5},
+    type: 'sword',
+    level: 33,
+    rarity: 'rare'
+  }),
+  FiendclawBlade: new Weapon({
+    name: 'Fiendclaw Blade',
+    damage: {physical: 9, fire: 2},
+    stats: {strength: 9, spirit: 4},
+    type: 'sword',
+    level: 35,
+    rarity: 'rare'
+  }),
+  Cutlass: new Weapon({
+    name: 'Cutlass',
+    damage: {physical: 14},
+    stats: {strength: 21, agility: 8, phypierce: 0.04},
+    type: 'sword',
+    level: 42,
+    rarity: 'rare'
+  }),
+  SanguineBlade: new Weapon({
+    name: 'Sanguine Blade',
+    damage: {physical: 12},
+    stats: {strength: 8, spirit: 8},
+    type: 'sword',
+    level: 35,
+    rarity: 'epic',
+    description: 'Chance on hit to make your target bleed badly'
+  }),
+  DireBearSword: new Weapon({
+    name: 'Dire Bear Sword',
+    damage: {physical: 9},
+    stats: {strength: 9, spirit: 4},
+    type: 'sword',
+    level: 40,
+    rarity: 'epic',
+    description: 'The more hungry you are the bigger the physical damage buff.'
+  }),
+  BlackOmen: new Weapon({
+    name: 'Black Omen',
+    damage: {physical: 14},
+    stats: {strength: 17, critChance: 0.02, physicalPierce: 0.03},
+    type: 'sword',
+    level: 40,
+    rarity: 'epic',
+  }),
+  Solarius: new Weapon({
+    name: 'Solarius',
+    damage: {physical: 14},
+    stats: {strength: 17, critChance: 0.02, physicalPierce: 0.03},
+    type: 'sword',
+    level: 40,
+    rarity: 'epic',
+  }),
+  Viridian: new Weapon({
+    name: 'Viridian',
+    damage: {physical: 15},
+    stats: {strength: 24, stamina: 6, critChance: 0.01, physicalPierce: 0.03},
+    type: 'sword',
+    level: 40,
+    rarity: 'legendary',
+    description: 'Applies stackable Blighted debuff (reduces defense by 5% per stack).'
+  }),
+  RunicCutlass: new Weapon({
+    name: 'Runic Cutlass',
+    damage: {physical: 17},
+    stats: {strength: 27, agility: 10, critChance: 0.02, physicalPierce: 0.08},
+    type: 'sword',
+    level: 50,
+    rarity: 'legendary',
+  }),
+
+
+
+
+  IronSpear: new Weapon({
+    name: 'Iron Spear',
+    damage: {physical: 6},
+    type: 'spear',
+    level: 8,
+  }),
+  SplintedSpear: new Weapon({
+    name: 'Splinted Spear',
+    damage: {physical: 9},
+    stats: {strength: 7},
+    type: 'spear',
+    level: 12,
+    rarity: 'uncommon'
+  }),
+  IceGolemSpear: new Weapon({
+    name: 'Ice Golem Spear',
+    damage: {physical: 12},
+    stats: {strength: 18, stamina: 8, physicalPierce: 0.025},
+    type: 'spear',
+    level: 45,
+    rarity: 'epic'
+  }),
+  Hellpiercer: new Weapon({
+    name: 'Hellpiercer',
+    damage: {physical: 11, fire: 4},
+    stats: {strength: 16, critChance: 0.02, physicalPierce: 0.05},
+    type: 'spear',
+    level: 40,
+    rarity: 'legendary'
+  }),
+  Austeris: new Weapon({
+    name: 'Austeris',
+    damage: {physical: 12},
+    stats: {strength: 20, critChance: 0.02, physicalPierce: 0.03},
+    type: 'spear',
+    level: 50,
+    rarity: 'legendary',
+    description: 'Attacks apply Chill stacks (2% slow per stack, max 20%).'
+  }),
+
+  Tyle: new Weapon({
+    name: 'Tyle',
+    damage: {physical: 11},
+    stats: {strength: 18, stamina: 6, critChance: 0.01, physicalPierce: 0.03},
+    type: 'sword',
+    level: 40,
+    rarity: 'legendary',
+    description: '3% Hemorrhage buildup on each hit.'
+  }),
+
+  SplintedClub: new Weapon({
+    name: 'Splinted Club',
+    damage: {physical: 10},
+    stats: {strength: 7},
+    type: 'club',
+    level: 12,
+    rarity: 'uncommon'
+  })
+};
 
 const itemsDatabaseOffHand = {
-  CopperShield: new Shield({
-    name: 'Copper Shield',
-    posture: 5,
-    armor: 0,
-    rarity: 'common'
-  }),
-
-  IronShield: new Shield({
-    name: 'Iron Shield',
-    posture: 10,
-    armor: 25,
-    level: 8,
-    rarity: 'uncommon'
-  }),
-
-  SplintedShield: new Shield({
-    name: 'Splinted Shield',
-    posture: 8,
-    armor: 46,
-    level: 10,
-    rarity: 'uncommon'
-  }),
-
-  SlimeShield: new Shield({
-    name: 'Slime Shield',
-    posture: 10,
-    armor: 67,
-    level: 16,
-    rarity: 'rare',
-    description: 'On block, the attacker accumulates poison buildup.'
-  }),
-
-  SilverShield: new Shield({
-    name: 'Silver Shield',
-    posture: 15,
-    armor: 35,
-    level: 17,
-    rarity: 'rare'
-  }),
-
-  PlatinumShield: new Shield({
-    name: 'Platinum Shield',
-    posture: 20,
-    armor: 50,
-    level: 27,
-    rarity: 'epic'
-  }),
-
-  MithrilShield: new Shield({
-    name: 'Mithril Shield',
-    posture: 20,
-    armor: 60,
-    level: 33,
-    rarity: 'epic'
-  }),
-
-  ZircShield: new Shield({
-    name: 'Zirc Shield',
-    posture: 20,
-    armor: 70,
-    level: 42,
-    rarity: 'epic'
-  }),
-
-  CobaltShield: new Shield({
-    name: 'Cobalt Shield',
-    posture: 25,
-    armor: 100,
-    level: 45,
-    rarity: 'legendary'
-  }),
-
-  ElderShield: new Shield({
-    name: 'Elder Shield',
-    stats: {spirit: 5, stamina: 5},
-    posture: 20,
-    armor: 100,
-    level: 35,
-    rarity: 'legendary'
-  }),
-
-  LanzasMerit: new Shield({
-    name: 'Lanza\'s Merit',
-    stats: {magicResistance: 0.08},
-    posture: 20,
-    armor: 235,
-    level: 40,
-    rarity: 'legendary'
-  }),
-
-  TemplarsAegis: new Shield({
-    name: 'Templar\'s Aegis',
-    stats: {strength: 27, stamina: 5},
-    posture: 17,
-    armor: 212,
-    level: 40,
-    rarity: 'legendary'
-  }),
-
-  Riftguard: new Shield({
-    name: 'Riftguard',
-    stats: {strength: 27, stamina: 5},
-    posture: 17,
-    armor: 212,
-    level: 40,
-    rarity: 'legendary'
-  }),
-
-  IceGolemShield: new Shield({
-    name: 'Ice Golem Shield',
-    stats: {magres: 0.05, holyres: 0.05, fireres: -0.05},
-    posture: 35,
-    armor: 300,
-    level: 45,
-    rarity: 'legendary'
-  }),
-
-  WarriorsSash: new Sash({
-    name: 'Warriors Sash',
-    stats: {strength: 15, spirit: 5, stamina: 5},
-    level: 30,
-    rarity: 'rare'
-  }),
-
-  MagiciansSash: new Sash({
-    name: 'Magicians Sash',
-    stats: {intellect: 15, spirit: 5, stamina: 5},
-    level: 30,
-    rarity: 'rare'
-  }),
-
-  ThievesSash: new Sash({
-    name: 'Thieves Sash',
-    stats: {agility: 15, spirit: 5, stamina: 5},
-    level: 30,
-    rarity: 'rare'
-  })
-};
-
-const itemsDatabaseLantern = {
-  Lantern: new Lantern({
-    name: 'Lantern',
-  }),
-
-  AmberLantern: new Lantern({
-    name: 'Amber Lantern',
-    stats: {
-      spirit: 5
-    },
-    rarity: 'uncommon'
-  }),
-
-  AmethystLantern: new Lantern({
-    name: 'Amethyst Lantern',
-    stats: {
-      stamina: 4
-    },
-    rarity: 'uncommon'
-  }),
-
-  SapphireLantern: new Lantern({
-    name: 'Sapphire Lantern',
-    stats: {
-      magatk: 0.03
-    },
-    rarity: 'rare'
-  }),
-
-  RubyLantern: new Lantern({
-    name: 'Ruby Lantern',
-    stats: {
-      phyatk: 0.03
-    },
-    rarity: 'rare'
-  }),
-
-  EmberfrostLantern: new Lantern({
-    name: 'Emberfrost Lantern',
-    stats: {
-      heatres: 0.25
-    },
-    rarity: 'rare'
-  }),
-
-  FrostfireLantern: new Lantern({
-    name: 'Frostfire Lantern',
-    stats: {
-      coldres: 0.25
-    },
-    rarity: 'rare'
-  }),
-
-  CopperShield: new Shield({
+ CopperShield: new Shield({
     name: 'Copper Shield',
     posture: 5
   }),
@@ -1193,6 +1919,81 @@ const itemsDatabaseLantern = {
     level: 45,
     armor: 300,
     rarity: 'epic'
+  }),
+
+  WarriorsSash: new Sash({
+    name: 'Warriors Sash',
+    stats: {strength: 15, spirit: 5, stamina: 5},
+    level: 30,
+    rarity: 'rare'
+  }),
+
+  MagiciansSash: new Sash({
+    name: 'Magicians Sash',
+    stats: {intellect: 15, spirit: 5, stamina: 5},
+    level: 30,
+    rarity: 'rare'
+  }),
+
+  ThievesSash: new Sash({
+    name: 'Thieves Sash',
+    stats: {agility: 15, spirit: 5, stamina: 5},
+    level: 30,
+    rarity: 'rare'
+  })
+};
+
+const itemsDatabaseLantern = {
+  Lantern: new Lantern({
+    name: 'Lantern',
+  }),
+
+  AmberLantern: new Lantern({
+    name: 'Amber Lantern',
+    stats: {
+      spirit: 5
+    },
+    rarity: 'uncommon'
+  }),
+
+  AmethystLantern: new Lantern({
+    name: 'Amethyst Lantern',
+    stats: {
+      stamina: 4
+    },
+    rarity: 'uncommon'
+  }),
+
+  SapphireLantern: new Lantern({
+    name: 'Sapphire Lantern',
+    stats: {
+      magatk: 0.03
+    },
+    rarity: 'rare'
+  }),
+
+  RubyLantern: new Lantern({
+    name: 'Ruby Lantern',
+    stats: {
+      phyatk: 0.03
+    },
+    rarity: 'rare'
+  }),
+
+  EmberfrostLantern: new Lantern({
+    name: 'Emberfrost Lantern',
+    stats: {
+      heatres: 0.25
+    },
+    rarity: 'rare'
+  }),
+
+  FrostfireLantern: new Lantern({
+    name: 'Frostfire Lantern',
+    stats: {
+      coldres: 0.25
+    },
+    rarity: 'rare'
   }),
 };
 
@@ -1469,7 +2270,7 @@ const itemsDatabaseRings = {
 
   ManaCleaverRing: new Ring({
     name: 'Mana Cleaver Ring',
-    description: 'On each M1: Gain slight Mana Regen on hit. 5s CD for every 50 Intelligence.',
+    description: '+7 Mana gain upon landing a basic attack or a weapon art.',
     rarity: 'legendary'
   }),
 

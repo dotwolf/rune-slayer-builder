@@ -8,6 +8,16 @@ class Race {
   }
 }
 
+class Class {
+  constructor({
+    name,
+    stats,
+  }) {
+    this.name = name;
+    this.stats = stats || {};
+  }
+}
+
 class Item {
   constructor({
     name,
@@ -65,7 +75,7 @@ class Weapon extends Item {
     ...itemProps
   }) {
     super({ ...itemProps, runeslots: 3});
-    this.damage = damage;
+    this.damage = damage || {physical: 0};
     this.level = level || 1;
     this.type = type;
   }
@@ -161,4 +171,4 @@ class Ring extends Item {
 }
 
 
-export { Item, Rune, Weapon, Armor, Helmet, Chest, Boots, Offhand, Shield, Sash, Ring, Lantern, Back, Race };
+export { Class, Item, Rune, Weapon, Armor, Helmet, Chest, Boots, Offhand, Shield, Sash, Ring, Lantern, Back, Race };
