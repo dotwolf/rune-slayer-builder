@@ -104,6 +104,9 @@ const runesDatabase = {
     rarity: 'epic'
   }),
   
+
+
+
   KingMandrakeRune: new Rune({
     name: 'King Mandrake Rune',
     stats: {spirit: 5, intellect: 3, concentration: 0.1},
@@ -273,7 +276,12 @@ const runesDatabase = {
     slot: 'boots',
     rarity: 'epic'
   }),
-
+  BeaverRune: new Rune({
+    name: 'Snowman Rune',
+    stats: {spirit: 3, agility: 6},
+    slot: 'boots',
+    rarity: 'epic'
+  }),
 
 
 
