@@ -1,4 +1,4 @@
-import { Item, Weapon, Armor, Helmet, Chest, Boots, Offhand, Shield, Sash, Ring, Lantern, Back } from './types.js';
+import { Weapon, Helmet, Chest, Boots, Shield, Sash, Ring, Lantern, Back } from './types.js';
 
 const itemsDatabaseHelmet = {
   CottonHeadband: new Helmet({
@@ -133,7 +133,7 @@ const itemsDatabaseHelmet = {
   }),
   HellfangHeadband: new Helmet({
     name: 'Hellfang Headband',
-    stats: {strength: 11,phypierce: 0.02},
+    stats: {strength: 11,physicalPierce: 0.02},
     armor: 263,
     type: 'light',
     level: 40,
@@ -141,7 +141,7 @@ const itemsDatabaseHelmet = {
   }),
   MaleficHat: new Helmet({
     name: 'Malefic Hat',
-    stats: {intellect: 11, magcrit: 0.02},
+    stats: {intellect: 11, magicCritChance: 0.02},
     armor: 94,
     type: 'light',
     level: 40,
@@ -149,7 +149,7 @@ const itemsDatabaseHelmet = {
   }),
   SeraphHeadband: new Helmet({
     name: 'Seraph Headband',
-    stats: {strength: 11, phypierce: 0.02},
+    stats: {strength: 11, physicalPierce: 0.02},
     armor: 263,
     type: 'light',
     level: 40,
@@ -157,7 +157,7 @@ const itemsDatabaseHelmet = {
   }),
   SanctifiedHat: new Helmet({
     name: 'Sanctified Hat',
-    stats: {intellect: 11, magcrit: 0.01},
+    stats: {intellect: 11, magicCritChance: 0.01},
     armor: 94,
     type: 'light',
     level: 40,
@@ -165,7 +165,7 @@ const itemsDatabaseHelmet = {
   }),
   LightYetiBeads: new Helmet({
     name: 'Light Yeti Beads',
-    stats: {strength: 22, stamina: 11, coldres: 0.1, buffDuration: 0.03},
+    stats: {strength: 22, stamina: 11, coldResistance: 0.1, buffDuration: 0.03},
     armor: 362,
     type: 'light',
     level: 45,
@@ -173,7 +173,7 @@ const itemsDatabaseHelmet = {
   }),
   BorealInquisitorHood: new Helmet({
     name: 'Boreal Inquisitor Hood',
-    stats: {intellect: 13, magcrit: 0.03, coldres: 0.1},
+    stats: {intellect: 13, magicCritChance: 0.03, coldResistance: 0.1},
     armor: 362,
     type: 'light',
     level: 50,
@@ -181,7 +181,7 @@ const itemsDatabaseHelmet = {
   }),
   MammothSagesCrown: new Helmet({
     name: 'Mammoth Sage\'s Crown',
-    stats: {strength: 14, stamina: 6, coldres: 0.15},
+    stats: {strength: 14, stamina: 6, coldResistance: 0.15},
     armor: 321,
     type: 'light',
     level: 45,
@@ -189,7 +189,7 @@ const itemsDatabaseHelmet = {
   }),
   FrostleafHat: new Helmet({
     name: 'Frostleaf Hat',
-    stats: {intellect: 15, spirit: 2, castspeed: 0.03},
+    stats: {intellect: 15, spirit: 2, castSpeed: 0.03},
     armor: 110,
     type: 'light',
     level: 45,
@@ -197,7 +197,7 @@ const itemsDatabaseHelmet = {
   }),
   FrostleafHeadband: new Helmet({
     name: 'Frostleaf Hat',
-    stats: {strength: 15, stamina: 2, phypierce: 0.02},
+    stats: {strength: 15, stamina: 2, physicalPierce: 0.02},
     armor: 240,
     type: 'light',
     level: 45,
@@ -270,7 +270,7 @@ const itemsDatabaseHelmet = {
   }),
   StalkerHood: new Helmet({
     name: 'Stalker Hood',
-    stats: {agility: 9, stamina: 2, phypierce: 0.03},
+    stats: {agility: 9, stamina: 2, physicalPierce: 0.03},
     armor: 225,
     type: 'medium',
     level: 40,
@@ -279,7 +279,7 @@ const itemsDatabaseHelmet = {
   EverwinterCrown: new Helmet({
     name: 'Everwinter Crown',
     stats: {strength: 5, agility: 15, stamina: 2,
-      critChance: 0.03, speedboost: 0.02, coldres: 0.1},
+      critChance: 0.03, speedBoost: 0.02, coldResistance: 0.1},
     armor: 360,
     type: 'medium',
     level: 50,
@@ -287,8 +287,8 @@ const itemsDatabaseHelmet = {
   }),
   MediumYetiHood: new Helmet({
     name: 'Medium Yeti Hood',
-    stats: {agility: 14, stamina: 4, phypierce: 0.03, coldres: 0.1,
-      phyatk: 0.02},
+    stats: {agility: 14, stamina: 4, physicalPierce: 0.03, coldResistance: 0.1,
+      physicalAttack: 0.02},
     armor: 330,
     type: 'medium',
     level: 45,
@@ -296,7 +296,7 @@ const itemsDatabaseHelmet = {
   }),
   MammothRangersCrown: new Helmet({
     name: 'Mammoth Ranger\'s Crown',
-    stats: {agility: 11, stamina: 4, coldres: 0.15},
+    stats: {agility: 11, stamina: 4, coldResistance: 0.15},
     armor: 280,
     type: 'medium',
     level: 45,
@@ -376,7 +376,7 @@ const itemsDatabaseHelmet = {
 
   ZircHelmet: new Helmet({
     name: 'Zirc Helmet',
-    stats: {strength: 12, stamina: 5, phypierce: 0.01, phyatk: 0.01},
+    stats: {strength: 12, stamina: 5, physicalPierce: 0.01, physicalAttack: 0.01},
     armor: 450,
     type: 'heavy',
     level: 42,
@@ -385,7 +385,7 @@ const itemsDatabaseHelmet = {
 
   AbyssalHelmet: new Helmet({
     name: 'Abyssal Helmet',
-    stats: {strength: 22, magres: 0.04, buffDuration: 0.08},
+    stats: {strength: 22, magicResistance: 0.04, buffDuration: 0.08},
     armor: 500,
     type: 'heavy',
     level: 40,
@@ -394,7 +394,7 @@ const itemsDatabaseHelmet = {
 
   BastionHelmet: new Helmet({
     name: 'Bastion Helmet',
-    stats: {strength: 22, magres: 0.04, buffDuration: 0.08},
+    stats: {strength: 22, magicResistance: 0.04, buffDuration: 0.08},
     armor: 500,
     type: 'heavy',
     level: 40,
@@ -402,8 +402,8 @@ const itemsDatabaseHelmet = {
   }),
   FrostscaleHelm: new Helmet({
     name: 'Frostscale Helm',
-    stats: {strength: 20, critdefense: 0.02, magres: 0.03,
-      coldres: 0.06, buffDuration: 0.04},
+    stats: {strength: 20, critDefense: 0.02, magicResistance: 0.03,
+      coldResistance: 0.06, buffDuration: 0.04},
     armor: 625,
     type: 'heavy',
     level: 50,
@@ -411,8 +411,8 @@ const itemsDatabaseHelmet = {
   }),
   MammothWarriorsHelm: new Helmet({
     name: 'Mammoth Warrior\'s Helm',
-    stats: {strength: 18, speedboost: -0.02, magres: 0.07,
-      coldres: 0.15, buffDuration: 0.1},
+    stats: {strength: 18, speedBoost: -0.02, magicResistance: 0.07,
+      coldResistance: 0.15, buffDuration: 0.1},
     armor: 700,
     type: 'heavy',
     level: 45,
@@ -420,8 +420,8 @@ const itemsDatabaseHelmet = {
   }),
   CobaltHelmet: new Helmet({
     name: 'Cobalt Helmet',
-    stats: {strength: 12, stamina: 5, critdefense: 0.02,
-      magres: 0.02},
+    stats: {strength: 12, stamina: 5, critDefense: 0.02,
+      magicResistance: 0.02},
     armor: 550,
     type: 'heavy',
     level: 45,
@@ -429,7 +429,7 @@ const itemsDatabaseHelmet = {
   }),
 BrimfrostHelmet: new Helmet({
     name: 'Cobalt Helmet',
-    stats: {strength: 24, coldres: 0.1, buffDuration: 0.1},
+    stats: {strength: 24, coldResistance: 0.1, buffDuration: 0.1},
     armor: 600,
     type: 'heavy',
     level: 45,
@@ -448,8 +448,8 @@ BrimfrostHelmet: new Helmet({
     rarity: 'uncommon'
   }),
   SlimeCrown: new Helmet({
-    name: 'Slime Crpwm',
-    stats: {intellect: 9, magcrit: 0.01},
+    name: 'Slime Crown',
+    stats: {intellect: 9, magicCritChance: 0.01},
     armor: 0,
     type: 'miscellaneous',
     level: 16,
@@ -534,7 +534,7 @@ const itemsDatabaseChest = {
   }),
   ScorchleafGi: new Chest({
     name: 'Scorchleaf Gi',
-    stats: {strength: 18, stamina: 1, heatres: 0.15},
+    stats: {strength: 18, stamina: 1, heatResistance: 0.15},
     armor: 320,
     type: 'light',
     level: 34,
@@ -566,7 +566,7 @@ const itemsDatabaseChest = {
   }),
   ArachnidsRobes: new Chest({
     name: 'Arachnids Robes',
-    stats: {intellect: 24, spirit: 4, magcritchance: 0.01},
+    stats: {intellect: 24, spirit: 4, magicCritChance: 0.01},
     armor: 194,
     type: 'light',
     level: 40,
@@ -582,7 +582,7 @@ const itemsDatabaseChest = {
   }),
   LichtRobes: new Chest({
     name: 'Licht Robes',
-    stats: {intellect: 20, spirit: 15, magcritchance: 0.01},
+    stats: {intellect: 20, spirit: 15, magicCritChance: 0.01},
     armor: 190,
     type: 'light',
     level: 40,
@@ -590,7 +590,7 @@ const itemsDatabaseChest = {
   }),
   MaleficRobes: new Chest({
     name: 'Malefic Robes',
-    stats: {intellect: 22, magpierce: 0.04, castSpeed: 0.08},
+    stats: {intellect: 22, magicPierce: 0.04, castSpeed: 0.08},
     armor: 189,
     type: 'light',
     level: 40,
@@ -598,7 +598,7 @@ const itemsDatabaseChest = {
   }),
   HellfangGi: new Chest({
     name: 'Hellfang Gi',
-    stats: {strength: 22, critDamage: 0.10, magres: 0.06},
+    stats: {strength: 22, critDamage: 0.10, magicResistance: 0.06},
     armor: 423,
     type: 'light',
     level: 40,
@@ -606,7 +606,7 @@ const itemsDatabaseChest = {
   }),
   SanctifiedRobes: new Chest({
     name: 'Sanctified Robes',
-    stats: {intellect: 22, magpierce: 0.04, castSpeed: 0.08},
+    stats: {intellect: 22, magicPierce: 0.04, castSpeed: 0.08},
     armor: 189,
     type: 'light',
     level: 40,
@@ -614,7 +614,7 @@ const itemsDatabaseChest = {
   }),
   SeraphGi: new Chest({
     name: 'Seraph Gi',
-    stats: {strength: 22, critDamage: 0.10, magres: 0.06},
+    stats: {strength: 22, critDamage: 0.10, magicResistance: 0.06},
     armor: 423,
     type: 'light',
     level: 40,
@@ -622,7 +622,7 @@ const itemsDatabaseChest = {
   }),
   FrostleafRobes: new Chest({
     name: 'Frostleaf Robes',
-    stats: {intellect: 28, spirit: 6, coldres: 0.15, magicCrit: 1},
+    stats: {intellect: 28, spirit: 6, coldResistance: 0.15, magicCritChance: 1},
     armor: 215,
     type: 'light',
     level: 45,
@@ -630,7 +630,7 @@ const itemsDatabaseChest = {
   }),
   FrostleafGi: new Chest({
     name: 'Frostleaf Gi',
-    stats: {strength: 28, stamina: 3, coldres: 0.15, phyatk: 0.03},
+    stats: {strength: 28, stamina: 3, coldResistance: 0.15, physicalAttack: 0.03},
     armor: 400,
     type: 'light',
     level: 45,
@@ -638,7 +638,7 @@ const itemsDatabaseChest = {
   }),
   LightYetiArmor: new Chest({
     name: 'Light Yeti Armor',
-    stats: {strength: 22, stamina: 11, coldres: 0.2, phyatk: 0.03},
+    stats: {strength: 22, stamina: 11, coldResistance: 0.2, physicalAttack: 0.03},
     armor: 472,
     type: 'light',
     level: 45,
@@ -729,7 +729,7 @@ const itemsDatabaseChest = {
   }),
   MammothSagesGarbs: new Chest({
     name: 'MammothSage\'s Garbs',
-    stats: {strength: 20, stamina: 11, magres: 0.05, coldres: 0.3},
+    stats: {strength: 20, stamina: 11, magicResistance: 0.05, coldResistance: 0.3},
     armor: 465,
     type: 'light',
     level: 45,
@@ -738,7 +738,7 @@ const itemsDatabaseChest = {
   EverwinterVest: new Chest({
     name: 'Everwinter Vest',
     stats: {strength: 10, agility: 25, stamina: 4,
-      critChance: 0.02, phypierce: 0.03, coldres: 0.25},
+      critChance: 0.02, physicalPierce: 0.03, coldResistance: 0.25},
     armor: 500,
     type: 'medium',
     level: 50,
@@ -813,7 +813,7 @@ const itemsDatabaseChest = {
   }),
   ZircChestplate: new Chest({
     name: 'Zirc Chestplate',
-    stats: {strength: 22, stamina: 8, phypierce: 0.03, phyatk: 0.03},
+    stats: {strength: 22, stamina: 8, physicalPierce: 0.03, physicalAttack: 0.03},
     armor: 875,
     type: 'heavy',
     level: 42,
@@ -821,7 +821,7 @@ const itemsDatabaseChest = {
   }),
   AbyssalPlate: new Chest({
     name: 'Abyssal Plate',
-    stats: {strength: 45, critDamage: 0.10, phypierce: 0.04},
+    stats: {strength: 45, critDamage: 0.10, physicalPierce: 0.04},
     armor: 1000,
     type: 'heavy',
     level: 40,
@@ -829,7 +829,7 @@ const itemsDatabaseChest = {
   }),
   TurtleShell: new Chest({
     name: 'Turtle Shell',
-    stats: {strength: 28, stamina: 8, critDefense: 0.10, magicres: 0.10},
+    stats: {strength: 28, stamina: 8, critDefense: 0.10, magicResistance: 0.10},
     armor: 1000,
     type: 'heavy',
     level: 40,
@@ -837,7 +837,7 @@ const itemsDatabaseChest = {
   }),
   BastionPlate: new Chest({
     name: 'Bastion Plate',
-    stats: {strength: 45, critDamage: 0.10, phypierce: 0.04},
+    stats: {strength: 45, critDamage: 0.10, physicalPierce: 0.04},
     armor: 1000,
     type: 'heavy',
     level: 40,
@@ -845,7 +845,7 @@ const itemsDatabaseChest = {
   }),
   CobaltChestplate: new Chest({
     name: 'Cobalt Chestplate',
-    stats: {strength: 22, stamina: 8, critdefense: 0.04, magicResistance: 0.04},
+    stats: {strength: 22, stamina: 8, critDefense: 0.04, magicResistance: 0.04},
     armor: 950,
     type: 'heavy',
     level: 45,
@@ -854,7 +854,7 @@ const itemsDatabaseChest = {
   BrimfrostChestplate: new Chest({
     name: 'Brimfrost Chestplate',
     stats: {strength: 40, stamina: 10, critDamage: 0.05,
-      phypierce: 0.04, coldres: 0.2},
+      physicalPierce: 0.04, coldResistance: 0.2},
     armor: 1225,
     type: 'heavy',
     level: 45,
@@ -938,7 +938,7 @@ const itemsDatabaseBoots = {
   }),
   ScorchleafGiPants: new Legs({
     name: 'Scorchleaf Gi Pants',
-    stats: {strength: 9, stamina: 1, heatres: 0.10},
+    stats: {strength: 9, stamina: 1, heatResistance: 0.10},
     armor: 187,
     type: 'light',
     level: 34,
@@ -1018,7 +1018,7 @@ const itemsDatabaseBoots = {
   }),
   MammothRangersPants: new Legs({
     name: 'Mammoth Ranger\'s Pants',
-    stats: {agility: 11, stamina: 4, speedboost: 0.02},
+    stats: {agility: 11, stamina: 4, speedBoost: 0.02},
     armor: 265,
     type: 'light',
     level: 45,
@@ -1026,7 +1026,7 @@ const itemsDatabaseBoots = {
   }),
   BorealInquisitorPants: new Legs({
     name: 'Boreal Inquisitor Pants',
-    stats: {intellect: 13, coldres: 0.1, buffDuration: 0.09},
+    stats: {intellect: 13, coldResistance: 0.1, buffDuration: 0.09},
     armor: 140,
     type: 'light',
     level: 50,
@@ -1034,7 +1034,7 @@ const itemsDatabaseBoots = {
   }),
   FrostleafPants: new Legs({
     name: 'Frostleaf Pants',
-    stats: {intellect: 15, spirit: 2, coldres: 0.15, magicCrit: 1},
+    stats: {intellect: 15, spirit: 2, coldResistance: 0.15, magicCritChance: 1},
     armor: 140,
     type: 'light',
     level: 45,
@@ -1042,7 +1042,7 @@ const itemsDatabaseBoots = {
   }),
   FrostleafGiPants: new Legs({
     name: 'Frostleaf Gi Pants',
-    stats: {strength: 15, stamina: 2, coldres: 0.1, phypierce: 0.02},
+    stats: {strength: 15, stamina: 2, coldResistance: 0.1, physicalPierce: 0.02},
     armor: 240,
     type: 'light',
     level: 45,
@@ -1050,7 +1050,7 @@ const itemsDatabaseBoots = {
   }),
   LightYetiBoots: new Legs({
     name: 'Light Yeti Pants',
-    stats: {strength: 22, stamina: 11, speedboost: 0.02, coldres: 0.1},
+    stats: {strength: 22, stamina: 11, speedBoost: 0.02, coldResistance: 0.1},
     armor: 362,
     type: 'light',
     level: 45,
@@ -1139,7 +1139,7 @@ const itemsDatabaseBoots = {
   }),
   MediumYetiBoots: new Boots({
     name: 'Medium Yeti Boots',
-    stats: {agility: 14, stamina: 4, speedboost: 0.03, coldres: 0.1},
+    stats: {agility: 14, stamina: 4, speedBoost: 0.03, coldResistance: 0.1},
     armor: 330,
     type: 'medium',
     level: 45,
@@ -1147,8 +1147,8 @@ const itemsDatabaseBoots = {
   }),
   EverwinterBoots: new Boots({
     name: 'Everwinter Boots',
-    stats: {strength: 5, agility: 15, stamina: 2, speedboost: 0.02,
-      coldres: 0.15, buffDuration: 0.03},
+    stats: {strength: 5, agility: 15, stamina: 2, speedBoost: 0.02,
+      coldResistance: 0.15, buffDuration: 0.03},
     armor: 360,
     type: 'medium',
     level: 50,
@@ -1237,7 +1237,7 @@ const itemsDatabaseBoots = {
   }),
   FrostscaleGreaves: new Boots({
     name: 'Frostscale Greaves',
-    stats: {strength: 20, critChance: 0.02, holyres: 0.05, coldres: 0.12},
+    stats: {strength: 20, critChance: 0.02, holyResistance: 0.05, coldResistance: 0.12},
     armor: 625,
     type: 'heavy',
     level: 40,
@@ -1245,8 +1245,8 @@ const itemsDatabaseBoots = {
   }),
   MammothWarriorsBoots: new Boots({
     name: 'Mammoth Warrior\'s Boots',
-    stats: {strength: 18, critChance: 0.01, speedboost: -0.02,
-      holyres: 0.1, coldres: 0.15},
+    stats: {strength: 18, critChance: 0.01, speedBoost: -0.02,
+      holyResistance: 0.1, coldResistance: 0.15},
     armor: 700,
     type: 'heavy',
     level: 45,
@@ -1254,7 +1254,7 @@ const itemsDatabaseBoots = {
   }),
   BrimfrostBoots: new Boots({
     name: 'Brimfrost Boots',
-    stats: {strength: 24, critChance: 0.02, coldres: 0.1},
+    stats: {strength: 24, critChance: 0.02, coldResistance: 0.1},
     armor: 600,
     type: 'heavy',
     level: 45,
@@ -1388,7 +1388,7 @@ const itemsDatabaseWeapons = {
   SanguineThorn: new Weapon({
     name: 'Sanguine Thorn',
     damage: {physical: 12},
-    stats: {agility: 28, stamina: 5, critChance: 0.035, holyres: 0.05},
+    stats: {agility: 28, stamina: 5, critChance: 0.035, holyResistance: 0.05},
     type: 'dagger',
     level: 35,
     rarity: 'epic',
@@ -1671,7 +1671,7 @@ const itemsDatabaseWeapons = {
   Cutlass: new Weapon({
     name: 'Cutlass',
     damage: {physical: 14},
-    stats: {strength: 21, agility: 8, phypierce: 0.04},
+    stats: {strength: 21, agility: 8, physicalPierce: 0.04},
     type: 'sword',
     level: 42,
     rarity: 'rare'
@@ -1870,7 +1870,7 @@ const itemsDatabaseWeapons = {
   Judicator: new Weapon({
     name: 'Judicator',
     damage: {physical: 16},
-    stats: {strength: 18, critChance: 0.02, phypierce: 0.03},
+    stats: {strength: 18, critChance: 0.02, physicalPierce: 0.03},
     type: 'greatsword',
     level: 40,
     rarity: 'epic',
@@ -1878,7 +1878,7 @@ const itemsDatabaseWeapons = {
   DoomCarver: new Weapon({
     name: 'Doom Carver',
     damage: {physical: 16},
-    stats: {strength: 18, critChance: 0.02, phypierce: 0.03},
+    stats: {strength: 18, critChance: 0.02, physicalPierce: 0.03},
     type: 'greatsword',
     level: 40,
     rarity: 'epic',
@@ -1886,7 +1886,7 @@ const itemsDatabaseWeapons = {
   SanguineGreatsword: new Weapon({
     name: 'Sanguine Greatsword',
     damage: {physical: 18},
-    stats: {strength: 27, stamina: 12, holyres: 0.075},
+    stats: {strength: 27, stamina: 12, holyResistance: 0.075},
     type: 'greatsword',
     level: 40,
     rarity: 'epic',
@@ -1904,7 +1904,7 @@ const itemsDatabaseWeapons = {
   GoblinKingsClub: new Weapon({
     name: 'Goblin Kings Club',
     damage: {physical: 19},
-    stats: {strength: 24, phypierce: 0.03, critChance: 0.02},
+    stats: {strength: 24, physicalPierce: 0.03, critChance: 0.02},
     type: 'greatsword',
     level: 40,
     rarity: 'legendary'
@@ -1921,7 +1921,7 @@ const itemsDatabaseWeapons = {
   Rimehowl: new Weapon({
     name: 'Rimehowl',
     damage: {physical: 20},
-    stats: {strength: 28, stamina: 8, phypierce: 0.04},
+    stats: {strength: 28, stamina: 8, physicalPierce: 0.04},
     type: 'greatsword',
     level: 50,
     rarity: 'legendary',
@@ -1948,7 +1948,7 @@ const itemsDatabaseWeapons = {
   TrollsStoneColumn: new Weapon({
     name: 'Troll\'s Stone Column',
     damage: {physical: 17},
-    stats: {phypierce: 0.05},
+    stats: {physicalPierce: 0.05},
     type: 'greataxe',
     level: 39,
     rarity: 'rare'
@@ -1980,7 +1980,7 @@ const itemsDatabaseWeapons = {
   Cataclysm: new Weapon({
     name: 'Cataclysm',
     damage: {physical: 18},
-    stats: {strength: 20, stamina: 5, phypierce: 0.03},
+    stats: {strength: 20, stamina: 5, physicalPierce: 0.03},
     type: 'greataxe',
     level: 40,
     rarity: 'legendary'
@@ -1988,7 +1988,7 @@ const itemsDatabaseWeapons = {
   RubyReaver: new Weapon({
     name: 'Ruby Reaver',
     damage: {physical: 16},
-    stats: {strength: 14, stamina: 4, fireres: 0.07},
+    stats: {strength: 14, stamina: 4, fireResistance: 0.07},
     type: 'greataxe',
     level: 40,
     rarity: 'legendary'
@@ -2080,7 +2080,7 @@ const itemsDatabaseWeapons = {
   SanguineKen: new Weapon({
     name: 'Sanguine Ken',
     damage: {physical: 14},
-    stats: {strength: 8, agility: 18, stamina: 8, holyres: 0.02},
+    stats: {strength: 8, agility: 18, stamina: 8, holyResistance: 0.02},
     type: 'katana',
     level: 35,
     rarity: 'epic',
@@ -2098,7 +2098,7 @@ const itemsDatabaseWeapons = {
   Sanguinaire: new Weapon({
     name: 'Sanguinaire',
     damage: {physical: 18, fire: 4},
-    stats: {strength: 18, agility: 27, stamina: 10, holyres: -0.05},
+    stats: {strength: 18, agility: 27, stamina: 10, holyResistance: -0.05},
     type: 'katana',
     level: 50,
     rarity: 'legendary',
@@ -2193,7 +2193,7 @@ const itemsDatabaseWeapons = {
   TrollTuskBow: new Weapon({
     name: 'Troll Tusk Bow',
     damage: {physical: 12},
-    stats: {agility: 12, stamina: 1, phypierce: 0.05},
+    stats: {agility: 12, stamina: 1, physicalPierce: 0.05},
     type: 'bow',
     level: 39,
     rarity: 'rare'
@@ -2227,7 +2227,7 @@ const itemsDatabaseWeapons = {
   HallowedBow: new Weapon({
     name: 'Hallowed Bow',
     damage: {physical: 12},
-    stats: {agility: 21, critChance: 0.02, phypierce: 0.03},
+    stats: {agility: 21, critChance: 0.02, physicalPierce: 0.03},
     type: 'bow',
     level: 40,
     rarity: 'epic',
@@ -2235,7 +2235,7 @@ const itemsDatabaseWeapons = {
   VoidPiercer: new Weapon({
     name: 'Void Piercer',
     damage: {physical: 12},
-    stats: {agility: 21, critChance: 0.02, phypierce: 0.03},
+    stats: {agility: 21, critChance: 0.02, physicalPierce: 0.03},
     type: 'bow',
     level: 40,
     rarity: 'epic',
@@ -2243,7 +2243,7 @@ const itemsDatabaseWeapons = {
   SanguineGreatbow: new Weapon({
     name: 'Sanguine Greatbow',
     damage: {physical: 14},
-    stats: {agility: 26, stamina: 5, critDamage: 0.05, critChance: 0.02, holyres: 0.05},
+    stats: {agility: 26, stamina: 5, critDamage: 0.05, critChance: 0.02, holyResistance: 0.05},
     type: 'bow',
     level: 40,
     rarity: 'epic',
@@ -2354,7 +2354,7 @@ const itemsDatabaseWeapons = {
   PalmStaff: new Weapon({
     name: 'Palm Staff',
     damage: {physical: 12},
-    stats: {intellect: 24, spirit: 10, magcritchance: 0.01},
+    stats: {intellect: 24, spirit: 10, magicCritChance: 0.01},
     type: 'staff',
     level: 42,
     rarity: 'uncommon'
@@ -2396,7 +2396,7 @@ const itemsDatabaseWeapons = {
   DivineConcord: new Weapon({
     name: 'Divine Concord',
     damage: {physical: 11},
-    stats: {intellect: 25, magicCritChance: 0.02, magpierce: 0.03},
+    stats: {intellect: 25, magicCritChance: 0.02, magicPierce: 0.03},
     type: 'staff',
     level: 40,
     rarity: 'epic',
@@ -2523,7 +2523,7 @@ const itemsDatabaseOffHand = {
   LanzasMerit: new Shield({
     name: 'Lanza\'s Merit',
     stats: {
-      magres: 0.08
+      magicResistance: 0.08
     },
     posture: 20,
     level: 40,
@@ -2558,9 +2558,9 @@ const itemsDatabaseOffHand = {
   IceGolemShield: new Shield({
     name: 'Ice Golem Shield',
     stats: {
-      magres: 0.05,
-      holyres: 0.05,
-      fireres: -0.05
+      magicResistance: 0.05,
+      holyResistance: 0.05,
+      fireResistance: -0.05
     },
     posture: 35,
     level: 45,
@@ -2614,7 +2614,7 @@ const itemsDatabaseLantern = {
   SapphireLantern: new Lantern({
     name: 'Sapphire Lantern',
     stats: {
-      magatk: 0.03
+      magicPower: 0.03
     },
     rarity: 'rare'
   }),
@@ -2622,7 +2622,7 @@ const itemsDatabaseLantern = {
   RubyLantern: new Lantern({
     name: 'Ruby Lantern',
     stats: {
-      phyatk: 0.03
+      physicalAttack: 0.03
     },
     rarity: 'rare'
   }),
@@ -2630,7 +2630,7 @@ const itemsDatabaseLantern = {
   EmberfrostLantern: new Lantern({
     name: 'Emberfrost Lantern',
     stats: {
-      heatres: 0.25
+      heatResistance: 0.25
     },
     rarity: 'rare'
   }),
@@ -2638,7 +2638,7 @@ const itemsDatabaseLantern = {
   FrostfireLantern: new Lantern({
     name: 'Frostfire Lantern',
     stats: {
-      coldres: 0.25
+      coldResistance: 0.25
     },
     rarity: 'rare'
   }),
@@ -2647,7 +2647,7 @@ const itemsDatabaseLantern = {
 const itemsDatabaseBack = {
   Backpack: new Back({
     name: 'Backpack',
-    stats: {spirit: 5, weight: 25},
+    stats: {spirit: 5, maxWeight: 25},
     armor: 100,
     rarity: 'uncommon'
   }),
@@ -2747,25 +2747,25 @@ const itemsDatabaseRings = {
 
   FlameStoneRing: new Ring({
     name: 'Flame Stone Ring',
-    stats: {fireres: 0.17},
+    stats: {fireResistance: 0.17},
     rarity: 'uncommon'
   }),
 
   HolyStoneRing: new Ring({
     name: 'Holy Stone Ring',
-    stats: {holyres: 0.17},
+    stats: {holyResistance: 0.17},
     rarity: 'uncommon'
   }),
 
   SpellStoneRing: new Ring({
     name: 'Spell Stone Ring',
-    stats: {magres: 0.17},
+    stats: {magicResistance: 0.17},
     rarity: 'uncommon'
   }),
 
   EmberfrostRing: new Ring({
     name: 'Emberfrost Ring',
-    stats: {heatres: 0.25},
+    stats: {heatResistance: 0.25},
     rarity: 'uncommon'
   }),
 
@@ -2808,7 +2808,7 @@ const itemsDatabaseRings = {
 
   CastersRing: new Ring({
     name: 'Caster\'s Ring',
-    stats: {castspeed: 0.10},
+    stats: {castSpeed: 0.10},
     rarity: 'rare'
   }),
 
@@ -2826,13 +2826,13 @@ const itemsDatabaseRings = {
 
   ElderRing: new Ring({
     name: 'Elder Ring',
-    stats: {healthreg: 0.10},
+    stats: {healthRegen: 0.10},
     rarity: 'epic'
   }),
 
   RingOfResistance: new Ring({
     name: 'Ring of Resistance',
-    stats: {magres: 0.06, holyres: 0.06, fireres: 0.06},
+    stats: {magicResistance: 0.06, holyResistance: 0.06, fireResistance: 0.06},
     rarity: 'epic'
   }),
 
@@ -2905,13 +2905,13 @@ const itemsDatabaseRings = {
 
   SuveriasRing: new Ring({
     name: 'Suveria\'s Ring',
-    stats: {holydmg: 0.15, undeaddmg: 0.10},
+    stats: {holyAttack: 0.15, undeadDamage: 0.10},
     rarity: 'legendary'
   }),
 
   MerchantsRing: new Ring({
     name: 'Merchant\'s Ring',
-    stats: {moneygain: 0.1},
+    stats: {moneyGain: 0.1},
     rarity: 'legendary'
   }),
 
@@ -2935,7 +2935,7 @@ const itemsDatabaseRings = {
 
   FrostfireRing: new Ring({
     name: 'Frostfire Ring',
-    stats: {coldres: 0.25},
+    stats: {coldResistance: 0.25},
     rarity: 'rare'
   }),
 
@@ -2962,7 +2962,7 @@ const itemsDatabase = {
   helmet: itemsDatabaseHelmet,
   chest: itemsDatabaseChest,
   boots: itemsDatabaseBoots,
-  weapon: itemsDatabaseWeapon,
+  weapon: itemsDatabaseWeapons,
   offhand: itemsDatabaseOffHand,
   Lantern: itemsDatabaseLantern,
   back: itemsDatabaseBack,
