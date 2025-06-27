@@ -69,11 +69,56 @@ h1 {
   background-color: #666;
 }
 
+.item-button {
+  width: 96px;
+  height: 96px;
+  background-image: url('../image/Moldura.png'); /* substitua pelo nome correto */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  border: none;
+  color: white;
+  font-size: 12px;
+  font-family: sans-serif;
+  cursor: pointer;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Efeito de cor pela raridade */
+.rarity-common {
+  filter: brightness(0.7) grayscale(1);
+}
+
+.rarity-uncommon {
+  filter: hue-rotate(90deg) brightness(1.2);
+}
+
+.rarity-rare {
+  filter: hue-rotate(200deg) brightness(1.1);
+}
+
+.rarity-epic {
+  filter: hue-rotate(280deg) brightness(1.2);
+}
+
+.rarity-legendary {
+  filter: hue-rotate(45deg) brightness(1.4);
+}
+
+
 
 /* MENU DE ITENS DO SLOT */
 
 .item-menu {
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  size-adjust: 1;
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
@@ -85,7 +130,8 @@ h1 {
 }
 
 .item-menu button {
-  display: block;
+  display: flex;
+  align-items: center;
   margin: 5px auto;
   padding: 10px;
   background: #444;
@@ -98,3 +144,5 @@ h1 {
 .item-menu button:hover {
   background: #666;
 }
+
+

@@ -863,40 +863,40 @@ const itemsDatabaseChest = {
 };
 
 const itemsDatabaseBoots = {  
-   CottonPants: new Legs({
+   CottonPants: new Boots({
     name: 'Cotton Pants',
     stats: {intellect: 1},
     armor: 15,
     type: 'light',
   }),
-  CottonGiPants: new Legs({
+  CottonGiPants: new Boots({
     name: 'Cotton Gi Pants',
     stats: {strength: 1},
     armor: 30,
     type: 'light',
   }),
-  SlimeBoots: new Legs({
+  SlimeBoots: new Boots({
     name: 'Slime Boots',
     stats: {agility: 5},
     armor: 20,
     type: 'light',
     level: 7,
   }),
-  FlaxPants: new Legs({
+  FlaxPants: new Boots({
     name: 'Flax Pants',
     stats: {intellect: 3},
     armor: 30,
     type: 'light',
     level: 8,
   }),
-  FlaxGiPants: new Legs({
+  FlaxGiPants: new Boots({
     name: 'Flax Gi Pants',
     stats: {strength: 3},
     armor: 60,
     type: 'light',
     level: 8,
   }),
-  SilkPants: new Legs({
+  SilkPants: new Boots({
     name: 'Silk Pants',
     stats: {intellect: 4},
     armor: 60,
@@ -904,7 +904,7 @@ const itemsDatabaseBoots = {
     level: 17,
     rarity: 'uncommon'
   }),
-  SilkGiPants: new Legs({
+  SilkGiPants: new Boots({
     name: 'Silk Gi Pants',
     stats: {strength: 4},
     armor: 120,
@@ -912,7 +912,7 @@ const itemsDatabaseBoots = {
     level: 17,
     rarity: 'uncommon'
   }),
-  LilyleafPants: new Legs({
+  LilyleafPants: new Boots({
     name: 'Lilyleaf Pants',
     stats: {intellect: 8},
     armor: 80,
@@ -920,7 +920,7 @@ const itemsDatabaseBoots = {
     level: 27,
     rarity: 'uncommon'
   }),
-  LilyleafGiPants: new Legs({
+  LilyleafGiPants: new Boots({
     name: 'Lilyleaf Gi Pants',
     stats: {strength: 8},
     armor: 160,
@@ -928,7 +928,7 @@ const itemsDatabaseBoots = {
     level: 27,
     rarity: 'uncommon'
   }),
-  ScorchleafPants: new Legs({
+  ScorchleafPants: new Boots({
     name: 'Scorchleaf Pants',
     stats: {intellect: 10, spirit: 1},
     armor: 87,
@@ -936,7 +936,7 @@ const itemsDatabaseBoots = {
     level: 34,
     rarity: 'uncommon'
   }),
-  ScorchleafGiPants: new Legs({
+  ScorchleafGiPants: new Boots({
     name: 'Scorchleaf Gi Pants',
     stats: {strength: 9, stamina: 1, heatResistance: 0.10},
     armor: 187,
@@ -944,7 +944,7 @@ const itemsDatabaseBoots = {
     level: 34,
     rarity: 'uncommon'
   }),
-  CocoleafPants: new Legs({
+  CocoleafPants: new Boots({
     name: 'Cocoleaf Pants',
     stats: {intellect: 11, spirit: 1},
     armor: 185,
@@ -952,7 +952,7 @@ const itemsDatabaseBoots = {
     level: 42,
     rarity: 'uncommon'
   }),
-  CocoleafGiPants: new Legs({
+  CocoleafGiPants: new Boots({
     name: 'Cocoleaf Gi Pants',
     stats: {strength: 11, stamina: 1},
     armor: 372,
@@ -960,7 +960,7 @@ const itemsDatabaseBoots = {
     level: 42,
     rarity: 'uncommon'
   }),
-  ArachnidsPants: new Legs({
+  ArachnidsPants: new Boots({
     name: 'Arachnids Pants',
     stats: {intellect: 12, spirit: 2},
     armor: 97,
@@ -968,7 +968,7 @@ const itemsDatabaseBoots = {
     level: 40,
     rarity: 'epic'
   }),
-  DireBearBoots: new Legs({
+  DireBearBoots: new Boots({
     name: 'Dire Bear Boots',
     stats: {strength: 12, stamina: 1},
     armor: 226,
@@ -976,7 +976,7 @@ const itemsDatabaseBoots = {
     level: 40,
     rarity: 'epic'
   }),
-  LichtPants: new Legs({
+  LichtPants: new Boots({
     name: 'Licht Pants',
     stats: {intellect: 10, spirit: 8},
     armor: 97,
@@ -984,7 +984,7 @@ const itemsDatabaseBoots = {
     level: 40,
     rarity: 'epic'
   }),
-  MaleficPants: new Legs({
+  MaleficPants: new Boots({
     name: 'Malefic Pants',
     stats: {intellect: 11, buffDuration: 0.05},
     armor: 94,
@@ -992,7 +992,7 @@ const itemsDatabaseBoots = {
     level: 40,
     rarity: 'epic'
   }),
-  HellfangGiPants: new Legs({
+  HellfangGiPants: new Boots({
     name: 'Hellfang Gi Pants',
     stats: {strength: 11, critChance: 0.01},
     armor: 423,
@@ -1000,7 +1000,7 @@ const itemsDatabaseBoots = {
     level: 40,
     rarity: 'epic'
   }),
-  SanctifiedPants: new Legs({
+  SanctifiedPants: new Boots({
     name: 'Sanctified Pants',
     stats: {intellect: 11, buffDuration: 0.05},
     armor: 94,
@@ -1008,7 +1008,7 @@ const itemsDatabaseBoots = {
     level: 40,
     rarity: 'epic'
   }),
-  SeraphGiPants: new Legs({
+  SeraphGiPants: new Boots({
     name: 'Seraph Gi Pants',
     stats: {strength: 11, critChance: 0.01},
     armor: 263,
@@ -1016,7 +1016,7 @@ const itemsDatabaseBoots = {
     level: 40,
     rarity: 'epic'
   }),
-  MammothRangersPants: new Legs({
+  MammothRangersPants: new Boots({
     name: 'Mammoth Ranger\'s Pants',
     stats: {agility: 11, stamina: 4, speedBoost: 0.02},
     armor: 265,
@@ -1024,7 +1024,7 @@ const itemsDatabaseBoots = {
     level: 45,
     rarity: 'epic'
   }),
-  BorealInquisitorPants: new Legs({
+  BorealInquisitorPants: new Boots({
     name: 'Boreal Inquisitor Pants',
     stats: {intellect: 13, coldResistance: 0.1, buffDuration: 0.09},
     armor: 140,
@@ -1032,7 +1032,7 @@ const itemsDatabaseBoots = {
     level: 50,
     rarity: 'epic'
   }),
-  FrostleafPants: new Legs({
+  FrostleafPants: new Boots({
     name: 'Frostleaf Pants',
     stats: {intellect: 15, spirit: 2, coldResistance: 0.15, magicCritChance: 1},
     armor: 140,
@@ -1040,7 +1040,7 @@ const itemsDatabaseBoots = {
     level: 45,
     rarity: 'uncommon'
   }),
-  FrostleafGiPants: new Legs({
+  FrostleafGiPants: new Boots({
     name: 'Frostleaf Gi Pants',
     stats: {strength: 15, stamina: 2, coldResistance: 0.1, physicalPierce: 0.02},
     armor: 240,
@@ -1048,7 +1048,7 @@ const itemsDatabaseBoots = {
     level: 45,
     rarity: 'uncommon'
   }),
-  LightYetiBoots: new Legs({
+  LightYetiBoots: new Boots({
     name: 'Light Yeti Pants',
     stats: {strength: 22, stamina: 11, speedBoost: 0.02, coldResistance: 0.1},
     armor: 362,
@@ -2964,7 +2964,7 @@ const itemsDatabase = {
   boots: itemsDatabaseBoots,
   weapon: itemsDatabaseWeapons,
   offhand: itemsDatabaseOffHand,
-  Lantern: itemsDatabaseLantern,
+  lantern: itemsDatabaseLantern,
   back: itemsDatabaseBack,
   ring: itemsDatabaseRings
 };

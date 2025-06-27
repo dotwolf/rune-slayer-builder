@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Inventory - Rune Slayer</title>
-    <link rel="stylesheet" href="../css/organizer.css" />
+    <link rel="stylesheet" href="css/organizer.css" />
     
 </head>
 <body>
@@ -13,7 +13,7 @@
         <div class="coluna1">
             <div class="slot" data-slot="helmet">Helmet</div>
             <div class="slot" data-slot="chest">Chest</div>
-            <div class="slot" data-slot="cape">Cape</div>
+            <div class="slot" data-slot="back">Back</div>
             <div class="slot" data-slot="boots">Boots</div>
         </div>
         <img src="image/80DBEB90-D4F7-49AA-8724-9CC36BC7BAD7.png" alt="">
@@ -33,7 +33,8 @@
         </div>
     </div>
     <script type="module">
-        import itemsDatabase from '../data/items.js'; // Corrija o caminho se necessário
+        import itemsDatabase from '/data/items.js'; // Corrija o caminho se necessário
+        import racesDatabase from '/data/races.js';
 
         window.itemsDatabase = itemsDatabase;
 
@@ -44,7 +45,6 @@
             const mapa = {
             weapon1: 'weapon',
             weapon2: 'weapon',
-            cape: 'back',
             };
             return mapa[slotType] || slotType;
         }
