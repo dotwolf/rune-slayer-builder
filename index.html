@@ -34,6 +34,24 @@
     </div>
     <script type="module">
         import itemsDatabase from '/data/items.js'; // Corrija o caminho se necessário
+        import statlist from './data/stats.js'; // Adjust path as needed
+
+
+        const equippedItems = {
+            helmet: null,
+            chest: null,
+            back: null,
+            boots: null,
+            ring1: null,
+            ring2: null,
+            ring3: null,
+            ring4: null,
+            race: null,
+            weapon1: null,
+            weapon2: null,
+            offhand: null,
+            lantern: null
+        };
 
         window.itemsDatabase = itemsDatabase;
 
@@ -48,31 +66,185 @@
             return mapa[slotType] || slotType;
         }
 
+        // Function to calculate total stats
+        function calculateTotalStats() {
+            const totalStats = {
+                flat: {},
+                percent: {},
+                damage: {}, // add this
+                armor: 0,
+                posture: 0,
+            };
+
+            // Initialize all stats
+            statlist.forEach(stat => {
+                if (stat.percentual) {
+                totalStats.percent[stat.stat] = 0;
+                } else {
+                totalStats.flat[stat.stat] = 0;
+                }
+            });
+
+            for (const [slot, item] of Object.entries(equippedItems)) {
+                if (item) {
+                // Regular stats
+                if (item.stats) {
+                    for (const [stat, value] of Object.entries(item.stats)) {
+                    const statInfo = statlist.find(s => s.stat === stat);
+                    if (statInfo) {
+                        if (statInfo.percentual) {
+                        totalStats.percent[stat] = (totalStats.percent[stat] || 0) + value;
+                        } else {
+                        totalStats.flat[stat] = (totalStats.flat[stat] || 0) + value;
+                        }
+                    }
+                    }
+                }
+
+                // Weapon damage
+                if (item.damage) {
+                    for (const [type, value] of Object.entries(item.damage)) {
+                    totalStats.damage[type] = (totalStats.damage[type] || 0) + value;
+                    }
+                }
+
+                // Armor value
+                if (typeof item.armor === 'number') {
+                    totalStats.armor += item.armor;
+                }
+
+                // Shield posture
+                if (typeof item.posture === 'number') {
+                    totalStats.posture += item.posture;
+                }
+                }
+            }
+
+            return totalStats;
+            }
+
+
+        // Function to format stat values
+        function formatStatValue(value, isPercent) {
+        if (isPercent) {
+            return `${(value * 100).toFixed(1)}%`;
+        }
+        return Number.isInteger(value) ? value.toString() : value.toFixed(1);
+        }
+
+        // Function to get stat info by stat key
+        function getStatInfo(statKey) {
+        return statlist.find(s => s.stat === statKey);
+        }
+
+        // Function to update the stats display
+        function updateTotalStatsDisplay() {
+        const totalStats = calculateTotalStats();
+        const statsDisplay = document.querySelector('.stats-display');
+        
+        // Clear previous stats
+        statsDisplay.innerHTML = '';
+        
+        // Add flat stats
+        for (const [stat, value] of Object.entries(totalStats.flat)) {
+            if (value !== 0) {
+            const statInfo = getStatInfo(stat);
+            if (statInfo) {
+                const statElement = document.createElement('div');
+                statElement.className = 'stat-item stat-flat';
+                statElement.innerHTML = `
+                <span class="stat-name">${statInfo.name}</span>
+                <span class="stat-value">+${formatStatValue(value, false)}</span>
+                `;
+                statsDisplay.appendChild(statElement);
+            }
+            }
+        }
+        
+        // Add percent stats
+        for (const [stat, value] of Object.entries(totalStats.percent)) {
+            if (value !== 0) {
+            const statInfo = getStatInfo(stat);
+            if (statInfo) {
+                const statElement = document.createElement('div');
+                statElement.className = 'stat-item stat-percent';
+                statElement.innerHTML = `
+                <span class="stat-name">${statInfo.name}</span>
+                <span class="stat-value">+${formatStatValue(value, true)}</span>
+                `;
+                statsDisplay.appendChild(statElement);
+            }
+            }
+        }
+
+        // Display damage stats
+            for (const [type, value] of Object.entries(totalStats.damage)) {
+            const statElement = document.createElement('div');
+            statElement.className = 'stat-item stat-damage';
+            statElement.innerHTML = `
+                <span class="stat-name">${type.charAt(0).toUpperCase() + type.slice(1)} Damage</span>
+                <span class="stat-value">+${value}</span>
+            `;
+            statsDisplay.appendChild(statElement);
+            }
+
+            // Display armor
+            if (totalStats.armor > 0) {
+            const statElement = document.createElement('div');
+            statElement.className = 'stat-item stat-armor';
+            statElement.innerHTML = `
+                <span class="stat-name">Armor</span>
+                <span class="stat-value">+${totalStats.armor}</span>
+            `;
+            statsDisplay.appendChild(statElement);
+            }
+
+            // Display posture
+            if (totalStats.posture > 0) {
+            const statElement = document.createElement('div');
+            statElement.className = 'stat-item stat-posture';
+            statElement.innerHTML = `
+                <span class="stat-name">Posture</span>
+                <span class="stat-value">+${totalStats.posture}</span>
+            `;
+            statsDisplay.appendChild(statElement);
+            }
+        }
+
+        // Modify your existing item selection code to update stats
         slots.forEach(slot => {
-            slot.addEventListener('click', () => {
+        slot.addEventListener('click', () => {
             const slotType = slot.dataset.slot;
             const slotChave = normalizarSlot(slotType);
 
             const banco = window.itemsDatabase?.[slotChave];
             if (!banco || Object.keys(banco).length === 0) {
-                alert("Nenhum item disponível para esse slot.");
-                return;
+            alert("Nenhum item disponível para esse slot.");
+            return;
             }
 
             const menu = document.createElement('div');
             menu.className = 'item-menu';
 
             for (const key in banco) {
-                const item = banco[key];
-                const nome = item.name || key;
-                const botao = document.createElement('button');
-                botao.textContent = `${nome}`;
-                botao.onclick = () => {
-                    slot.textContent = `${nome}`;
-                    slot.classList.add('filled');
-                    document.body.removeChild(menu);
-                };
-                menu.appendChild(botao);
+            const item = banco[key];
+            const nome = item.name || key;
+            const botao = document.createElement('button');
+            botao.textContent = `${nome}`;
+            botao.onclick = () => {
+                slot.textContent = `${nome}`;
+                slot.classList.add('filled');
+                
+                // Update equippedItems
+                const slotKey = slotType === 'ring' ? 
+                `ring${Array.from(slot.parentNode.children).indexOf(slot) + 1}` : 
+                slotType;
+                equippedItems[slotKey] = item;
+                
+                document.body.removeChild(menu);
+                updateTotalStatsDisplay(); // Update stats display
+            };
+            menu.appendChild(botao);
             }
 
             const cancelar = document.createElement('button');
@@ -81,11 +253,18 @@
             menu.appendChild(cancelar);
 
             document.body.appendChild(menu);
-            });
-
-
         });
+        });
+
+        // Initialize stats display on page load
+        document.addEventListener('DOMContentLoaded', updateTotalStatsDisplay);
     </script>
+    <div class="total-stats-container">
+  <h2>Total Character Stats</h2>
+  <div class="stats-display">
+    <!-- Stats will be populated here -->
+  </div>
+</div>
 </body>
 
 </html>

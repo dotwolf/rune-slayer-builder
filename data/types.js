@@ -72,9 +72,9 @@ class Weapon extends Item {
     damage,
     level,
     type,
-    ...itemProps
+    ...item
   }) {
-    super({ ...itemProps, runeslots: 3});
+    super({ ...item, runeslots: 3});
     this.damage = damage || {physical: 0};
     this.level = level || 1;
     this.type = type;
