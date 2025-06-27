@@ -116,33 +116,76 @@ h1 {
 
 .item-menu {
   position: fixed;
-  display: flex;
-  flex-direction: column;
-  size-adjust: 1;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr)); /* 5 equal columns */
+  grid-auto-rows: 1fr; /* Rows match column width */
+  aspect-ratio: 5/4; /* Width/Height ratio (5 cols, 4 rows approx) */
+  grid-gap: 10px;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%); /* Perfect vertical centering */
+  width: min(500px, 35vw); /* Adjust max width as needed */
+  height: auto; /* Height scales with width */
+  max-height: 80vh; /* Prevent vertical overflow */
   background: #222;
   border: 2px solid #ffcc00;
   border-radius: 10px;
-  padding: 20px;
+  padding: 15px;
   z-index: 999;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 .item-menu button {
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin: 5px auto;
-  padding: 10px;
+  justify-content: center;
+  padding: 5px;
   background: #444;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  word-break: break-word;
+  text-align: center;
+  /* Force square aspect ratio */
+  aspect-ratio: 1/1; /* Critical for perfect squares */
+  width: 100%; /* Fill grid cell */
+  height: auto; /* Height determined by width */
+}
+
+/* Optional: Add content wrapper for better centering */
+.item-menu button > * {
+  max-width: 90%;
+  max-height: 90%;
+  margin: auto;
 }
 
 .item-menu button:hover {
-  background: #666;
+  background: #555;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
 }
 
+.item-menu button:active {
+  transform: scale(0.98);
+}
 
+/* Custom scrollbar styling */
+.item-menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.item-menu::-webkit-scrollbar-track {
+  background: #333;
+  border-radius: 4px;
+}
+
+.item-menu::-webkit-scrollbar-thumb {
+  background: #ffcc00;
+  border-radius: 4px;
+}
