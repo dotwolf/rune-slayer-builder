@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Inventory - Rune Slayer</title>
+    <title>Rune Slayer Builder</title>
     <link rel="stylesheet" href="css/organizer.css" />
     
 </head>
 <body>
-    <h1>Organizer de Equipamentos</h1>
+    <h1>Rune Slayer Builder</h1>
     <div class="LayoutEquipments">
         <div class="coluna1">
             <div class="slot" data-slot="helmet">Helmet</div>
@@ -531,7 +531,7 @@ function createItemTooltipContent(item) {
   header.className = 'tooltip-header';
   
   const nameElement = document.createElement('div');
-  nameElement.className = 'tooltip-name';
+  nameElement.className = `tooltip-name ${item.rarity || 'common'}`;
   nameElement.textContent = item.name || 'Unnamed Item';
   
   const rarityElement = document.createElement('div');
@@ -545,7 +545,7 @@ function createItemTooltipContent(item) {
   // Add item class
   const classElement = document.createElement('div');
   classElement.className = 'tooltip-class';
-  classElement.textContent = `Class: ${item.constructor?.name || 'Item'}`;
+  classElement.textContent = `${item.constructor?.name || 'Item'}`;
   tooltipContent.appendChild(classElement);
   
   // Add type if available (with capitalized first letter)
@@ -553,7 +553,7 @@ function createItemTooltipContent(item) {
     const typeElement = document.createElement('div');
     typeElement.className = 'tooltip-type';
     const formattedType = item.type.charAt(0).toUpperCase() + item.type.slice(1);
-    typeElement.textContent = `Type: ${formattedType}`;
+    typeElement.textContent = `${formattedType}`;
     tooltipContent.appendChild(typeElement);
   }
   

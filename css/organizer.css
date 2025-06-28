@@ -1,5 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&family=IM+Fell+English+SC&family=Alegreya+SC:wght@400;700&family=Cinzel:wght@400;700&display=swap');
+
+:root {
+  --font-primary: 'IM Fell English', serif;       /* Main text */
+  --font-headings: 'IM Fell English SC', serif;  /* Titles (small caps) */
+  --font-ui: 'Alegreya SC', serif;               /* Buttons & tooltips */
+  --font-stats: 'Cinzel', serif;                 /* Numbers & stats */
+}
+
 body {
-  font-family: Arial, sans-serif;
   background-color: #121212;
   color: #fff;
   padding: 20px;
@@ -403,7 +411,26 @@ h1 {
 .tooltip-name {
   font-weight: bold;
   font-size: 16px;
-  color: #ffcc00;
+}
+
+.tooltip-name.common {
+  color: #aaa;
+}
+
+.tooltip-name.uncommon {
+  color: #4CAF50;
+}
+
+.tooltip-name.rare {
+  color: #2196F3;
+}
+
+.tooltip-name.epic {
+  color: #9C27B0;
+}
+
+.tooltip-name.legendary {
+  color: #FF9800;
 }
 
 .tooltip-rarity {
@@ -457,7 +484,7 @@ h1 {
 }
 
 .tooltip-stat-value.positive {
-  color: #4CAF50;
+  color: #bebebe;
 }
 
 .tooltip-stat-value.negative {
