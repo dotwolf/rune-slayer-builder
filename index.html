@@ -32,233 +32,738 @@
             <div class="slot" data-slot="lantern">Lantern</div>
         </div>
     </div>
+    
     <script type="module">
-        import itemsDatabase from '/data/items.js'; // Corrija o caminho se necessário
-        import statlist from './data/stats.js'; // Adjust path as needed
+    import itemsDatabase from '/data/items.js';
+    import statlist from './data/stats.js';
 
+    const equippedItems = {
+        helmet: null,
+        chest: null,
+        back: null,
+        boots: null,
+        ring1: null,
+        ring2: null,
+        ring3: null,
+        ring4: null,
+        race: null,
+        weapon1: null,
+        weapon2: null,
+        offhand: null,
+        lantern: null
+    };
 
-        const equippedItems = {
-            helmet: null,
-            chest: null,
-            back: null,
-            boots: null,
-            ring1: null,
-            ring2: null,
-            ring3: null,
-            ring4: null,
-            race: null,
-            weapon1: null,
-            weapon2: null,
-            offhand: null,
-            lantern: null
+    const rarityOrder = {
+    'common': 1,
+    'uncommon': 2,
+    'rare': 3,
+    'epic': 4,
+    'legendary': 5
+    };
+
+    window.itemsDatabase = itemsDatabase;
+
+    const slots = document.querySelectorAll('.slot');
+    let currentOpenMenu = null;
+
+    function normalizarSlot(slotType) {
+        const mapa = {
+        weapon1: 'weapon',
+        weapon2: 'weapon',
+        };
+        return mapa[slotType] || slotType;
+    }
+
+    function calculateTotalStats() {
+        const totalStats = {
+            flat: {},
+            percent: {},
+            damage: {},
+            armor: 0,
+            posture: 0,
         };
 
-        window.itemsDatabase = itemsDatabase;
+        statlist.forEach(stat => {
+            if (stat.percentual) {
+            totalStats.percent[stat.stat] = 0;
+            } else {
+            totalStats.flat[stat.stat] = 0;
+            }
+        });
 
-        // Agora seu script principal aqui dentro:
-        const slots = document.querySelectorAll('.slot');
+        for (const [slot, item] of Object.entries(equippedItems)) {
+            if (item) {
+            if (item.stats) {
+                for (const [stat, value] of Object.entries(item.stats)) {
+                const statInfo = statlist.find(s => s.stat === stat);
+                if (statInfo) {
+                    if (statInfo.percentual) {
+                    totalStats.percent[stat] = (totalStats.percent[stat] || 0) + value;
+                    } else {
+                    totalStats.flat[stat] = (totalStats.flat[stat] || 0) + value;
+                    }
+                }
+                }
+            }
 
-        function normalizarSlot(slotType) {
-            const mapa = {
-            weapon1: 'weapon',
-            weapon2: 'weapon',
-            };
-            return mapa[slotType] || slotType;
+            if (item.damage) {
+                for (const [type, value] of Object.entries(item.damage)) {
+                totalStats.damage[type] = (totalStats.damage[type] || 0) + value;
+                }
+            }
+
+            if (typeof item.armor === 'number') {
+                totalStats.armor += item.armor;
+            }
+
+            if (typeof item.posture === 'number') {
+                totalStats.posture += item.posture;
+            }
+            }
         }
 
-        // Function to calculate total stats
-        function calculateTotalStats() {
-            const totalStats = {
-                flat: {},
-                percent: {},
-                damage: {}, // add this
-                armor: 0,
-                posture: 0,
-            };
+        return totalStats;
+        }
 
-            // Initialize all stats
-            statlist.forEach(stat => {
-                if (stat.percentual) {
-                totalStats.percent[stat.stat] = 0;
-                } else {
-                totalStats.flat[stat.stat] = 0;
-                }
+    function formatStatValue(value, isPercent) {
+    if (isPercent) {
+        return `${(value * 100).toFixed(1)}%`;
+    }
+    return Number.isInteger(value) ? value.toString() : value.toFixed(1);
+    }
+
+    function getStatInfo(statKey) {
+    return statlist.find(s => s.stat === statKey);
+    }
+
+    function updateTotalStatsDisplay() {
+    const totalStats = calculateTotalStats();
+    const statsDisplay = document.querySelector('.stats-display');
+    
+    statsDisplay.innerHTML = '';
+    
+    for (const [stat, value] of Object.entries(totalStats.flat)) {
+        if (value !== 0) {
+        const statInfo = getStatInfo(stat);
+        if (statInfo) {
+            const statElement = document.createElement('div');
+            statElement.className = 'stat-item stat-flat';
+            statElement.innerHTML = `
+            <span class="stat-name">${statInfo.name}</span>
+            <span class="stat-value">+${formatStatValue(value, false)}</span>
+            `;
+            statsDisplay.appendChild(statElement);
+        }
+        }
+    }
+    
+    for (const [stat, value] of Object.entries(totalStats.percent)) {
+        if (value !== 0) {
+        const statInfo = getStatInfo(stat);
+        if (statInfo) {
+            const statElement = document.createElement('div');
+            statElement.className = 'stat-item stat-percent';
+            statElement.innerHTML = `
+            <span class="stat-name">${statInfo.name}</span>
+            <span class="stat-value">+${formatStatValue(value, true)}</span>
+            `;
+            statsDisplay.appendChild(statElement);
+        }
+        }
+    }
+
+        for (const [type, value] of Object.entries(totalStats.damage)) {
+        const statElement = document.createElement('div');
+        statElement.className = 'stat-item stat-damage';
+        statElement.innerHTML = `
+            <span class="stat-name">${type.charAt(0).toUpperCase() + type.slice(1)} Damage</span>
+            <span class="stat-value">+${value}</span>
+        `;
+        statsDisplay.appendChild(statElement);
+        }
+
+        if (totalStats.armor > 0) {
+        const statElement = document.createElement('div');
+        statElement.className = 'stat-item stat-armor';
+        statElement.innerHTML = `
+            <span class="stat-name">Armor</span>
+            <span class="stat-value">+${totalStats.armor}</span>
+        `;
+        statsDisplay.appendChild(statElement);
+        }
+
+        if (totalStats.posture > 0) {
+        const statElement = document.createElement('div');
+        statElement.className = 'stat-item stat-posture';
+        statElement.innerHTML = `
+            <span class="stat-name">Posture</span>
+            <span class="stat-value">+${totalStats.posture}</span>
+        `;
+        statsDisplay.appendChild(statElement);
+        }
+    }
+
+    function initializeFilters(menu, slotType) {
+    const contentArea = menu.querySelector('.item-menu-content');
+    const statFilter = menu.querySelector('#stat-filter');
+    const typeFilter = menu.querySelector('#type-filter');
+    
+    // Clear existing options (keeping the first default option)
+    while (statFilter.options.length > 1) statFilter.remove(1);
+    while (typeFilter.options.length > 1) typeFilter.remove(1);
+    
+    // Get all unique stats and types for this slot type
+    const statSet = new Set();
+    const typeSet = new Set();
+    
+    for (const itemId in itemsDatabase[slotType]) {
+        const item = itemsDatabase[slotType][itemId];
+        
+        if (item.stats) {
+            Object.keys(item.stats).forEach(stat => statSet.add(stat));
+        }
+        
+        if (item.type) {
+            typeSet.add(item.type);
+        }
+    }
+    
+    // Populate stat filter
+    statlist.forEach(stat => {
+        if (statSet.has(stat.stat)) {
+            const option = document.createElement('option');
+            option.value = stat.stat;
+            option.textContent = stat.name;
+            statFilter.appendChild(option);
+        }
+    });
+    
+    // Populate type filter
+    Array.from(typeSet).sort().forEach(type => {
+        const option = document.createElement('option');
+        option.value = type;
+        option.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+        typeFilter.appendChild(option);
+    });
+    
+    // Set up event listeners
+    const searchInput = menu.querySelector('#item-search');
+    const sortFilter = menu.querySelector('#sort-filter');
+    const resetButton = menu.querySelector('#reset-filters');
+    
+    const updateMenu = () => updateItemMenu(menu, slotType, contentArea);
+    
+    searchInput.addEventListener('input', updateMenu);
+    statFilter.addEventListener('change', updateMenu);
+    typeFilter.addEventListener('change', updateMenu);
+    sortFilter.addEventListener('change', updateMenu);
+    resetButton.addEventListener('click', () => {
+        searchInput.value = '';
+        statFilter.value = '';
+        typeFilter.value = '';
+        sortFilter.value = 'name-asc';
+        updateMenu();
+    });
+    
+    // Initial population
+    updateMenu();
+}
+
+function resetFilters() {
+    document.getElementById('item-search').value = '';
+    document.getElementById('stat-filter').value = '';
+    document.getElementById('type-filter').value = '';
+    document.getElementById('sort-filter').value = 'name-asc';
+    updateItemMenu();
+}
+
+function updateItemMenu(menu, slotType, contentArea) {
+    const searchTerm = menu.querySelector('#item-search').value.toLowerCase();
+    const selectedStat = menu.querySelector('#stat-filter').value;
+    const selectedType = menu.querySelector('#type-filter').value;
+    const sortOption = menu.querySelector('#sort-filter').value;
+    
+    // Clear current content
+    contentArea.innerHTML = '';
+    
+    // Get filtered and sorted items
+    const items = Object.entries(itemsDatabase[slotType] || {})
+        .map(([key, item]) => ({ key, item }))
+        .filter(({ item }) => {
+            // Name filter
+            const nameMatch = item.name.toLowerCase().includes(searchTerm);
+            
+            // Stat filter
+            let statMatch = true;
+            if (selectedStat) {
+                statMatch = item.stats && item.stats[selectedStat] !== undefined;
+            }
+            
+            // Type filter
+            let typeMatch = true;
+            if (selectedType) {
+                typeMatch = item.type === selectedType;
+            }
+            
+            return nameMatch && statMatch && typeMatch;
+        })
+        .sort((a, b) => {
+            const itemA = a.item;
+            const itemB = b.item;
+            
+            switch (sortOption) {
+                case 'name-asc':
+                    return itemA.name.localeCompare(itemB.name);
+                case 'name-desc':
+                    return itemB.name.localeCompare(itemA.name);
+                case 'rarity-asc':
+                    return (rarityOrder[itemA.rarity || 'common'] || 0) - 
+                           (rarityOrder[itemB.rarity || 'common'] || 0);
+                case 'rarity-desc':
+                    return (rarityOrder[itemB.rarity || 'common'] || 0) - 
+                           (rarityOrder[itemA.rarity || 'common'] || 0);
+                default:
+                    return 0;
+            }
+        });
+    
+    // Rebuild menu content with filtered items
+    items.forEach(({ key, item }) => {
+        const nome = item.name || key;
+        const botao = document.createElement('button');
+        botao.textContent = `${nome}`;
+        botao.setAttribute('data-rarity', item.rarity || 'common');
+        botao.setAttribute('data-item-key', key);
+        botao.setAttribute('data-slot-type', slotType);
+        
+        botao.onclick = () => {
+            const slot = currentOpenMenu.slot;
+            slot.className = 'slot filled';
+            slot.setAttribute('data-rarity', item.rarity || 'common');
+            slot.innerHTML = `
+                <div class="slot-content">${nome}</div>
+                <div class="remove-item">X</div>
+            `;
+            
+            const slotKey = slot.dataset.slot === 'ring' ? 
+                `ring${Array.from(slot.parentNode.children).indexOf(slot) + 1}` : 
+                slot.dataset.slot;
+            equippedItems[slotKey] = item;
+            
+            tooltipSystem.hideTooltip();
+            document.body.removeChild(currentOpenMenu.menu);
+            currentOpenMenu = null;
+            updateTotalStatsDisplay();
+            
+            const removeBtn = slot.querySelector('.remove-item');
+            removeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                emptySlot(slot, slotKey);
             });
-
-            for (const [slot, item] of Object.entries(equippedItems)) {
-                if (item) {
-                // Regular stats
-                if (item.stats) {
-                    for (const [stat, value] of Object.entries(item.stats)) {
-                    const statInfo = statlist.find(s => s.stat === stat);
-                    if (statInfo) {
-                        if (statInfo.percentual) {
-                        totalStats.percent[stat] = (totalStats.percent[stat] || 0) + value;
-                        } else {
-                        totalStats.flat[stat] = (totalStats.flat[stat] || 0) + value;
-                        }
-                    }
-                    }
-                }
-
-                // Weapon damage
-                if (item.damage) {
-                    for (const [type, value] of Object.entries(item.damage)) {
-                    totalStats.damage[type] = (totalStats.damage[type] || 0) + value;
-                    }
-                }
-
-                // Armor value
-                if (typeof item.armor === 'number') {
-                    totalStats.armor += item.armor;
-                }
-
-                // Shield posture
-                if (typeof item.posture === 'number') {
-                    totalStats.posture += item.posture;
-                }
-                }
-            }
-
-            return totalStats;
-            }
-
-
-        // Function to format stat values
-        function formatStatValue(value, isPercent) {
-        if (isPercent) {
-            return `${(value * 100).toFixed(1)}%`;
-        }
-        return Number.isInteger(value) ? value.toString() : value.toFixed(1);
-        }
-
-        // Function to get stat info by stat key
-        function getStatInfo(statKey) {
-        return statlist.find(s => s.stat === statKey);
-        }
-
-        // Function to update the stats display
-        function updateTotalStatsDisplay() {
-        const totalStats = calculateTotalStats();
-        const statsDisplay = document.querySelector('.stats-display');
+        };
         
-        // Clear previous stats
-        statsDisplay.innerHTML = '';
-        
-        // Add flat stats
-        for (const [stat, value] of Object.entries(totalStats.flat)) {
-            if (value !== 0) {
-            const statInfo = getStatInfo(stat);
-            if (statInfo) {
-                const statElement = document.createElement('div');
-                statElement.className = 'stat-item stat-flat';
-                statElement.innerHTML = `
-                <span class="stat-name">${statInfo.name}</span>
-                <span class="stat-value">+${formatStatValue(value, false)}</span>
-                `;
-                statsDisplay.appendChild(statElement);
-            }
-            }
-        }
-        
-        // Add percent stats
-        for (const [stat, value] of Object.entries(totalStats.percent)) {
-            if (value !== 0) {
-            const statInfo = getStatInfo(stat);
-            if (statInfo) {
-                const statElement = document.createElement('div');
-                statElement.className = 'stat-item stat-percent';
-                statElement.innerHTML = `
-                <span class="stat-name">${statInfo.name}</span>
-                <span class="stat-value">+${formatStatValue(value, true)}</span>
-                `;
-                statsDisplay.appendChild(statElement);
-            }
-            }
+        contentArea.appendChild(botao);
+    });
+    
+    // Show message if no items match filters
+    if (items.length === 0) {
+        const noItemsMsg = document.createElement('div');
+        noItemsMsg.className = 'no-items-message';
+        noItemsMsg.textContent = 'No items match your filters';
+        contentArea.appendChild(noItemsMsg);
+    }
+}
+
+slots.forEach(slot => {
+    slot.addEventListener('click', () => {
+        const slotType = slot.dataset.slot;
+        const slotChave = normalizarSlot(slotType);
+
+        // If clicking the same slot that has an open menu, close it
+        if (currentOpenMenu && currentOpenMenu.slot === slot) {
+            document.body.removeChild(currentOpenMenu.menu);
+            currentOpenMenu = null;
+            return;
         }
 
-        // Display damage stats
-            for (const [type, value] of Object.entries(totalStats.damage)) {
-            const statElement = document.createElement('div');
-            statElement.className = 'stat-item stat-damage';
-            statElement.innerHTML = `
-                <span class="stat-name">${type.charAt(0).toUpperCase() + type.slice(1)} Damage</span>
-                <span class="stat-value">+${value}</span>
-            `;
-            statsDisplay.appendChild(statElement);
-            }
-
-            // Display armor
-            if (totalStats.armor > 0) {
-            const statElement = document.createElement('div');
-            statElement.className = 'stat-item stat-armor';
-            statElement.innerHTML = `
-                <span class="stat-name">Armor</span>
-                <span class="stat-value">+${totalStats.armor}</span>
-            `;
-            statsDisplay.appendChild(statElement);
-            }
-
-            // Display posture
-            if (totalStats.posture > 0) {
-            const statElement = document.createElement('div');
-            statElement.className = 'stat-item stat-posture';
-            statElement.innerHTML = `
-                <span class="stat-name">Posture</span>
-                <span class="stat-value">+${totalStats.posture}</span>
-            `;
-            statsDisplay.appendChild(statElement);
-            }
+        // Close any existing menu
+        if (currentOpenMenu) {
+            document.body.removeChild(currentOpenMenu.menu);
+            currentOpenMenu = null;
         }
 
-        // Modify your existing item selection code to update stats
-        slots.forEach(slot => {
-        slot.addEventListener('click', () => {
-            const slotType = slot.dataset.slot;
-            const slotChave = normalizarSlot(slotType);
-
-            const banco = window.itemsDatabase?.[slotChave];
-            if (!banco || Object.keys(banco).length === 0) {
+        const banco = window.itemsDatabase?.[slotChave];
+        if (!banco || Object.keys(banco).length === 0) {
             alert("Nenhum item disponível para esse slot.");
             return;
-            }
+        }
 
-            const menu = document.createElement('div');
-            menu.className = 'item-menu';
+        const menu = document.createElement('div');
+        menu.className = 'item-menu';
+        menu.dataset.slotType = slotChave;
 
-            for (const key in banco) {
-            const item = banco[key];
-            const nome = item.name || key;
-            const botao = document.createElement('button');
-            botao.textContent = `${nome}`;
-            botao.onclick = () => {
-                slot.textContent = `${nome}`;
-                slot.classList.add('filled');
-                
-                // Update equippedItems
-                const slotKey = slotType === 'ring' ? 
-                `ring${Array.from(slot.parentNode.children).indexOf(slot) + 1}` : 
-                slotType;
-                equippedItems[slotKey] = item;
-                
-                document.body.removeChild(menu);
-                updateTotalStatsDisplay(); // Update stats display
-            };
-            menu.appendChild(botao);
-            }
+        // Create menu header container
+        const headerContainer = document.createElement('div');
+        headerContainer.className = 'menu-header-container';
 
-            const cancelar = document.createElement('button');
-            cancelar.textContent = "Cancelar";
-            cancelar.onclick = () => document.body.removeChild(menu);
-            menu.appendChild(cancelar);
-
-            document.body.appendChild(menu);
+        // Create menu header with search and reset button
+        const menuHeader = document.createElement('div');
+        menuHeader.className = 'item-menu-header';
+        
+        // Create search input
+        const searchInput = document.createElement('input');
+        searchInput.type = 'text';
+        searchInput.id = 'item-search';
+        searchInput.className = 'filter-input item-menu-search';
+        searchInput.placeholder = 'Search items...';
+        
+        // Create reset button (smaller and next to search)
+const resetButton = document.createElement('button');
+resetButton.id = 'reset-filters';
+resetButton.className = 'menu-reset-button'; // Use a more specific class
+resetButton.innerHTML = 'Reset';
+resetButton.title = 'Reset filters';
+        
+        // Add search and reset to header
+        menuHeader.appendChild(searchInput);
+        menuHeader.appendChild(resetButton);
+        
+        // Create filters container
+        const filtersContainer = document.createElement('div');
+        filtersContainer.className = 'item-menu-filters';
+        
+        // Create stat filter
+        const statFilter = document.createElement('select');
+        statFilter.id = 'stat-filter';
+        statFilter.className = 'filter-select';
+        
+        // Create type filter
+        const typeFilter = document.createElement('select');
+        typeFilter.id = 'type-filter';
+        typeFilter.className = 'filter-select';
+        
+        // Create sort filter
+        const sortFilter = document.createElement('select');
+        sortFilter.id = 'sort-filter';
+        sortFilter.className = 'filter-select';
+        
+        // Add options to sort filter
+        const sortOptions = [
+            {value: 'name-asc', text: 'A-Z'},
+            {value: 'name-desc', text: 'Z-A'},
+            {value: 'rarity-asc', text: 'Rarity ↑'},
+            {value: 'rarity-desc', text: 'Rarity ↓'}
+        ];
+        
+        sortOptions.forEach(option => {
+            const optElement = document.createElement('option');
+            optElement.value = option.value;
+            optElement.textContent = option.text;
+            sortFilter.appendChild(optElement);
         });
-        });
+        
+        // Add default option to stat and type filters
+        const addDefaultOption = (select, text) => {
+            const option = document.createElement('option');
+            option.value = '';
+            option.textContent = text;
+            select.appendChild(option);
+        };
+        
+        addDefaultOption(statFilter, 'All Stats');
+        addDefaultOption(typeFilter, 'All Types');
+        
+        // Build the filters container
+        filtersContainer.appendChild(statFilter);
+        filtersContainer.appendChild(typeFilter);
+        filtersContainer.appendChild(sortFilter);
+        
+        // Build the header container
+        headerContainer.appendChild(menuHeader);
+        headerContainer.appendChild(filtersContainer);
+        
+        // Create content area
+        const menuContent = document.createElement('div');
+        menuContent.className = 'item-menu-content';
+        
+        // Add elements to menu
+        menu.appendChild(headerContainer);
+        menu.appendChild(menuContent);
+        
+        document.body.appendChild(menu);
+        
+        // Track the currently open menu and its slot
+        currentOpenMenu = {
+            menu: menu,
+            slot: slot
+        };
+        
+        // Initialize filters for this menu
+        initializeFilters(menu, slotChave);
+    });
+});
 
-        // Initialize stats display on page load
-        document.addEventListener('DOMContentLoaded', updateTotalStatsDisplay);
-    </script>
+function emptySlot(slot, slotKey) {
+    // Reset the slot
+    slot.className = 'slot';
+    slot.removeAttribute('data-rarity');
+    slot.innerHTML = slot.dataset.slot.charAt(0).toUpperCase() + slot.dataset.slot.slice(1);
+    
+    // Clear the equipped item
+    equippedItems[slotKey] = null;
+    
+    // Update stats
+    updateTotalStatsDisplay();
+    
+    // Hide tooltip if it's showing for this item
+    tooltipSystem.hideTooltip();
+}
+
+const tooltip = document.createElement('div');
+tooltip.className = 'tooltip';
+document.body.appendChild(tooltip);
+
+function createItemTooltipContent(item) {
+  const tooltipContent = document.createElement('div');
+  
+  // Create header with name and rarity
+  const header = document.createElement('div');
+  header.className = 'tooltip-header';
+  
+  const nameElement = document.createElement('div');
+  nameElement.className = 'tooltip-name';
+  nameElement.textContent = item.name || 'Unnamed Item';
+  
+  const rarityElement = document.createElement('div');
+  rarityElement.className = `tooltip-rarity ${item.rarity || 'common'}`;
+  rarityElement.textContent = item.rarity || 'common';
+  
+  header.appendChild(nameElement);
+  header.appendChild(rarityElement);
+  tooltipContent.appendChild(header);
+  
+  // Add item class
+  const classElement = document.createElement('div');
+  classElement.className = 'tooltip-class';
+  classElement.textContent = `Class: ${item.constructor?.name || 'Item'}`;
+  tooltipContent.appendChild(classElement);
+  
+  // Add type if available (with capitalized first letter)
+  if (item.type) {
+    const typeElement = document.createElement('div');
+    typeElement.className = 'tooltip-type';
+    const formattedType = item.type.charAt(0).toUpperCase() + item.type.slice(1);
+    typeElement.textContent = `Type: ${formattedType}`;
+    tooltipContent.appendChild(typeElement);
+  }
+  
+  // Add level if available
+  if (item.level) {
+    const levelElement = document.createElement('div');
+    levelElement.className = 'tooltip-level';
+    levelElement.textContent = `Level ${item.level}`;
+    tooltipContent.appendChild(levelElement);
+  }
+  
+  // Add runeslots if available
+  if (item.runeslots !== undefined && item.runeslots !== null) {
+    const runeslotsElement = document.createElement('div');
+    runeslotsElement.className = 'tooltip-runeslots';
+    runeslotsElement.innerHTML = `Rune Slots: <span>${item.runeslots}</span>`;
+    tooltipContent.appendChild(runeslotsElement);
+  }
+  
+  // Add stats if available
+  if (item.stats && Object.keys(item.stats).length > 0) {
+    const statsContainer = document.createElement('div');
+    statsContainer.className = 'tooltip-stats';
+    
+    for (const [stat, value] of Object.entries(item.stats)) {
+      const statInfo = getStatInfo(stat);
+      if (statInfo) {
+        const statElement = document.createElement('div');
+        statElement.className = 'tooltip-stat';
+        
+        const statName = document.createElement('div');
+        statName.className = 'tooltip-stat-name';
+        statName.textContent = statInfo.name;
+        
+        const statValue = document.createElement('div');
+        statValue.className = `tooltip-stat-value ${value >= 0 ? 'positive' : 'negative'}`;
+        statValue.textContent = `${value >= 0 ? '+' : ''}${formatStatValue(value, statInfo.percentual)}`;
+        
+        statElement.appendChild(statName);
+        statElement.appendChild(statValue);
+        statsContainer.appendChild(statElement);
+      }
+    }
+    
+    tooltipContent.appendChild(statsContainer);
+  }
+  
+  // Add damage if available (specific to Weapon class)
+  if (item.damage && Object.keys(item.damage).length > 0) {
+    const damageContainer = document.createElement('div');
+    damageContainer.className = 'tooltip-stats';
+    
+    // Add damage header
+    const damageHeader = document.createElement('div');
+    damageHeader.className = 'tooltip-stat';
+    damageHeader.style.fontWeight = 'bold';
+    damageHeader.style.marginBottom = '5px';
+    damageHeader.textContent = 'Damage:';
+    damageContainer.appendChild(damageHeader);
+    
+    for (const [type, value] of Object.entries(item.damage)) {
+      const damageElement = document.createElement('div');
+      damageElement.className = 'tooltip-stat';
+      
+      const damageName = document.createElement('div');
+      damageName.className = 'tooltip-stat-name';
+      damageName.textContent = `${type.charAt(0).toUpperCase() + type.slice(1)}`;
+      
+      const damageValue = document.createElement('div');
+      damageValue.className = 'tooltip-stat-value positive';
+      damageValue.textContent = `${value}`;
+      
+      damageElement.appendChild(damageName);
+      damageElement.appendChild(damageValue);
+      damageContainer.appendChild(damageElement);
+    }
+    
+    tooltipContent.appendChild(damageContainer);
+  }
+  
+  // Add armor if available (specific to Armor and subclasses)
+  if (typeof item.armor === 'number') {
+    const armorElement = document.createElement('div');
+    armorElement.className = 'tooltip-stat';
+    
+    const armorName = document.createElement('div');
+    armorName.className = 'tooltip-stat-name';
+    armorName.textContent = 'Armor';
+    
+    const armorValue = document.createElement('div');
+    armorValue.className = 'tooltip-stat-value positive';
+    armorValue.textContent = `${item.armor}`;
+    
+    armorElement.appendChild(armorName);
+    armorElement.appendChild(armorValue);
+    tooltipContent.appendChild(armorElement);
+  }
+  
+  // Add posture if available (specific to Shield class)
+  if (typeof item.posture === 'number') {
+    const postureElement = document.createElement('div');
+    postureElement.className = 'tooltip-stat';
+    
+    const postureName = document.createElement('div');
+    postureName.className = 'tooltip-stat-name';
+    postureName.textContent = 'Posture';
+    
+    const postureValue = document.createElement('div');
+    postureValue.className = 'tooltip-stat-value positive';
+    postureValue.textContent = `${item.posture}`;
+    
+    postureElement.appendChild(postureName);
+    postureElement.appendChild(postureValue);
+    tooltipContent.appendChild(postureElement);
+  }
+  
+  // Add description if available
+  if (item.description) {
+    const descElement = document.createElement('div');
+    descElement.className = 'tooltip-description';
+    descElement.textContent = item.description;
+    tooltipContent.appendChild(descElement);
+  }
+  
+  return tooltipContent;
+}
+
+// Tooltip system
+const tooltipSystem = {
+  currentTooltip: null,
+  
+  showTooltip: function(content, element) {
+    this.hideTooltip();
+    
+    this.currentTooltip = document.createElement('div');
+    this.currentTooltip.className = 'tooltip';
+    this.currentTooltip.appendChild(content);
+    document.body.appendChild(this.currentTooltip);
+    
+    this.positionTooltip(element);
+    this.currentTooltip.classList.add('visible');
+  },
+  
+  positionTooltip: function(element) {
+    const rect = element.getBoundingClientRect();
+    this.currentTooltip.style.left = `${rect.right + 10}px`;
+    this.currentTooltip.style.top = `${rect.top + window.scrollY}px`;
+    
+    // Adjust if going off-screen right
+    const tooltipRect = this.currentTooltip.getBoundingClientRect();
+    if (tooltipRect.right > window.innerWidth) {
+      this.currentTooltip.style.left = `${rect.left - tooltipRect.width - 10}px`;
+    }
+  },
+  
+  hideTooltip: function() {
+    if (this.currentTooltip) {
+      document.body.removeChild(this.currentTooltip);
+      this.currentTooltip = null;
+    }
+  }
+};
+
+// Slot hover events
+slots.forEach(slot => {
+  slot.addEventListener('mouseenter', (e) => {
+    const slotType = slot.dataset.slot;
+    const slotKey = slotType === 'ring' ? 
+      `ring${Array.from(slot.parentNode.children).indexOf(slot) + 1}` : 
+      slotType;
+    
+    const item = equippedItems[slotKey];
+    if (item) {
+      const tooltipContent = createItemTooltipContent(item);
+      tooltipSystem.showTooltip(tooltipContent, slot);
+    }
+  });
+  
+  slot.addEventListener('mouseleave', () => {
+    tooltipSystem.hideTooltip();
+  });
+});
+
+// Menu button hover events
+document.addEventListener('mouseover', (e) => {
+  const button = e.target.closest('.item-menu button');
+  if (button) {
+    const itemKey = button.getAttribute('data-item-key');
+    const slotType = button.getAttribute('data-slot-type'); // Get from button instead
+    const item = window.itemsDatabase?.[slotType]?.[itemKey];
+    
+    if (item) {
+      const tooltipContent = createItemTooltipContent(item);
+      tooltipSystem.showTooltip(tooltipContent, button);
+    }
+  }
+}, true);
+
+document.addEventListener('mouseout', (e) => {
+  if (!e.relatedTarget || !e.relatedTarget.closest('.item-menu button, .slot')) {
+    tooltipSystem.hideTooltip();
+  }
+}, true);
+
+    // Initialize stats display on page load
+    document.addEventListener('DOMContentLoaded', () => {
+    updateTotalStatsDisplay();
+    initializeFilters();
+});
+</script>
     <div class="total-stats-container">
   <h2>Total Character Stats</h2>
   <div class="stats-display">

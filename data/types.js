@@ -2,9 +2,11 @@ class Race {
   constructor({
     name,
     stats,
+    rarity,
   }) {
     this.name = name;
     this.stats = stats || {};
+    this.rarity = rarity || 'common';
   }
 }
 

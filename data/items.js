@@ -1462,7 +1462,7 @@ const itemsDatabaseWeapons = {
     stats: {agility: 20, stamina: 2, critChance: 0.02, physicalPierce: 0.01},
     type: 'dagger',
     level: 50,
-    rarity: 'mythic',
+    rarity: 'legendary',
     description: 'Builds Void stacks on hit, reducing enemy damage (max 10%)'
   }),
 
@@ -2967,28 +2967,33 @@ const Ghoul = new Race({
 
 const Amphibu = new Race({
   name: 'Amphibu',
-  stats: {swimBoost: 35, immunity: 0.5}
+  stats: {swimBoost: 35, immunity: 0.5},
+  rarity: 'uncommon'
 });
 
 const Slime = new Race({
   name: 'Slime',
-  stats: {magicResistance: -0.075, fireResistance: -0.075, immunity: 0.25}
+  stats: {magicResistance: -0.075, fireResistance: -0.075, immunity: 0.25},
+  rarity: 'epic'
 });
 
 const HalfGolem = new Race({
   name: 'Half Golem',
   stats: {speedBoost: -0.05, damageReduction: 0.05,
-      maxWeight: 10, robustness: 0.25}
+      maxWeight: 10, robustness: 0.25},
+    rarity: 'epic'
 });
 
 const Seraphim = new Race({
   name: 'Seraphim',
-  stats: {luck: 1, fireResistance: 0.025}
+  stats: {luck: 1, fireResistance: 0.025},
+  rarity: 'legendary'
 });
 
 const Infernim = new Race({
   name: 'Infernim',
-  stats: {luck: 1, fireResistance: 0.1, holyResistance: -0.05}
+  stats: {luck: 1, fireResistance: 0.1, holyResistance: -0.05},
+  rarity: 'legendary'
 });
 
 // Then create the races database with all races
@@ -3029,18 +3034,21 @@ const racesDatabase = {
   Amphibu,
   Goliath: new Race({
     name: 'Amphibu: Goliath',
+    rarity: 'uncommon',
     stats: {...Amphibu.stats,
         jumpBoost: 0.02, fallReduction: 0.05, speedBoost: -0.05,
         damageReduction: 0.05, attackPower: 0.03}
   }),
   AgileFrog: new Race({
     name: 'Amphibu: Agile Frog',
+    rarity: 'uncommon',
     stats: {...Amphibu.stats,
         swimBoost: Amphibu.stats.swimBoost + 35, speedBoost: 0.15,
     jumpBoost: 0.25, fallReduction: 0.15}
   }),
   GoldenPoison: new Race({
     name: 'Amphibu: Golden Poison',
+    rarity: 'uncommon',
     stats: {...Amphibu.stats,
         immunity: Amphibu.stats.immunity + 0.5, speedBoost: 0.07,
         jumpBoost: 0.15, fallReduction: 0.05}
@@ -3049,26 +3057,31 @@ const racesDatabase = {
   Ailuran: new Race({
     name: 'Ailuran',
     stats: {speedBoost: 0.08, fireResistance: -0.1, heatResistance: 0.25,
-        coldResistance: 0.25, fallReduction: 0.15, jumpBoost: 0.25}
+        coldResistance: 0.25, fallReduction: 0.15, jumpBoost: 0.25},
+    rarity: 'rare'
   }),
 
   Chiroptran: new Race({
     name: 'Chiroptran',
-    stats: {windResistance: -5, holyAttack: 0.05, holyResistance: -0.05}
+    stats: {windResistance: -5, holyAttack: 0.05, holyResistance: -0.05},
+    rarity: 'rare'
   }),
 
   Slime,
   BlackOozeSlime: new Race({
     name: 'Black Ooze Slime',
-    stats: {...Slime.stats}
+    stats: {...Slime.stats},
+    rarity: 'epic'
   }),
   PredatorSlime: new Race({
     name: 'Predator Slime',
-    stats: {...Slime.stats}
+    stats: {...Slime.stats},
+    rarity: 'epic'
   }),
   SapphireSlime: new Race({
     name: 'Sapphire Slime',
-    stats: {...Slime.stats}
+    stats: {...Slime.stats},
+    rarity: 'epic'
   }),
 
   HalfGolem,
@@ -3078,7 +3091,8 @@ const racesDatabase = {
         speedBoost: HalfGolem.stats.speedBoost-0.1,
         damageReduction: HalfGolem.stats.damageReduction+0.1,
         maxWeight: HalfGolem.stats.maxWeight+25,
-        robustness: HalfGolem.stats.robustness+0.25}
+        robustness: HalfGolem.stats.robustness+0.25},
+    rarity: 'epic'
   }),
   AssaultGolem: new Race({
     name: 'Half Golem: Assault Body',
@@ -3086,7 +3100,8 @@ const racesDatabase = {
         speedBoost: HalfGolem.stats.speedBoost+0.06,
         damageReduction: HalfGolem.stats.damageReduction-0.1,
         attackPower: 0.12,
-        robustness: HalfGolem.stats.robustness+0.25}
+        robustness: HalfGolem.stats.robustness+0.25},
+    rarity: 'epic'
   }),
   CrystalGolem: new Race({
     name: 'Half Golem: Crystal Body',
@@ -3094,49 +3109,59 @@ const racesDatabase = {
         speedBoost: HalfGolem.stats.speedBoost+0.06,
         damageReduction: HalfGolem.stats.damageReduction-0.1,
         magicPower: 0.12,
-        robustness: HalfGolem.stats.robustness+0.25}
+        robustness: HalfGolem.stats.robustness+0.25},
+    rarity: 'epic'
   }),
 
   Bunny: new Race({
     name: 'Bunny',
+    rarity: 'epic'
   }),
 
   Dullahan: new Race({
     name: 'Dullahan',
-    stats: {coldResistance: 0.25, holyResistance: -0.1, robustness: 0.25}
+    stats: {coldResistance: 0.25, holyResistance: -0.1, robustness: 0.25},
+  rarity: 'legendary'
   }),
 
   Vampire: new Race({
     name: 'Vampire',
-    stats: {luck: 1, holyResistance: -0.2}
+    stats: {luck: 1, holyResistance: -0.2},
+  rarity: 'legendary'
   }),
 
   Seraphim,
   TwoWingSeraphim: new Race({
     name: 'Seraphim: 2 Wings',
-    stats: {...Seraphim.stats, agility: 15}
+    stats: {...Seraphim.stats, agility: 15},
+  rarity: 'legendary'
   }),
   FourWingSeraphim: new Race({
     name: 'Seraphim: 4 Wings',
-    stats: {...Seraphim.stats, physicalAttack: 0.06}
+    stats: {...Seraphim.stats, physicalAttack: 0.06},
+  rarity: 'legendary'
   }),
   SixWingSeraphim: new Race({
     name: 'Seraphim: 6 Wings',
-    stats: {...Seraphim.stats, focusEfficiency: 5, manaEfficiency: 5}
+    stats: {...Seraphim.stats, focusEfficiency: 5, manaEfficiency: 5},
+  rarity: 'legendary'
   }),
 
   Infernim,
   TwoHornInfernim: new Race({
     name: 'Infernim: 2 Horns',
-    stats: {...Infernim.stats, speedBoost: 0.06}
+    stats: {...Infernim.stats, speedBoost: 0.06},
+  rarity: 'legendary'
   }),
   FourHornInfernim: new Race({
     name: 'Infernim: 4 Horns',
-    stats: {...Infernim.stats, magicPower: 0.1}
+    stats: {...Infernim.stats, magicPower: 0.1},
+  rarity: 'legendary'
   }),
   SixHornInfernim: new Race({
     name: 'Infernim: 6 Horns',
-    stats: {...Infernim.stats, fireAttack: 0.2}
+    stats: {...Infernim.stats, fireAttack: 0.2},
+  rarity: 'legendary'
   }),
 };
 
