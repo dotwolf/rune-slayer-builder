@@ -3017,7 +3017,8 @@ const itemsDatabaseRings = {
   SpellStoneRing: new Ring({
     name: 'Spell Stone Ring',
     stats: {magicResistance: 0.17},
-    rarity: 'uncommon'
+    rarity: 'uncommon',
+    description: '(Unobtainable)'
   }),
 
   EmberfrostRing: new Ring({
@@ -3034,13 +3035,13 @@ const itemsDatabaseRings = {
 
   MinersRing: new Ring({
     name: 'Miner\'s Ring',
-    description: 'Enhances mining efficiency.',
+    description: '(Unobtainable) Enhances mining efficiency.',
     rarity: 'uncommon'
   }),
 
   LumberjackRing: new Ring({
     name: 'Lumberjack Ring',
-    description: 'Enhances tree chopping efficiency.',
+    description: '(Unobtainable) Enhances tree chopping efficiency.',
     rarity: 'uncommon'
   }),
 
@@ -3090,7 +3091,8 @@ const itemsDatabaseRings = {
   RingOfResistance: new Ring({
     name: 'Ring of Resistance',
     stats: {magicResistance: 0.06, holyResistance: 0.06, fireResistance: 0.06},
-    rarity: 'epic'
+    rarity: 'epic',
+    description: '(Unobtainable)'
   }),
 
   DoomBand: new Ring({
@@ -3138,7 +3140,8 @@ const itemsDatabaseRings = {
   DemonCirclet: new Ring({
     name: 'Demon Circlet',
     stats: {strength: 10, agility: 10, stamina: 10},
-    rarity: 'legendary'
+    rarity: 'legendary',
+    description: '(Unobtainable)'
   }),
 
   LuckyRing: new Ring({
@@ -3239,6 +3242,18 @@ const itemsDatabaseRings = {
     name: 'Darius\' Favour',
     stats: {physicalAttack: 0.015, fireAttack: 0.025},
     rarity: 'legendary',
+  }),
+
+  PiercingBand: new Ring({
+    name: 'Piercing Band',
+    stats: {physicalPierce: 0.1},
+    rarity: 'epic',
+  }),
+
+  PiercingMagicBand: new Ring({
+    name: 'Piercing Magic Band',
+    stats: {magicPierce: 0.1},
+    rarity: 'epic',
   }),
 };
 
