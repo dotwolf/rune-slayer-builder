@@ -448,7 +448,6 @@
     }
 
     function emptyRuneSlot(slot, equipmentSlot, slotNumber) {
-    // If equipmentSlot and slotNumber aren't provided, try to get them from the slot's data attributes
     if (!equipmentSlot || !slotNumber) {
         const equipmentRow = slot.closest('.equipment-row');
         if (equipmentRow) {
@@ -458,24 +457,18 @@
         }
     }
 
-    // Store the original slot number (I, II, III, etc.)
     const originalSlotNumber = slot.dataset.originalNumber || slotNumber;
     
-    // Reset the slot
     slot.className = 'rune-slot';
     slot.removeAttribute('data-rarity');
     slot.removeAttribute('data-rune-key');
     slot.textContent = originalSlotNumber;
     
-    // Clear the equipped rune if we have the equipmentSlot and slotNumber
     if (equipmentSlot && slotNumber && equippedRunes[equipmentSlot]) {
         equippedRunes[equipmentSlot][slotNumber] = null;
     }
     
-    // Update stats
     updateTotalStatsDisplay();
-    
-    // Hide tooltip if it's showing for this rune
     tooltipSystem.hideTooltip();
 
     saveCurrentFilterState();
@@ -701,7 +694,7 @@
     }
 
     function getStatInfo(statKey) {
-    return statlist.find(s => s.stat === statKey);
+        return statlist.find(s => s.stat === statKey);
     }
 
     function updateTotalStatsDisplay() {
@@ -710,17 +703,27 @@
         
         statsDisplay.innerHTML = '';
         
+        const sections = {
+            'Main': [],
+            'Critical': [],
+            'Attack': [],
+            'Resistance': [],
+            'Mobility': [],
+            'Duration': [],
+            'Resource': [],
+            'Miscellaneous': []
+        };
+
         for (const [stat, value] of Object.entries(totalStats.flat)) {
             if (value !== 0) {
             const statInfo = getStatInfo(stat);
             if (statInfo) {
-                const statElement = document.createElement('div');
-                statElement.className = 'stat-item';
-                statElement.innerHTML = `
-                <span class="stat-name">${statInfo.name}</span>
-                <span class="stat-value ${value < 0 ? 'negative' : ''}">${value >= 0 ? '+' : ''}${formatStatValue(value, false)}</span>
-                `;
-                statsDisplay.appendChild(statElement);
+                const category = statInfo.category || 'Miscellaneous';
+                sections[category].push({
+                    statInfo,
+                    value,
+                    isPercent: false
+                });
             }
             }
         }
@@ -729,46 +732,73 @@
             if (value !== 0) {
             const statInfo = getStatInfo(stat);
             if (statInfo) {
-                const statElement = document.createElement('div');
-                statElement.className = 'stat-item';
-                statElement.innerHTML = `
-                <span class="stat-name">${statInfo.name}</span>
-                <span class="stat-value ${value < 0 ? 'negative' : ''}">${value >= 0 ? '+' : ''}${formatStatValue(value, true)}</span>
-                `;
-                statsDisplay.appendChild(statElement);
+                const category = statInfo.category || 'Miscellaneous';
+                sections[category].push({
+                    statInfo,
+                    value,
+                    isPercent: true
+                });
             }
             }
         }
 
         for (const [type, value] of Object.entries(totalStats.damage)) {
-            const statElement = document.createElement('div');
-            statElement.className = 'stat-item stat-damage';
-            statElement.innerHTML = `
-                <span class="stat-name">${type.charAt(0).toUpperCase() + type.slice(1)} Damage</span>
-                <span class="stat-value">+${value}</span>
-             `;
-             statsDisplay.appendChild(statElement);
+            sections['Attack'].push({
+            statInfo: {
+                name: `${type.charAt(0).toUpperCase() + type.slice(1)} Damage`,
+                stat: `damage-${type}`
+            },
+            value,
+            isPercent: false
+        });
         }
 
-        if (totalStats.armor > 0) {
-            const statElement = document.createElement('div');
-            statElement.className = 'stat-item stat-armor';
-            statElement.innerHTML = `
-                <span class="stat-name">Armor</span>
-                <span class="stat-value">${totalStats.armor >= 0 ? '+' : ''}${totalStats.armor}</span>
-            `;
-            statsDisplay.appendChild(statElement);
+        if (totalStats.armor !== 0) {
+            sections['Main'].push({
+            statInfo: {
+                name: 'Armor',
+                stat: 'armor'
+            },
+            value: totalStats.armor,
+            isPercent: false
+        });
         }
 
-        if (totalStats.posture > 0) {
-            const statElement = document.createElement('div');
-            statElement.className = 'stat-item stat-posture';
-            statElement.innerHTML = `
-                <span class="stat-name">Posture</span>
-                <span class="stat-value">+${totalStats.posture}</span>
-            `;
-            statsDisplay.appendChild(statElement);
+        if (totalStats.posture !== 0) {
+            sections['Main'].push({
+            statInfo: {
+                name: 'Posture',
+                stat: 'posture'
+            },
+            value: totalStats.posture,
+            isPercent: false
+        });
         }
+        for (const [sectionName, stats] of Object.entries(sections)) {
+        if (stats.length > 0) {
+            // Add section divider
+            const sectionDivider = document.createElement('div');
+            sectionDivider.className = 'stat-section';
+            sectionDivider.textContent = sectionName;
+            statsDisplay.appendChild(sectionDivider);
+            
+            // Add stats for this section
+            stats.forEach(({statInfo, value, isPercent}) => {
+                const statElement = document.createElement('div');
+                statElement.className = 'stat-item stat-update'; // Add animation class
+                statElement.innerHTML = `
+                    <span class="stat-name">${statInfo.name}</span>
+                    <span class="stat-value ${value < 0 ? 'negative' : ''}">${value >= 0 ? '+' : ''}${formatStatValue(value, isPercent)}</span>
+                `;
+                statsDisplay.appendChild(statElement);
+                
+                // Remove animation class after animation completes
+                setTimeout(() => {
+                    statElement.classList.remove('stat-update');
+                }, 300);
+            });
+        }
+    }
     }
 
     function initializeRuneFilters(menu, slotType) {
@@ -1743,16 +1773,24 @@ function gatherBuildData() {
 
             // Load class levels
             if (buildData.classes) {
-                const classInputs = document.querySelectorAll('.class-level-input');
-                classInputs.forEach(input => {
-                    const className = input.dataset.className;
-                    if (buildData.classes[className]) {
-                        input.value = buildData.classes[className];
-                    } else {
-                        input.value = 0;
-                    }
-                });
-            }
+            let totalImportedLevels = 0; // Track total levels from imported data
+            
+            const classInputs = document.querySelectorAll('.class-level-input');
+            classInputs.forEach(input => {
+                const className = input.dataset.className;
+                if (buildData.classes[className]) {
+                    const level = parseInt(buildData.classes[className]) || 0;
+                    input.value = level;
+                    totalImportedLevels += level;
+                } else {
+                    input.value = 0;
+                }
+            });
+
+            // Update the total levels display
+            const totalLevelsDisplay = document.getElementById('total-levels');
+            totalLevelsDisplay.textContent = totalImportedLevels;
+        }
 
             // Load profession bonus
             if (buildData.professionBonus !== undefined) {
