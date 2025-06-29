@@ -801,7 +801,7 @@
     }
     }
 
-    function initializeRuneFilters(menu, slotType) {
+ function initializeRuneFilters(menu, slotType) {
     const contentArea = menu.querySelector('.item-menu-content');
     const statFilter = menu.querySelector('#stat-filter');
     const typeFilter = menu.querySelector('#type-filter');
@@ -820,15 +820,18 @@
         const rune = runesDatabase[runeId];
         
         // Only consider runes that can be equipped in this slot
-        if (rune.type === null || rune.type === equipmentSlot) {
+        const normalizedRuneType = normalizarSlot(rune.type);
+        const normalizedEquipmentSlot = normalizarSlot(equipmentSlot);
+        
+        if (normalizedRuneType === 'null' || normalizedRuneType === normalizedEquipmentSlot) {
             if (rune.stats) {
                 Object.keys(rune.stats).forEach(stat => statSet.add(stat));
             }
             
             // Only add to type filter if it's a null rune (type === null) 
             // or matches the current equipment slot
-            if (rune.type === null || rune.type === equipmentSlot) {
-                typeSet.add(rune.type || 'null');
+            if (normalizedRuneType !== 'null' || normalizedRuneType === normalizedEquipmentSlot) {
+                typeSet.add(normalizedRuneType === 'null' ? 'null' : normalizedRuneType);
             }
         }
     }
@@ -855,6 +858,7 @@
         });
     }
     
+    // Rest of the function remains the same...
     // Set up event listeners
     const searchInput = menu.querySelector('#item-search');
     const sortFilter = menu.querySelector('#sort-filter');
