@@ -1,4 +1,4 @@
-import { Weapon, Helmet, Chest, Boots, Shield, Sash, Ring, Lantern, Back, Race } from './types.js';
+import { Weapon, Helmet, Chest, Boots, Shield, Sash, Ring, Lantern, Back, Race, Fairy } from './types.js';
 
 
 const itemsDatabaseHelmet = {
@@ -174,16 +174,18 @@ const itemsDatabaseHelmet = {
   }),
   BorealInquisitorHood: new Helmet({
     name: 'Boreal Inquisitor Hood',
-    stats: {intellect: 13, magicCritChance: 0.03, coldResistance: 0.1},
-    armor: 362,
+    stats: {intellect: 18, magicCritChance: 0.03, coldResistance: 0.12,
+      buffDuration: 0.11, tundraVisibility: 0.1
+    },
+    armor: 142,
     type: 'light',
     level: 50,
     rarity: 'epic'
   }),
   MammothSagesCrown: new Helmet({
     name: 'Mammoth Sage\'s Crown',
-    stats: {strength: 14, stamina: 6, coldResistance: 0.15},
-    armor: 321,
+    stats: {intellect: 15, spirit: 12, coldResistance: 0.12, buffDuration: 0.11, tundraVisibility: 0.1},
+    armor: 129,
     type: 'light',
     level: 45,
     rarity: 'epic'
@@ -219,6 +221,33 @@ const itemsDatabaseHelmet = {
     type: 'light',
     level: 34,
     rarity: 'uncommon'
+  }),
+  CyclopsHeadband: new Helmet({
+    name: 'Cyclops Headband',
+    stats: {strength: 9, coldResistance: 0.07, buffDuration: 0.03,
+      tundraVisibility: 0.05},
+    armor: 237,
+    type: 'light',
+    level: 42,
+    rarity: 'epic'
+  }),
+  DireWolfHood: new Helmet({
+    name: 'Dire Wolf Hood',
+    stats: {castSpeed: 0.05, coldResistance: 0.07, intellect: 9,
+      tundraVisibility: 0.07},
+    armor: 237,
+    type: 'light',
+    level: 42,
+    rarity: 'epic'
+  }),
+  BorealGiHeadband: new Helmet({
+    name: 'Boreal Gi Headband',
+    stats: {strength: 19, stamina: 9, coldResistance: 0.12, buffDuration: 0.13,
+      tundraVisibility: 0.1},
+    armor: 336,
+    type: 'light',
+    level: 50,
+    rarity: 'epic'
   }),
 
 
@@ -280,7 +309,8 @@ const itemsDatabaseHelmet = {
   EverwinterCrown: new Helmet({
     name: 'Everwinter Crown',
     stats: {strength: 5, agility: 15, stamina: 2,
-      critChance: 0.03, speedBoost: 0.02, coldResistance: 0.1},
+      critChance: 0.03, speedBoost: 0.02, coldResistance: 0.1,
+    tundraVisibility: 0.1},
     armor: 360,
     type: 'medium',
     level: 50,
@@ -288,19 +318,32 @@ const itemsDatabaseHelmet = {
   }),
   MediumYetiHood: new Helmet({
     name: 'Medium Yeti Hood',
-    stats: {agility: 14, stamina: 4, physicalPierce: 0.03, coldResistance: 0.1,
-      physicalAttack: 0.02},
-    armor: 330,
+    stats: {agility: 23, strength: 4, speedBoost: 0.02, coldResistance: 0.13,
+      tundraVisibility: 0.15
+    },
+    armor: 252,
     type: 'medium',
     level: 45,
     rarity: 'epic'
   }),
   MammothRangersCrown: new Helmet({
     name: 'Mammoth Ranger\'s Crown',
-    stats: {agility: 11, stamina: 4, coldResistance: 0.15},
-    armor: 280,
+    stats: {agility: 18, stamina: 8, coldResistance: 0.15,
+      buffDuration: 0.12, tundraVisibility: 0.15
+    },
+    armor: 263,
     type: 'medium',
     level: 45,
+    rarity: 'epic'
+  }),
+  CyclopsMediumHood: new Helmet({
+    name: 'Cyclop sMedium Hood',
+    stats: {agility: 7, stamina: 3, critChance: 0.02,
+      coldResistance: 0.08, tundraVisibility: 0.05
+    },
+    armor: 203,
+    type: 'medium',
+    level: 42,
     rarity: 'epic'
   }),
 
@@ -403,8 +446,8 @@ const itemsDatabaseHelmet = {
   }),
   FrostscaleHelm: new Helmet({
     name: 'Frostscale Helm',
-    stats: {strength: 20, critDefense: 0.02, magicResistance: 0.03,
-      coldResistance: 0.06, buffDuration: 0.04},
+    stats: {strength: 24, stamina:2, critDefense: 0.02, magicResistance: 0.04,
+      coldResistance: 0.15, buffDuration: 0.1, tundraVisibility: 0.1},
     armor: 625,
     type: 'heavy',
     level: 50,
@@ -412,8 +455,8 @@ const itemsDatabaseHelmet = {
   }),
   MammothWarriorsHelm: new Helmet({
     name: 'Mammoth Warrior\'s Helm',
-    stats: {strength: 18, speedBoost: -0.02, magicResistance: 0.07,
-      coldResistance: 0.15, buffDuration: 0.1},
+    stats: {strength: 18, stamina: 4, speedBoost: -0.01, magicResistance: 0.07,
+      coldResistance: 0.2, buffDuration: 0.1, tundraVisibility: 0.1},
     armor: 700,
     type: 'heavy',
     level: 45,
@@ -429,13 +472,25 @@ const itemsDatabaseHelmet = {
     rarity: 'uncommon'
   }),
 BrimfrostHelmet: new Helmet({
-    name: 'Cobalt Helmet',
-    stats: {strength: 24, coldResistance: 0.1, buffDuration: 0.1},
-    armor: 600,
+    name: 'Brimfrost Helmet',
+    stats: {strength: 30, spirit: 4, coldResistance: 0.15, buffDuration: 0.15,
+      tundraVisibility: 0.1
+    },
+    armor: 450,
     type: 'heavy',
     level: 45,
     rarity: 'epic'
   }),
+CyclopsHeavyHelmet: new Helmet({
+    name: 'Cyclops Heavy Helmet',
+    stats: {strength: 18, critDefense: 0.03, coldResistance: 0.09,
+      tundraVisibility: 0.05},
+    armor: 400,
+    type: 'heavy',
+    level: 42,
+    rarity: 'epic'
+  }),
+
 
 
 
@@ -639,10 +694,45 @@ const itemsDatabaseChest = {
   }),
   LightYetiArmor: new Chest({
     name: 'Light Yeti Armor',
-    stats: {strength: 22, stamina: 11, coldResistance: 0.2, physicalAttack: 0.03},
-    armor: 472,
+    stats: {strength: 27, stamina: 11, critDamage: 0.1,
+      critChance: 0.02, coldResistance: 0.25},
+    armor: 464,
     type: 'light',
     level: 45,
+    rarity: 'epic'
+  }),
+  CyclopsGi: new Chest({
+    name: 'Cyclops Gi',
+    stats: {strength: 18, magicResistance: 0.05, coldResistance: 0.11},
+    armor: 381,
+    type: 'light',
+    level: 42,
+    rarity: 'epic'
+  }),
+  DireWolfGarbs: new Chest({
+    name: 'Dire Wolf Garbs',
+    stats: {intellect: 18, magicPierce: 0.03, coldResistance: 0.11},
+    armor: 153,
+    type: 'light',
+    level: 42,
+    rarity: 'epic'
+  }),
+  BorealGi: new Chest({
+    name: 'Boreal Gi',
+    stats: {strength: 32, stamina: 16, coldResistance: 0.25,
+      critDamage: 0.1, critChance: 0.01},
+    armor: 528,
+    type: 'light',
+    level: 50,
+    rarity: 'epic'
+  }),
+  BorealInquisitorRobes: new Chest({
+    name: 'Boreal Inquisitor Robes',
+    stats: {intellect: 30, magicPierce: 0.04, castSpeed: 0.04,
+      coldResistance: 0.25},
+    armor: 233,
+    type: 'light',
+    level: 50,
     rarity: 'epic'
   }),
 
@@ -730,8 +820,10 @@ const itemsDatabaseChest = {
   }),
   MammothSagesGarbs: new Chest({
     name: 'MammothSage\'s Garbs',
-    stats: {strength: 20, stamina: 11, magicResistance: 0.05, coldResistance: 0.3},
-    armor: 465,
+    stats: {intellect: 25, spirit: 20, holyResistance: 0.05,
+      castSpeed: 0.03, coldResistance: 0.25
+    },
+    armor: 224,
     type: 'light',
     level: 45,
     rarity: 'epic'
@@ -745,6 +837,45 @@ const itemsDatabaseChest = {
     level: 50,
     rarity: 'epic'
   }),
+  MammothRangersGarbs: new Chest({
+    name: 'Mammoth Rangers Garbs',
+    stats: {agility: 25, stamina: 10, critChance: 0.03,
+      physicalPierce: 0.03, coldResistance: 0.28
+    },
+    armor: 664,
+    type: 'medium',
+    level: 45,
+    rarity: 'epic'
+  }),
+  CyclopsMediumVest: new Chest({
+    name: 'Cyclops Medium Vest',
+    stats: {agility: 15, stamina: 4, cdReduction: 0.02, coldResistance: 0.13},
+    armor: 405,
+    type: 'medium',
+    level: 42,
+    rarity: 'epic'
+  }),
+  MediumYetiArmor: new Chest({
+    name: 'Medium Yeti Armor',
+    stats: {strength: 5, agility: 30, stamina: 8,
+      physicalPierce: 0.04, coldResistance: 0.28, fallReduction: 0.15
+    },
+    armor: 606,
+    type: 'medium',
+    level: 45,
+    rarity: 'epic'
+  }),
+  MammothWarriorsPlate: new Chest({
+    name: 'Mammoth Warriors Plate',
+    stats: {strength: 29, stamina: 15, speedBoost: -0.05,
+      damageReduction: 0.08, coldResistance: 0.35
+    },
+    armor: 1400,
+    type: 'medium',
+    level: 45,
+    rarity: 'epic'
+  }),
+  
 
 
 
@@ -854,11 +985,31 @@ const itemsDatabaseChest = {
   }),
   BrimfrostChestplate: new Chest({
     name: 'Brimfrost Chestplate',
-    stats: {strength: 40, stamina: 10, critDamage: 0.05,
-      physicalPierce: 0.04, coldResistance: 0.2},
-    armor: 1225,
+    stats: {strength: 55, spirit: 5, stamina: 7, critDamage: 0.1,
+      physicalPierce: 0.05, coldResistance: 0.2},
+    armor: 950,
     type: 'heavy',
     level: 45,
+    rarity: 'epic'
+  }),
+  CyclopsHeavyChestplate: new Chest({
+    name: 'Cyclops Heavy Chestplate',
+    stats: {strength: 36, critChance: 0.07, coldResistance: 0.15,
+      buffDuration: 0.06},
+    armor: 800,
+    type: 'heavy',
+    level: 42,
+    rarity: 'epic'
+  }),
+  FrostscalePlate: new Chest({
+    name: 'Frostscale Plate',
+    stats: {strength: 42, stamina: 12, critDamage: 0.08,
+      critChance: 0.01, speedBoost: -0.01, physicalPierce: 0.03,
+      coldResistance: 0.25
+    },
+    armor: 1300,
+    type: 'heavy',
+    level: 50,
     rarity: 'epic'
   }),
 };
@@ -1019,16 +1170,16 @@ const itemsDatabaseBoots = {
   }),
   MammothRangersPants: new Boots({
     name: 'Mammoth Ranger\'s Pants',
-    stats: {agility: 11, stamina: 4, speedBoost: 0.02},
-    armor: 265,
+    stats: {agility: 18, stamina: 8, cdReduction: 0.03, coldResistance: 0.13},
+    armor: 263,
     type: 'light',
     level: 45,
     rarity: 'epic'
   }),
   BorealInquisitorPants: new Boots({
     name: 'Boreal Inquisitor Pants',
-    stats: {intellect: 13, coldResistance: 0.1, buffDuration: 0.09},
-    armor: 140,
+    stats: {intellect: 18, magicCritChance: 0.03, coldResistance: 0.12},
+    armor: 142,
     type: 'light',
     level: 50,
     rarity: 'epic'
@@ -1051,12 +1202,46 @@ const itemsDatabaseBoots = {
   }),
   LightYetiBoots: new Boots({
     name: 'Light Yeti Pants',
-    stats: {strength: 22, stamina: 11, speedBoost: 0.02, coldResistance: 0.1},
-    armor: 362,
+    stats: {strength: 16, stamina: 6, buffDuration: 0.13, coldResistance: 0.12,
+      tundraVisibility: 0.1},
+    armor: 278,
     type: 'light',
     level: 45,
     rarity: 'epic'
   }),
+  MammothSagesPants: new Boots({
+    name: 'Mammoth Sage\'s Pants',
+    stats: {intellect: 15, spirit: 12, magicCritChance: 0.02, coldResistance: 0.12},
+    armor: 129,
+    type: 'light',
+    level: 45,
+    rarity: 'epic'
+  }),
+  CyclopsGiPants: new Boots({
+    name: 'Cyclops Gi Pants',
+    stats: {strength: 9, physicalPierce: 0.01, coldResistance: 0.07},
+    armor: 237,
+    type: 'light',
+    level: 42,
+    rarity: 'epic'
+  }),
+  DireWolfPants: new Boots({
+    name: 'Dire Wolf Pants',
+    stats: {intellect: 9, magicCritChance: 0.01, coldResistance: 0.09},
+    armor: 85,
+    type: 'light',
+    level: 42,
+    rarity: 'epic'
+  }),
+  BorealGiPants: new Boots({
+    name: 'Boreal Gi Pants',
+    stats: {strength: 19, stamina: 9, physicalPierce: 0.02, coldResistance: 0.12},
+    armor: 336,
+    type: 'light',
+    level: 50,
+    rarity: 'epic'
+  }),
+
 
 
 
@@ -1140,8 +1325,8 @@ const itemsDatabaseBoots = {
   }),
   MediumYetiBoots: new Boots({
     name: 'Medium Yeti Boots',
-    stats: {agility: 14, stamina: 4, speedBoost: 0.03, coldResistance: 0.1},
-    armor: 330,
+    stats: {agility: 23, strength: 4, critChance: 0.02, coldResistance: 0.13},
+    armor: 252,
     type: 'medium',
     level: 45,
     rarity: 'epic'
@@ -1153,6 +1338,14 @@ const itemsDatabaseBoots = {
     armor: 360,
     type: 'medium',
     level: 50,
+    rarity: 'epic'
+  }),
+  CyclopsMediumPants: new Boots({
+    name: 'Cyclops Medium Boots',
+    stats: {agility: 7, stamina: 3, coldResistance: 0.08, buffDuration: 0.05},
+    armor: 203,
+    type: 'medium',
+    level: 42,
     rarity: 'epic'
   }),
 
@@ -1238,7 +1431,8 @@ const itemsDatabaseBoots = {
   }),
   FrostscaleGreaves: new Boots({
     name: 'Frostscale Greaves',
-    stats: {strength: 20, critChance: 0.02, holyResistance: 0.05, coldResistance: 0.12},
+    stats: {strength: 24, stamina: 2, critChance: 0.02, holyResistance: 0.05,
+      coldResistance: 0.15, critDefense: 0.02},
     armor: 625,
     type: 'heavy',
     level: 40,
@@ -1246,8 +1440,8 @@ const itemsDatabaseBoots = {
   }),
   MammothWarriorsBoots: new Boots({
     name: 'Mammoth Warrior\'s Boots',
-    stats: {strength: 18, critChance: 0.01, speedBoost: -0.02,
-      holyResistance: 0.1, coldResistance: 0.15},
+    stats: {strength: 18, stamina: 4, critDefense: 0.1, speedBoost: -0.02,
+      holyResistance: 0.1, coldResistance: 0.2},
     armor: 700,
     type: 'heavy',
     level: 45,
@@ -1255,8 +1449,16 @@ const itemsDatabaseBoots = {
   }),
   BrimfrostBoots: new Boots({
     name: 'Brimfrost Boots',
-    stats: {strength: 24, critChance: 0.02, coldResistance: 0.1},
-    armor: 600,
+    stats: {strength: 30, spirit: 4, critChance: 0.02, coldResistance: 0.15},
+    armor: 450,
+    type: 'heavy',
+    level: 45,
+    rarity: 'epic'
+  }),
+  CyclopsHeavyBoots: new Boots({
+    name: 'Cyclops Heavy Boots',
+    stats: {strength: 18, magicResistance: 0.03, coldResistance: 0.09},
+    armor: 321,
     type: 'heavy',
     level: 45,
     rarity: 'epic'
@@ -1560,6 +1762,24 @@ const itemsDatabaseWeapons = {
     level: 40,
     rarity: 'legendary',
     description: 'Gain Fury stacks when hit, dealing bonus damage at max stacks.'
+  }),
+  Iskarion: new Weapon({
+    name: 'Iskarion',
+    damage: {physical: 15},
+    stats: {strength: 35, spirit: 16, physicalPierce: 0.06},
+    type: 'gauntlet',
+    level: 50,
+    rarity: 'legendary',
+    description: 'Slow down your target for 40% for 6 seconds upon landing your Weapon Art.'
+  }),
+  DireWolfGauntlets: new Weapon({
+    name: 'Dire Wolf Gauntlets',
+    damage: {physical: 13},
+    stats: {strength: 26, agility: 15},
+    type: 'gauntlet',
+    level: 45,
+    rarity: 'legendary',
+    description: 'Chance on hit to make your target bleed.'
   }),
 
 
@@ -1926,7 +2146,7 @@ const itemsDatabaseWeapons = {
     type: 'greatsword',
     level: 50,
     rarity: 'legendary',
-    description: 'Running attacks grant 18% speed boost (12s duration, 9s cooldown).'
+    description: 'Running attacks grant 18% speed boost (12s duration, 9s cooldown). For the first 3 seconds of the passive, crit charges 25% faster.'
   }),
 
 
@@ -2103,7 +2323,7 @@ const itemsDatabaseWeapons = {
     type: 'katana',
     level: 50,
     rarity: 'legendary',
-    description: 'Chance to bleed and agility scales with strength.'
+    description: 'You are attuned to the blood of Velor Yth Carven, your Agility is increased based off your Strength.'
   }),
 
 
@@ -2244,11 +2464,11 @@ const itemsDatabaseWeapons = {
   SanguineGreatbow: new Weapon({
     name: 'Sanguine Greatbow',
     damage: {physical: 14},
-    stats: {agility: 26, stamina: 5, critDamage: 0.05, critChance: 0.02, holyResistance: 0.05},
+    stats: {agility: 25, stamina: 5, critDamage: 0.05, critChance: 0.02, holyResistance: 0.05},
     type: 'bow',
     level: 40,
     rarity: 'epic',
-    description: 'Chance to cause bleeding.'
+    description: 'Chance on hit to make your target bleed.'
   }),
   Vermillion: new Weapon({
     name: 'Vermillion',
@@ -2643,6 +2863,15 @@ const itemsDatabaseLantern = {
     },
     rarity: 'rare'
   }),
+
+  CyclopsLantern: new Lantern({
+    name: 'Cyclops Lantern',
+    stats: {
+      coldResistance: 0.25,
+      tundraVisibility: 0.18
+    },
+    rarity: 'uncommon'
+  }),
 };
 
 const itemsDatabaseBack = {
@@ -2714,8 +2943,35 @@ const itemsDatabaseBack = {
     stats: {intellect: 25, spirit: 10},
     armor: 75,
     rarity: 'epic'
-  })
+  }),
 
+  IceFractalCape: new Back({
+    name: 'Ice Fractal Cape',
+    stats: {intellect: 15, spirit: 30, coldResistance: 0.07},
+    armor: 100,
+    rarity: 'epic'
+  }),
+
+  IskaelsVeil: new Back({
+    name: 'Iskael\'s Veil',
+    stats: {strength: 15, agility: 30, coldResistance: 0.07},
+    armor: 75,
+    rarity: 'epic'
+  }),
+
+  IskaelsShrould: new Back({
+    name: 'Iskael\'s Shroud',
+    stats: {intellect: 30, spirit: 15, coldResistance: 0.07},
+    armor: 100,
+    rarity: 'epic'
+  }),
+
+  YetiCloak: new Back({
+    name: 'Yeti Cloak',
+    stats: {strength: 30, stamina: 7, coldResistance: 0.07},
+    armor: 110,
+    rarity: 'epic'
+  }),
 };
 
 const itemsDatabaseRings = {
@@ -2794,7 +3050,7 @@ const itemsDatabaseRings = {
     rarity: 'rare'
   }),
 
-  MaelissRing: new Ring({
+  MaelisRing: new Ring({
     name: 'Maelis\'s Ring',
     description: 'Enhances the potency of fairy buffs.',
     rarity: 'rare'
@@ -2930,6 +3186,7 @@ const itemsDatabaseRings = {
 
   CovetousVipersRing: new Ring({
     name: 'Covetous Viper\'s Ring',
+    stats: {spirit: 2},
     description: 'Your melee attacks on poisoned enemies restore a portion of your health.',
     rarity: 'legendary'
   }),
@@ -2957,9 +3214,72 @@ const itemsDatabaseRings = {
     stats: {intellect: 20},
     rarity: 'uncommon'
   }),
+
+  IceGolemRing: new Ring({
+    name: 'Ice Golem Ring',
+    stats: {strength: 10, stamina: 5},
+    rarity: 'uncommon',
+    description: 'Every hit with Mana Damage builds Lesser Frostbite. 3 second cooldown per proc.'
+  }),
+
+  YetiRing: new Ring({
+    name: 'Yeti Ring',
+    stats: {strength: 10, stamina: 5},
+    rarity: 'uncommon',
+    description: 'You become infuriated. Every time you get hit, gain 2% damage. This scales up to 10%. Goes away after 2 seconds. Getting hit refreshes the cooldown.'
+  }),
+
+  IskaelRing: new Ring({
+    name: 'Iskael Ring',
+    stats: {strength: 10, stamina: 5},
+    rarity: 'epic',
+    description: 'Landing an M1 or a Critical Attack will cause your enemies to build up Lesser Frostbite, causing them to freeze. If stacked with Isakel\'s Rune, buildup will be increased by 20%.'
+  }),
+  DariusFavour: new Ring({
+    name: 'Darius\' Favour',
+    stats: {physicalAttack: 0.015, fireAttack: 0.025},
+    rarity: 'legendary',
+  }),
 };
 
-// First define all base races
+const itemDatabaseFairies = {
+  Fairy: new Fairy({
+    name: 'Fairy',
+    stats: {magicAttack: 0.2},
+    rarity: 'rare'
+  }),
+  GoldenFairy: new Fairy({
+    name: 'Golden Fairy',
+    stats: {luck: 3},
+    rarity: 'legendary'
+  }),
+  EarthFairy: new Fairy({
+    name: 'Earth Fairy',
+    stats: {earthAttack: 0.1},
+    rarity: 'legendary'
+  }),
+  FireFairy: new Fairy({
+    name: 'Fire Fairy',
+    stats: {fireAttack: 0.1},
+    rarity: 'legendary'
+  }),
+  WaterFairy: new Fairy({
+    name: 'Water Fairy',
+    stats: {waterAttack: 0.1},
+    rarity: 'legendary'
+  }),
+  LightningFairy: new Fairy({
+    name: 'Lightning Fairy',
+    stats: {lightningAttack: 0.1},
+    rarity: 'legendary'
+  }),
+  WindFairy: new Fairy({
+    name: 'Wind Fairy',
+    stats: {windAttack: 0.1},
+    rarity: 'legendary'
+  })
+}
+
 const Ghoul = new Race({
   name: 'Ghoul',
   stats: {magicAttack: 0.025, immunity: 0.5}
@@ -3174,7 +3494,8 @@ const itemsDatabase = {
   lantern: itemsDatabaseLantern,
   back: itemsDatabaseBack,
   ring: itemsDatabaseRings,
-  race: racesDatabase
+  race: racesDatabase,
+  fairy: itemDatabaseFairies
 };
 
 export default itemsDatabase;

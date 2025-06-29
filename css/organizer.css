@@ -18,6 +18,13 @@ h1 {
   color: #ffcc00;
 }
 
+.main-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Space between equipment and stats */
+    margin-left: 500px;
+}
+
 /* LAYOUT DOS EQUIPAMENTOS (IMAGEM + SLOTS) */
 
 .LayoutEquipments {
@@ -27,15 +34,8 @@ h1 {
   margin-top: 20px;
 }
 
-.LayoutEquipments img{
-  height: 400px;
-  width: 309px;
-}
-
-.hotbar{
-  margin-top: 2px;
-  display: flex;
-  justify-content: center;
+.coluna1 {
+    margin-right: 10px;
 }
 
 /* ... (keep your existing styles above) ... */
@@ -317,14 +317,16 @@ h1 {
 
 /* TOTAL STATS DISPLAY */
 .total-stats-container {
-  margin-top: 30px;
-  background-color: #1a1a1a;
-  border: 1px solid #444;
-  border-radius: 8px;
-  padding: 15px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+    width: 300px; /* Fixed width for stats */
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 15px;
+    align-self: flex-start; /* Align to the top */
+    position: sticky;
+    top: 20px; /* Keeps it visible when scrolling */
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .total-stats-container h2 {
@@ -334,9 +336,21 @@ h1 {
 }
 
 .stats-display {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (max-width: 1200px) {
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .total-stats-container {
+        width: 100%;
+        max-width: 800px;
+        margin-top: 20px;
+    }
 }
 
 .stat-item {
@@ -354,34 +368,27 @@ h1 {
 
 .stat-value {
   font-weight: bold;
+  color: #ffb560;
 }
 
-/* Different colors for different stat types */
-.stat-flat .stat-value {
-  color: #4caf50; /* Green for flat stats */
-}
-
-.stat-percent .stat-value {
-  color: #2196f3; /* Blue for percentage stats */
-}
-
-.stat-special .stat-value {
-  color: #ff9800; /* Orange for special stats */
+.stat-value.negative {
+    color: #F44336;
 }
 
 /* TOOLTIP STYLES */
 .tooltip {
-  position: absolute;
-  z-index: 1000;
-  width: 250px;
-  padding: 10px;
-  background: #1a1a1a;
-  border: 1px solid #444;
-  border-radius: 5px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    z-index: 1000;
+    width: 250px;
+    max-height: 300px; /* Limit height */
+    padding: 10px;
+    background: #1a1a1a;
+    border: 1px solid #444;
+    border-radius: 5px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .tooltip::after {
@@ -426,7 +433,7 @@ h1 {
 }
 
 .tooltip-name.epic {
-  color: #9C27B0;
+  color: #bf2fd8;
 }
 
 .tooltip-name.legendary {
@@ -451,7 +458,7 @@ h1 {
 }
 
 .tooltip-rarity.epic {
-  color: #9C27B0;
+  color: #bf2fd8;
 }
 
 .tooltip-rarity.legendary {
@@ -484,7 +491,7 @@ h1 {
 }
 
 .tooltip-stat-value.positive {
-  color: #bebebe;
+  color: #ffb560;
 }
 
 .tooltip-stat-value.negative {
@@ -794,3 +801,332 @@ h1 {
     border-radius: 4px;
 }
 
+.stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.professions-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.professions-checkbox-label:hover {
+  color: #fff;
+}
+
+.professions-checkbox {
+  margin: 0;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+/* Equipment row layout */
+.equipment-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* Rune slots container */
+.rune-slots {
+    display: flex;
+    gap: 5px;
+}
+
+/* Individual rune slot */
+.rune-slot {
+    width: 70px;  /* 30% smaller than regular slots */
+    height: 70px;
+    background-color: #222;
+    border: 1px dashed #555;
+    border-radius: 3px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 10px;
+}
+
+.rune-slot:hover {
+    background-color: #2a2a2a;
+    border-color: #777;
+}
+
+/* Filled rune slot styles */
+.rune-slot.filled {
+    border-style: solid;
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.rune-slot.filled::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../image/rarity.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+/* Rarity colors for rune slots */
+.rune-slot.filled[data-rarity="common"]::before {
+    filter: contrast(10) saturate(0) brightness(0.6);
+}
+.rune-slot.filled[data-rarity="uncommon"]::before {
+    filter: hue-rotate(60deg);
+}
+.rune-slot.filled[data-rarity="rare"]::before {
+    filter: invert(0.3) sepia(10) saturate(50) hue-rotate(182deg) brightness(0.9);
+}
+.rune-slot.filled[data-rarity="epic"]::before {
+    filter: invert(0.4) sepia(10) saturate(50) hue-rotate(250deg) brightness(0.9);
+}
+.rune-slot.filled[data-rarity="legendary"]::before {
+    filter: brightness(1);
+}
+
+/* Remove button for rune slots */
+.rune-slot .remove-rune {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 1px solid #ff4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.2s;
+    border-radius: 0;
+}
+
+.rune-slot:hover .remove-rune {
+    opacity: 1;
+}
+
+.rune-slot .remove-rune:hover {
+    background-color: #ff4444;
+}
+
+/* Class container styling */
+.class-container {
+    width: 300px;
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 15px;
+    align-self: flex-start;
+    position: sticky;
+    top: 20px;
+    max-height: 80vh;
+    overflow-y: auto;
+    margin-left: 20px;
+}
+
+.class-container h2 {
+    color: #ffcc00;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.class-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.class-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    background-color: #252525;
+    border-radius: 4px;
+}
+
+.class-name {
+    font-weight: bold;
+    color: #ddd;
+}
+
+.class-level-input {
+    width: 50px;
+    padding: 5px;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.total-levels {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.total-levels span {
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+/* Warning for exceeding level cap */
+.level-warning {
+    color: #ff4444;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+}
+
+.rune-slots {
+    display: flex;
+    gap: 5px;
+}
+
+.rune-slot {
+    width: 80px;
+    height: 80px;
+    background-color: #222;
+    border: 1px dashed #555;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 10px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.rune-slot.filled {
+    border-style: solid;
+    background-color: #1a1a1a;
+    color: #dadada;
+    position: relative;
+}
+
+.rune-slot.filled::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../image/rarity.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+/* Rarity colors for rune slots */
+.rune-slot.filled[data-rarity="common"]::before {
+    filter: contrast(10) saturate(0) brightness(0.6);
+}
+.rune-slot.filled[data-rarity="uncommon"]::before {
+    filter: hue-rotate(60deg);
+}
+.rune-slot.filled[data-rarity="rare"]::before {
+    filter: invert(0.3) sepia(10) saturate(50) hue-rotate(182deg) brightness(0.9);
+}
+.rune-slot.filled[data-rarity="epic"]::before {
+    filter: invert(0.4) sepia(10) saturate(50) hue-rotate(250deg) brightness(0.9);
+}
+.rune-slot.filled[data-rarity="legendary"]::before {
+    filter: brightness(1);
+}
+
+.rune-slot .remove-rune {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 1px solid #ff4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.2s;
+    border-radius: 0;
+}
+
+.rune-slot:hover .remove-rune {
+    opacity: 1;
+}
+
+.rune-slot .remove-rune:hover {
+    background-color: #ff4444;
+}
+
+/* Rune-specific tooltip styles */
+.tooltip-rune-type {
+  font-size: 12px;
+  color: #aaa;
+  margin-bottom: 5px;
+  font-style: italic;
+}
+
+/* Purple-themed menu for runes */
+.item-menu.rune-menu {
+    border-color: #8a2be2; /* Purple border instead of yellow */
+}
+
+.item-menu.rune-menu .item-menu-header {
+    background: linear-gradient(to right, #4b0082, #9400d3);
+}
+
+.item-menu.rune-menu .filter-input,
+.item-menu.rune-menu .filter-select {
+    border-color: #9932cc;
+}
+
+.item-menu.rune-menu .filter-input:focus,
+.item-menu.rune-menu .filter-select:focus {
+    border-color: #8a2be2;
+    box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
+}
+
+.item-menu.rune-menu button {
+    border: 1px solid #9932cc;
+}
+
+.item-menu.rune-menu button:hover {
+    box-shadow: 0 0 10px rgba(147, 112, 219, 0.5);
+}
+
+.item-menu.rune-menu::-webkit-scrollbar-thumb {
+    background: #8a2be2;
+}

@@ -152,51 +152,51 @@ const runesDatabase = {
   AmphithereRune: new Rune({
     name: 'Amphithere Rune',
     stats: {agility: 5, speedBoost: 0.01},
-    slot: 'chest',
+    type: 'chest',
     rarity: 'epic'
   }),
   HammerhelmetRune: new Rune({
     name: 'Hammerhelmet Rune',
     stats: {physicalAttack: 0.02, armor: 50, strength: 6, stamina: 4},
-    slot: 'chest',
+    type: 'chest',
     rarity: 'epic'
   }),
   MudCrabRune: new Rune({
     name: 'Mud Crab Rune',
     stats: {armor: 125, strength: 3, stamina: 6, speedBoost: -0.02, 
       magicResistance: -0.06, holyResistance: 0.02},
-    slot: 'chest',
+    type: 'chest',
     rarity: 'epic'
   }),
   GraltharRune: new Rune({
     name: 'Gralthar Rune',
     stats: {agility: 5, stamina: 3, physicalAttack: 0.02},
-    slot: 'chest',
+    type: 'chest',
     rarity: 'epic'
   }),
   FiendRune: new Rune({
     name: 'Fiend Rune',
     stats: {stamina: 4, fireResistance: 0.06},
-    slot: 'chest',
+    type: 'chest',
     rarity: 'epic'
   }),
   LobsterRune: new Rune({
     name: 'Lobster Rune',
     stats: {physicalAttack: 0.02, armor: 110, strength: 2, stamina: 3, speedBoost: -0.02},
-    slot: 'chest',
+    type: 'chest',
     rarity: 'epic'
   }),
   IceGolemRune: new Rune({
     name: 'Ice Golem Rune',
     stats: {
     armor: -50, agility: 12, stamina: 1, speedBoost: 0.03, magicResistance: 0.03},
-    slot: 'chest',
+    type: 'chest',
     rarity: 'epic'
   }),
   WhaleRune: new Rune({
     name: 'Whale Rune',
     stats: {armor: 100, intellect: 10, spirit: 5, cdReduction: 0.05},
-    slot: 'chest',
+    type: 'chest',
     rarity: 'epic'
   }),
 
@@ -206,80 +206,80 @@ const runesDatabase = {
   PurityRune: new Rune({
     name: 'Purity Rune',
     stats: {spirit: 5, holyAttack: 0.05},
-    slot: 'boots',
+    type: 'boots',
     rarity: 'epic',
     description: 'Removes all status effects from the people you heal.'
   }),
   BeeRune: new Rune({
     name: 'Bee Rune',
     stats: {intellect: 4, spirit: 3},
-    slot: 'boots',
+    type: 'boots',
     rarity: 'epic'
   }),
   DeerRune: new Rune({
     name: 'Deer Rune',
     stats: {spirit: 3, stamina: 1},
-    slot: 'boots',
+    type: 'boots',
     rarity: 'epic'
   }),
   WolfRune: new Rune({
     name: 'Wolf Rune',
     stats: {spirit: 1, agility: 6, stamina: 2},
-    slot: 'boots',
+    type: 'boots',
     rarity: 'epic'
   }),
   BearRune: new Rune({
     name: 'Bear Rune',
     stats: {strength: 8, stamina: 2, magicResistance: 0.02},
-    slot: 'boots',
+    type: 'boots',
     rarity: 'epic'
   }),
   PantherRune: new Rune({
     name: 'Panther Rune',
     stats: {agility: 8, stamina: 1, physicalPierce: 0.02},
-    slot: 'boots',
+    type: 'boots',
     rarity: 'epic'
   }),
   BansheeRune: new Rune({
     name: 'Banshee Rune',
     stats: {intellect: 5, spirit: 4},
-    slot: 'boots',
+    type: 'boots',
     rarity: 'epic'
   }),
   HillTrollRune: new Rune({
     name: 'Hill Troll Rune',
     stats: {strength: 8, stamina: 3, magicResistance: 0.02, holyResistance: 0.02},
-    slot: 'boots',
+    type: 'boots',
     rarity: 'epic'
   }),
   RazorFangRune: new Rune({
     name: 'Razor Fang Rune',
     stats: {stamina: 5, magicResistance: 0.05},
-    slot: 'boots',
+    type: 'boots',
     rarity: 'epic'
   }),
   SabertoothRune: new Rune({
     name: 'Sabertooth Rune',
     stats: {magicAttack: 0.06, spirit: 8, holyResistance: 0.04},
-    slot: 'boots',
+    type: 'boots',
     rarity: 'epic'
   }),
   MammothRune: new Rune({
     name: 'Mammoth Rune',
     stats: {strength: 6, stamina: 6, magicResistance: 0.05},
-    slot: 'boots',
+    type: 'boots',
     rarity: 'epic'
   }),
   SnowmanRune: new Rune({
     name: 'Snowman Rune',
     stats: {strength: 3, spirit: 6, stamina: 3, robustness: 0.10},
-    slot: 'boots',
+    type: 'boots',
     rarity: 'epic'
   }),
   BeaverRune: new Rune({
     name: 'Snowman Rune',
     stats: {spirit: 3, agility: 6},
-    slot: 'boots',
+    type: 'boots',
     rarity: 'epic'
   }),
 
@@ -288,116 +288,116 @@ const runesDatabase = {
   ContractorRune: new Rune({
     name: 'Contractor Rune',
     stats: {agility: 5, sneak: 0.35},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   SharkRune: new Rune({
     name: 'Shark Rune',
     stats: {strength: 5, agility: 2, physicalPierce: 0.02},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic',
     effect: 'Chance on hit to make your target bleed'
   }),
   SlimeRune: new Rune({
     name: 'Slime Rune',
     stats: {intellect: 5, stamina: 1},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   BlackOozeSlimeRune: new Rune({
     name: 'Black Ooze Slime Rune',
     stats: {intellect: 5, magicPierce: 0.02},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   GoblinRune: new Rune({
     name: 'Goblin Rune',
     stats: {agility: 6, physicalPierce: 0.03},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   SpiderRune: new Rune({
     name: 'Spider Rune',
     stats: {agility: 5, physicalAttack: 0.02},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   AdultSpiderRune: new Rune({
     name: 'Adult Spider Rune',
     stats: {strength: 3, physicalPierce: 0.03},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   CrocodileRune: new Rune({
     name: 'Crocodile Rune',
     stats: {strength: 2, stamina: 2, physicalPierce: 0.03},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   ImpRune: new Rune({
     name: 'Imp Rune',
     stats: {intellect: 5, fireAttack: 0.05},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   SkeletonPirateRune: new Rune({
     name: 'Skeleton Pirate Rune',
     stats: {strength: 6, agility: 8, physicalPierce: 0.02},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   GoblinChampionRune: new Rune({
     name: 'Goblin Champion Rune',
     stats: {strength: 8, physicalAttack: 0.03},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   RatKingRune: new Rune({
     name: 'Rat King Rune',
     stats: {intellect: 5, magicAttack: 0.05},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   BasiliskRune: new Rune({
     name: 'Basilisk Rune',
     stats: {strength: 5, spirit: 5, stamina: 2},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   SpiderQueenRune: new Rune({
     name: 'Spider Queen Rune',
     stats: {intellect: 5, spirit: 5, castTime: 20},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   ElderTreantRune: new Rune({
     name: 'Elder Treant Rune',
     stats: {strength: 3, agility: 9, speedBoost: 0.01},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   DrogarRune: new Rune({
     name: 'Drogar Rune',
     stats: {strength: 5, agility: 5, physicalPierce: 0.05},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   GoblinKingRune: new Rune({
     name: 'Goblin King Rune',
     stats: {strength: 6, agility: 2, stamina: 2, physicalAttack: 0.06},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   WyvernRune: new Rune({
     name: 'Wyvern Rune',
     stats: {magicAttack: 0.03, intellect: 10, spirit: 8, castSpeed: 0.05},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
   YetiRune: new Rune({
     name: 'Yeti Rune',
     stats: {physicalAttack: 8, strength: 15, intellect: -8, stamina: 5, magicResistance: 0.05, holyResistance: 0.03},
-    slot: 'weapon',
+    type: 'weapon',
     rarity: 'epic'
   }),
 
@@ -407,7 +407,8 @@ const runesDatabase = {
   IskaelRune: new Rune({
     name: 'Iskael, Lord of Endless Frost',
     stats: {physicalAttack: 0.05, magicAttack: 0.05, cdReduction: 0.1},
-    rarity: 'legendary'
+    rarity: 'legendary',
+    type: 'weapon'
   })
 
 };

@@ -9,33 +9,128 @@
 </head>
 <body>
     <h1>Rune Slayer Builder</h1>
-    <div class="LayoutEquipments">
-        <div class="coluna1">
-            <div class="slot" data-slot="helmet">Helmet</div>
-            <div class="slot" data-slot="chest">Chest</div>
-            <div class="slot" data-slot="back">Back</div>
-            <div class="slot" data-slot="boots">Boots</div>
+    <div class="main-container">
+        <div class="LayoutEquipments">
+            <div class="coluna1">
+                <div class="equipment-row">
+                    <div class="slot" data-slot="ring" data-ring-number="1">Ring 1</div>
+                </div>
+                <div class="equipment-row">
+                    <div class="slot" data-slot="ring" data-ring-number="2">Ring 2</div>
+                </div>
+                <div class="equipment-row">
+                    <div class="slot" data-slot="ring" data-ring-number="3">Ring 3</div>
+                </div>
+                <div class="equipment-row">
+                    <div class="slot" data-slot="ring" data-ring-number="4">Ring 4</div>
+                </div>
+                <div class="equipment-row">
+                    <div class="slot" data-slot="lantern">Lantern</div>
+                </div>
+                <div class="equipment-row">
+                    <div class="slot" data-slot="fairy">Fairy</div>
+                </div>
+                <div class="equipment-row">
+                    <div class="slot" data-slot="race">Race</div>
+                </div>
+            </div>
+            <div class="coluna2">
+                <div class="equipment-row">
+                    <div class="slot" data-slot="helmet">Helmet</div>
+                    <div class="rune-slots">
+                        <div class="rune-slot" data-original-number="I">I</div>
+                        <div class="rune-slot" data-original-number="II">II</div>
+                        <div class="rune-slot" data-original-number="III">III</div>
+                        <div class="rune-slot" data-original-number="IV">IV</div>
+                    </div>
+                </div>
+                <div class="equipment-row">
+                    <div class="slot" data-slot="chest">Chest</div>
+                    <div class="rune-slots">
+                        <div class="rune-slot" data-original-number="I">I</div>
+                        <div class="rune-slot" data-original-number="II">II</div>
+                        <div class="rune-slot" data-original-number="III">III</div>
+                        <div class="rune-slot" data-original-number="IV">IV</div>
+                        <div class="rune-slot" data-original-number="V">V</div>
+                        <div class="rune-slot" data-original-number="VI">VI</div>
+                    </div>
+                </div>
+                <div class="equipment-row">
+                    <div class="slot" data-slot="boots">Boots</div>
+                    <div class="rune-slots">
+                        <div class="rune-slot" data-original-number="I">I</div>
+                        <div class="rune-slot" data-original-number="II">II</div>
+                        <div class="rune-slot" data-original-number="III">III</div>
+                        <div class="rune-slot" data-original-number="IV">IV</div>
+                    </div>
+                </div>
+                <div class="equipment-row">
+                    <div class="slot" data-slot="back">Back</div>
+                </div>
+                <div class="equipment-row">
+                    <div class="slot" data-slot="weapon1">Weapon 1</div>
+                    <div class="rune-slots">
+                        <div class="rune-slot" data-original-number="I">I</div>
+                        <div class="rune-slot" data-original-number="II">II</div>
+                        <div class="rune-slot" data-original-number="III">III</div>
+                    </div>
+                </div>
+                <div class="equipment-row">
+                    <div class="slot" data-slot="offhand">Offhand</div>
+                    <div class="rune-slots">
+                        <div class="rune-slot" data-original-number="I">I</div>
+                        <div class="rune-slot" data-original-number="II">II</div>
+                        <div class="rune-slot" data-original-number="III">III</div>
+                    </div>
+                </div>
+                <div class="equipment-row">
+                    <div class="slot" data-slot="weapon2">Weapon 2</div>
+                    <div class="rune-slots">
+                        <div class="rune-slot" data-original-number="I">I</div>
+                        <div class="rune-slot" data-original-number="II">II</div>
+                        <div class="rune-slot" data-original-number="III">III</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <img src="image/80DBEB90-D4F7-49AA-8724-9CC36BC7BAD7.png" alt="">
-        <div class="coluna2">
-            <div class="slot" data-slot="ring">Ring 1</div>
-            <div class="slot" data-slot="ring">Ring 2</div>
-            <div class="slot" data-slot="ring">Ring 3</div>
-            <div class="slot" data-slot="ring">Ring 4</div>
+
+        <div class="total-stats-container">
+            <div class="stats-header">
+                <h2>Total Character Stats</h2>
+                <label class="professions-checkbox-label">
+                <input type="checkbox" id="level60-professions" class="professions-checkbox">
+                <span>Level 60 Professions</span>
+                </label>
+            </div>
+            <div class="stats-display">
+                <!-- Stats will be populated here -->
+            </div>
         </div>
-    </div>
-    <div class="hotbar">
-            <div class="slot" data-slot="race">Race</div>
-            <div class="slot" data-slot="weapon1">Weapon1</div>
-            <div class="slot" data-slot="offhand">Offhand</div>
-            <div class="slot" data-slot="weapon2">Weapon2</div>
-            <div class="slot" data-slot="lantern">Lantern</div>
+
+        <div class="">
+            <div class="class-container">
+            <h2>Class Levels</h2>
+            <div class="class-levels-display">
+                <div class="total-levels">Total Levels: <span id="total-levels">0</span>/50</div>
+                <div class="class-list" id="class-list">
+                    <!-- Classes will be populated here -->
+                </div>
+            </div>
+        </div>
+        <div class="export-container">
+            <button id="export-build-btn" class="export-button">Export Build as JSON</button>
+        </div>
+        <div class="import-container">
+            <button id="import-build-btn" class="import-button">Import Build as JSON</button>
+        </div>
         </div>
     </div>
     
     <script type="module">
     import itemsDatabase from '/data/items.js';
-    import statlist from './data/stats.js';
+    import statlist from '/data/stats.js';
+    import classesDatabase from '/data/classes.js';
+    import runesDatabase from '/data/runes.js';
 
     const equippedItems = {
         helmet: null,
@@ -50,15 +145,23 @@
         weapon1: null,
         weapon2: null,
         offhand: null,
-        lantern: null
+        lantern: null,
+        fairy: null
     };
 
     const rarityOrder = {
-    'common': 1,
-    'uncommon': 2,
-    'rare': 3,
-    'epic': 4,
-    'legendary': 5
+        'common': 1,
+        'uncommon': 2,
+        'rare': 3,
+        'epic': 4,
+        'legendary': 5
+    };
+
+    const filterState = {
+        search: '',
+        stat: '',
+        type: '',
+        sort: 'name-asc'
     };
 
     window.itemsDatabase = itemsDatabase;
@@ -73,6 +176,390 @@
         };
         return mapa[slotType] || slotType;
     }
+
+    const equippedRunes = {};
+
+    document.querySelectorAll('.rune-slots').forEach(runeSlotsContainer => {
+        const equipmentSlot = runeSlotsContainer.closest('.equipment-row').querySelector('.slot').dataset.slot;
+        const runeSlots = {};
+        
+        runeSlotsContainer.querySelectorAll('.rune-slot').forEach((slot, index) => {
+            const slotNumber = ['I', 'II', 'III', 'IV', 'V', 'VI'][index];
+            runeSlots[slotNumber] = null;
+        });
+        
+        equippedRunes[equipmentSlot] = runeSlots;
+    });
+
+    document.querySelectorAll('.rune-slot').forEach(runeSlot => {
+        runeSlot.addEventListener('click', function() {
+            const equipmentRow = this.closest('.equipment-row');
+            const equipmentSlot = equipmentRow.querySelector('.slot').dataset.slot;
+            const slotNumber = this.textContent;
+            
+            // If clicking the same slot that has an open menu, close it
+            if (currentOpenMenu && currentOpenMenu.slot === this) {
+                saveCurrentFilterState();
+                document.body.removeChild(currentOpenMenu.menu);
+                currentOpenMenu = null;
+                return;
+            }
+
+            // Close any existing menu
+            if (currentOpenMenu) {
+                saveCurrentFilterState();
+                document.body.removeChild(currentOpenMenu.menu);
+                currentOpenMenu = null;
+            }
+
+            const menu = document.createElement('div');
+            menu.className = 'item-menu rune-menu';
+            menu.dataset.slotType = 'rune';
+
+            // Create full menu structure (same as item menu)
+            menu.innerHTML = `
+                <div class="menu-header-container">
+                    <div class="item-menu-header">
+                        <input type="text" id="item-search" class="filter-input item-menu-search" 
+                            placeholder="Search runes...">
+                        <button id="reset-filters" class="menu-reset-button">Reset</button>
+                    </div>
+                    <div class="item-menu-filters">
+                        <select id="stat-filter" class="filter-select">
+                            <option value="">All Stats</option>
+                        </select>
+                        <select id="type-filter" class="filter-select">
+                            <option value="">All Types</option>
+                        </select>
+                        <select id="sort-filter" class="filter-select">
+                            <option value="name-asc">A-Z</option>
+                            <option value="name-desc">Z-A</option>
+                            <option value="rarity-asc">Rarity ↑</option>
+                            <option value="rarity-desc">Rarity ↓</option>
+                            <option value="stat-asc">Stat ↑</option>
+                            <option value="stat-desc">Stat ↓</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="item-menu-content"></div>
+            `;
+            
+            document.body.appendChild(menu);
+            
+            // Track the currently open menu and its slot
+            currentOpenMenu = {
+                menu: menu,
+                slot: this,
+                equipmentSlot: equipmentSlot,
+                slotNumber: slotNumber
+            };
+
+            // Initialize filters for this menu
+            initializeRuneFilters(menu, 'rune');
+            
+            // Restore any saved filter state
+            setTimeout(() => {
+                restoreFilters(menu, 'rune');
+            }, 0);
+        });
+    });
+
+    function updateRuneMenu(menu, slotType, contentArea) {
+     const searchTerm = menu.querySelector('#item-search').value.toLowerCase();
+    const selectedStat = menu.querySelector('#stat-filter').value;
+    const selectedType = menu.querySelector('#type-filter').value;
+    const sortOption = menu.querySelector('#sort-filter').value;
+    const equipmentSlot = currentOpenMenu?.equipmentSlot;
+    
+    contentArea.innerHTML = '';
+    
+    const equippedNonNullRunes = [];
+    if (equipmentSlot && equippedRunes[equipmentSlot]) {
+        for (const [slotNumber, rune] of Object.entries(equippedRunes[equipmentSlot])) {
+            if (rune && rune.type !== 'null') {
+                equippedNonNullRunes.push(rune.name.toLowerCase());
+            }
+        }
+    }
+    
+
+    const runes = Object.entries(runesDatabase)
+        .map(([key, rune]) => ({ key, rune }))
+        .filter(({ rune }) => {
+            // Name filter
+            const nameMatch = rune.name.toLowerCase().includes(searchTerm);
+            
+            // Stat filter
+            let statMatch = true;
+            if (selectedStat) {
+                statMatch = rune.stats && rune.stats[selectedStat] !== undefined;
+            }
+            
+            const nType = normalizarSlot(rune.type);
+
+            const slotMatch = nType === 'null' || nType === normalizarSlot(equipmentSlot);
+            
+            let typeMatch = true;
+            if (selectedType) {
+                if (selectedType === 'null') {
+                    typeMatch = nType === 'null';
+                } else {
+                    typeMatch = nType === selectedType;
+                }
+            }
+
+            const isDuplicateNonNull = nType !== 'null' && equippedNonNullRunes.includes(rune.name.toLowerCase());
+            
+            return nameMatch && statMatch && slotMatch && typeMatch && !isDuplicateNonNull;;
+        })
+            .sort((a, b) => {
+                const runeA = a.rune;
+                const runeB = b.rune;
+
+                const sumStats = (rune) => {
+                    let total = 0;
+                    if (rune.stats) {
+                        total += Object.values(rune.stats).reduce((sum, val) => sum + val, 0);
+                    }
+                    return total;
+                };
+                
+                switch (sortOption) {
+                    case 'name-asc':
+                        return runeA.name.localeCompare(runeB.name);
+                    case 'name-desc':
+                        return runeB.name.localeCompare(runeA.name);
+                    case 'rarity-asc':
+                        return (rarityOrder[runeA.rarity || 'common'] || 0) - 
+                            (rarityOrder[runeB.rarity || 'common'] || 0);
+                    case 'rarity-desc':
+                        return (rarityOrder[runeB.rarity || 'common'] || 0) - 
+                            (rarityOrder[runeA.rarity || 'common'] || 0);
+                    case 'stat-asc': {
+                        if (!selectedStat) {
+                            const sumA = sumStats(runeA);
+                            const sumB = sumStats(runeB);
+                            return sumA - sumB;
+                        }
+                        
+                        const statA = runeA.stats?.[selectedStat] || 0;
+                        const statB = runeB.stats?.[selectedStat] || 0;
+                        return statA - statB;
+                    }
+                    case 'stat-desc': {
+                        if (!selectedStat) {
+                            const sumA = sumStats(runeA);
+                            const sumB = sumStats(runeB);
+                            return sumB - sumA;
+                        }
+                        
+                        const statA = runeA.stats?.[selectedStat] || 0;
+                        const statB = runeB.stats?.[selectedStat] || 0;
+                        return statB - statA;
+                    }
+                    default:
+                        return 0;
+                }
+            });
+        
+        // Create rune buttons
+        runes.forEach(({ key, rune }) => {
+            const button = document.createElement('button');
+        button.textContent = rune.name;
+        button.setAttribute('data-rarity', rune.rarity || 'common');
+        button.setAttribute('data-rune-key', key);
+        
+        // Add hover events for tooltip
+        button.addEventListener('mouseenter', (e) => {
+            const tooltipContent = createItemTooltipContent(rune);
+            tooltipSystem.showTooltip(tooltipContent, button);
+        });
+        
+        button.addEventListener('mouseleave', () => {
+            tooltipSystem.hideTooltip();
+        });
+        
+        button.onclick = () => {
+            const slot = currentOpenMenu.slot;
+            slot.className = 'rune-slot filled';
+            slot.setAttribute('data-rarity', rune.rarity || 'common');
+            slot.setAttribute('data-rune-key', key); // Add this line to store the rune key
+            slot.innerHTML = `
+                <div class="slot-content">${rune.name}</div>
+                <div class="remove-rune">X</div>
+            `;
+            
+            equippedRunes[currentOpenMenu.equipmentSlot][currentOpenMenu.slotNumber] = rune;
+            
+            tooltipSystem.hideTooltip();
+            document.body.removeChild(currentOpenMenu.menu);
+            currentOpenMenu = null;
+            updateTotalStatsDisplay();
+            
+            const removeBtn = slot.querySelector('.remove-rune');
+            removeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                emptyRuneSlot(slot, currentOpenMenu.equipmentSlot, currentOpenMenu.slotNumber);
+            });
+            
+            // Add hover events for the filled rune slot
+            addRuneSlotHoverEvents(slot);
+        };
+        
+        contentArea.appendChild(button);
+    });
+    
+    if (runes.length === 0) {
+        const noItemsMsg = document.createElement('div');
+        noItemsMsg.className = 'no-items-message';
+        noItemsMsg.textContent = 'No runes match your filters';
+        contentArea.appendChild(noItemsMsg);
+    }
+        
+        contentArea.appendChild(button);
+    
+    }
+
+    function addRuneSlotHoverEvents(slot) {
+        slot.addEventListener('mouseenter', (e) => {
+            const runeKey = slot.getAttribute('data-rune-key');
+            if (runeKey) {
+                const rune = runesDatabase[runeKey];
+                if (rune) {
+                    const tooltipContent = createItemTooltipContent(rune);
+                    tooltipSystem.showTooltip(tooltipContent, slot);
+                }
+            }
+        });
+        
+        slot.addEventListener('mouseleave', () => {
+            tooltipSystem.hideTooltip();
+        });
+        
+        // Prevent tooltip from showing on the remove button
+        const removeBtn = slot.querySelector('.remove-rune');
+        removeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const equipmentRow = slot.closest('.equipment-row');
+            const equipmentSlot = equipmentRow.querySelector('.slot').dataset.slot;
+            const slotNumber = slot.dataset.originalNumber || slot.textContent.trim();
+            emptyRuneSlot(slot, equipmentSlot, slotNumber);
+        });
+    }
+
+    function emptyRuneSlot(slot, equipmentSlot, slotNumber) {
+    // If equipmentSlot and slotNumber aren't provided, try to get them from the slot's data attributes
+    if (!equipmentSlot || !slotNumber) {
+        const equipmentRow = slot.closest('.equipment-row');
+        if (equipmentRow) {
+            equipmentSlot = equipmentSlot || equipmentRow.querySelector('.slot').dataset.slot;
+            // Get the slot number from the data attribute or text content
+            slotNumber = slotNumber || slot.dataset.originalNumber || slot.textContent.trim();
+        }
+    }
+
+    // Store the original slot number (I, II, III, etc.)
+    const originalSlotNumber = slot.dataset.originalNumber || slotNumber;
+    
+    // Reset the slot
+    slot.className = 'rune-slot';
+    slot.removeAttribute('data-rarity');
+    slot.removeAttribute('data-rune-key');
+    slot.textContent = originalSlotNumber;
+    
+    // Clear the equipped rune if we have the equipmentSlot and slotNumber
+    if (equipmentSlot && slotNumber && equippedRunes[equipmentSlot]) {
+        equippedRunes[equipmentSlot][slotNumber] = null;
+    }
+    
+    // Update stats
+    updateTotalStatsDisplay();
+    
+    // Hide tooltip if it's showing for this rune
+    tooltipSystem.hideTooltip();
+
+    saveCurrentFilterState();
+    document.body.removeChild(currentOpenMenu.menu);
+    currentOpenMenu = null;
+    return;
+}
+    function initializeClassSystem() {
+        const classList = document.getElementById('class-list');
+        const totalLevelsDisplay = document.getElementById('total-levels');
+        let totalLevels = 0;
+        
+        // Create UI for each class
+        Object.entries(classesDatabase).forEach(([className, classData]) => {
+            const classItem = document.createElement('div');
+            classItem.className = 'class-item';
+            
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'class-name';
+            nameSpan.textContent = className;
+            
+            const input = document.createElement('input');
+            input.type = 'number';
+            input.className = 'class-level-input';
+            input.min = 0;
+            input.max = 50;
+            input.value = 0;
+            input.dataset.className = className;
+            
+            // Tooltip showing stat bonuses
+            nameSpan.title = Object.entries(classData.stats)
+                .map(([stat, value]) => `${stat}: +${value} per level`)
+                .join('\n');
+            
+            classItem.appendChild(nameSpan);
+            classItem.appendChild(input);
+            classList.appendChild(classItem);
+            
+            // Add event listener
+            input.addEventListener('change', updateClassLevels);
+        });
+        
+        function updateClassLevels() {
+            let newTotal = 0;
+            const inputs = document.querySelectorAll('.class-level-input');
+            
+            // Calculate new total
+            inputs.forEach(input => {
+                const value = parseInt(input.value) || 0;
+                newTotal += value;
+            });
+            
+            // Enforce 50 level cap
+            if (newTotal > 50) {
+                this.value = Math.max(0, 50 - (newTotal - parseInt(this.value)));
+                newTotal = 50;
+                showLevelWarning();
+            } else {
+                hideLevelWarning();
+            }
+            
+            totalLevels = newTotal;
+            totalLevelsDisplay.textContent = totalLevels;
+            updateTotalStatsDisplay();
+        }
+        
+        function showLevelWarning() {
+            let warning = document.querySelector('.level-warning');
+            if (!warning) {
+                warning = document.createElement('div');
+                warning.className = 'level-warning';
+                warning.textContent = 'Maximum 50 total levels across all classes!';
+                classList.appendChild(warning);
+            }
+            warning.style.display = 'block';
+            setTimeout(() => warning.style.display = 'none', 3000);
+        }
+        
+        function hideLevelWarning() {
+            const warning = document.querySelector('.level-warning');
+            if (warning) warning.style.display = 'none';
+        }
+    }
+
 
     function calculateTotalStats() {
         const totalStats = {
@@ -90,6 +577,67 @@
             totalStats.flat[stat.stat] = 0;
             }
         });
+
+        const classInputs = document.querySelectorAll('.class-level-input');
+        classInputs.forEach(input => {
+            const className = input.dataset.className;
+            const level = parseInt(input.value) || 0;
+            const classData = classesDatabase[className];
+            
+            if (classData && level > 0) {
+                Object.entries(classData.stats).forEach(([stat, value]) => {
+                    const statValue = value * level;
+                    const statInfo = statlist.find(s => s.stat === stat);
+                    
+                    if (statInfo) {
+                        if (statInfo.percentual) {
+                            totalStats.percent[stat] = (totalStats.percent[stat] || 0) + statValue;
+                        } else {
+                            totalStats.flat[stat] = (totalStats.flat[stat] || 0) + statValue;
+                        }
+                    }
+                });
+            }
+        });
+
+        const professionBonus = document.getElementById('level60-professions').checked;
+        if (professionBonus) {
+            ['strength', 'stamina', 'agility', 'intelligence', 'spirit'].forEach(stat => {
+                totalStats.flat[stat] = (totalStats.flat[stat] || 0) + 60;
+            });
+            totalStats.flat['luck'] = (totalStats.flat['luck'] || 0) + 7;
+            totalStats.flat['maxWeight'] = (totalStats.flat['maxWeight'] || 0) + 150;
+        }
+        
+        for (let i = 1; i <= 4; i++) {
+            const ring = equippedItems[`ring${i}`];
+            if (ring && ring.name && ring.name === 'Maelis\'s Ring') {
+                if (equippedItems.fairy && equippedItems.fairy.name){
+                    if (equippedItems.fairy.name == 'Golden Fairy'){
+                        totalStats.flat['luck'] = (totalStats.flat['luck'] || 0) + 1;
+                    }
+                    else if (equippedItems.fairy.name == 'Fairy'){
+                        totalStats.percent['magicAttack'] = (totalStats.flat['magicAttack'] || 0) + 0.08;
+                    }
+                    else if (equippedItems.fairy.name == 'Earth Fairy'){
+                        totalStats.percent['earthAttack'] = (totalStats.flat['earthAttack'] || 0) + 0.05;
+                    }
+                    else if (equippedItems.fairy.name == 'Fire Fairy'){
+                        totalStats.percent['fireAttack'] = (totalStats.flat['fireAttack'] || 0) + 0.05;
+                    }
+                    else if (equippedItems.fairy.name == 'Water Fairy'){
+                        totalStats.percent['waterAttack'] = (totalStats.flat['waterAttack'] || 0) + 0.05;
+                    }
+                    else if (equippedItems.fairy.name == 'Lightning Fairy'){
+                        totalStats.percent['lightningAttack'] = (totalStats.flat['lightningAttack'] || 0) + 0.05;
+                    }
+                    else if (equippedItems.fairy.name == 'Wind Fairy'){
+                        totalStats.percent['windAttack'] = (totalStats.flat['windAttack'] || 0) + 0.05;
+                    }
+                }
+                break;
+            }
+        }
 
         for (const [slot, item] of Object.entries(equippedItems)) {
             if (item) {
@@ -122,6 +670,26 @@
             }
         }
 
+            for (const [equipmentSlot, runeSlots] of Object.entries(equippedRunes)) {
+            for (const [slotNumber, rune] of Object.entries(runeSlots)) {
+                if (rune) {
+                    if (rune.stats) {
+                        for (const [stat, value] of Object.entries(rune.stats)) {
+                            const statInfo = statlist.find(s => s.stat === stat);
+                            if (statInfo) {
+                                if (statInfo.percentual) {
+                                    totalStats.percent[stat] = (totalStats.percent[stat] || 0) + value;
+                                } else {
+                                    totalStats.flat[stat] = (totalStats.flat[stat] || 0) + value;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
         return totalStats;
         }
 
@@ -137,73 +705,73 @@
     }
 
     function updateTotalStatsDisplay() {
-    const totalStats = calculateTotalStats();
-    const statsDisplay = document.querySelector('.stats-display');
-    
-    statsDisplay.innerHTML = '';
-    
-    for (const [stat, value] of Object.entries(totalStats.flat)) {
-        if (value !== 0) {
-        const statInfo = getStatInfo(stat);
-        if (statInfo) {
-            const statElement = document.createElement('div');
-            statElement.className = 'stat-item stat-flat';
-            statElement.innerHTML = `
-            <span class="stat-name">${statInfo.name}</span>
-            <span class="stat-value">+${formatStatValue(value, false)}</span>
-            `;
-            statsDisplay.appendChild(statElement);
+        const totalStats = calculateTotalStats();
+        const statsDisplay = document.querySelector('.stats-display');
+        
+        statsDisplay.innerHTML = '';
+        
+        for (const [stat, value] of Object.entries(totalStats.flat)) {
+            if (value !== 0) {
+            const statInfo = getStatInfo(stat);
+            if (statInfo) {
+                const statElement = document.createElement('div');
+                statElement.className = 'stat-item';
+                statElement.innerHTML = `
+                <span class="stat-name">${statInfo.name}</span>
+                <span class="stat-value ${value < 0 ? 'negative' : ''}">${value >= 0 ? '+' : ''}${formatStatValue(value, false)}</span>
+                `;
+                statsDisplay.appendChild(statElement);
+            }
+            }
         }
+        
+        for (const [stat, value] of Object.entries(totalStats.percent)) {
+            if (value !== 0) {
+            const statInfo = getStatInfo(stat);
+            if (statInfo) {
+                const statElement = document.createElement('div');
+                statElement.className = 'stat-item';
+                statElement.innerHTML = `
+                <span class="stat-name">${statInfo.name}</span>
+                <span class="stat-value ${value < 0 ? 'negative' : ''}">${value >= 0 ? '+' : ''}${formatStatValue(value, true)}</span>
+                `;
+                statsDisplay.appendChild(statElement);
+            }
+            }
         }
-    }
-    
-    for (const [stat, value] of Object.entries(totalStats.percent)) {
-        if (value !== 0) {
-        const statInfo = getStatInfo(stat);
-        if (statInfo) {
-            const statElement = document.createElement('div');
-            statElement.className = 'stat-item stat-percent';
-            statElement.innerHTML = `
-            <span class="stat-name">${statInfo.name}</span>
-            <span class="stat-value">+${formatStatValue(value, true)}</span>
-            `;
-            statsDisplay.appendChild(statElement);
-        }
-        }
-    }
 
         for (const [type, value] of Object.entries(totalStats.damage)) {
-        const statElement = document.createElement('div');
-        statElement.className = 'stat-item stat-damage';
-        statElement.innerHTML = `
-            <span class="stat-name">${type.charAt(0).toUpperCase() + type.slice(1)} Damage</span>
-            <span class="stat-value">+${value}</span>
-        `;
-        statsDisplay.appendChild(statElement);
+            const statElement = document.createElement('div');
+            statElement.className = 'stat-item stat-damage';
+            statElement.innerHTML = `
+                <span class="stat-name">${type.charAt(0).toUpperCase() + type.slice(1)} Damage</span>
+                <span class="stat-value">+${value}</span>
+             `;
+             statsDisplay.appendChild(statElement);
         }
 
         if (totalStats.armor > 0) {
-        const statElement = document.createElement('div');
-        statElement.className = 'stat-item stat-armor';
-        statElement.innerHTML = `
-            <span class="stat-name">Armor</span>
-            <span class="stat-value">+${totalStats.armor}</span>
-        `;
-        statsDisplay.appendChild(statElement);
+            const statElement = document.createElement('div');
+            statElement.className = 'stat-item stat-armor';
+            statElement.innerHTML = `
+                <span class="stat-name">Armor</span>
+                <span class="stat-value">${totalStats.armor >= 0 ? '+' : ''}${totalStats.armor}</span>
+            `;
+            statsDisplay.appendChild(statElement);
         }
 
         if (totalStats.posture > 0) {
-        const statElement = document.createElement('div');
-        statElement.className = 'stat-item stat-posture';
-        statElement.innerHTML = `
-            <span class="stat-name">Posture</span>
-            <span class="stat-value">+${totalStats.posture}</span>
-        `;
-        statsDisplay.appendChild(statElement);
+            const statElement = document.createElement('div');
+            statElement.className = 'stat-item stat-posture';
+            statElement.innerHTML = `
+                <span class="stat-name">Posture</span>
+                <span class="stat-value">+${totalStats.posture}</span>
+            `;
+            statsDisplay.appendChild(statElement);
         }
     }
 
-    function initializeFilters(menu, slotType) {
+    function initializeRuneFilters(menu, slotType) {
     const contentArea = menu.querySelector('.item-menu-content');
     const statFilter = menu.querySelector('#stat-filter');
     const typeFilter = menu.querySelector('#type-filter');
@@ -212,19 +780,26 @@
     while (statFilter.options.length > 1) statFilter.remove(1);
     while (typeFilter.options.length > 1) typeFilter.remove(1);
     
-    // Get all unique stats and types for this slot type
+    // Get all unique stats and types for runes that match this slot
     const statSet = new Set();
     const typeSet = new Set();
+    const equipmentSlot = currentOpenMenu?.equipmentSlot;
     
-    for (const itemId in itemsDatabase[slotType]) {
-        const item = itemsDatabase[slotType][itemId];
+    // First collect all possible stats and types for this slot
+    for (const runeId in runesDatabase) {
+        const rune = runesDatabase[runeId];
         
-        if (item.stats) {
-            Object.keys(item.stats).forEach(stat => statSet.add(stat));
-        }
-        
-        if (item.type) {
-            typeSet.add(item.type);
+        // Only consider runes that can be equipped in this slot
+        if (rune.type === null || rune.type === equipmentSlot) {
+            if (rune.stats) {
+                Object.keys(rune.stats).forEach(stat => statSet.add(stat));
+            }
+            
+            // Only add to type filter if it's a null rune (type === null) 
+            // or matches the current equipment slot
+            if (rune.type === null || rune.type === equipmentSlot) {
+                typeSet.add(rune.type || 'null');
+            }
         }
     }
     
@@ -238,20 +813,24 @@
         }
     });
     
-    // Populate type filter
-    Array.from(typeSet).sort().forEach(type => {
-        const option = document.createElement('option');
-        option.value = type;
-        option.textContent = type.charAt(0).toUpperCase() + type.slice(1);
-        typeFilter.appendChild(option);
-    });
+    // Populate type filter with only relevant types
+    const allTypes = Array.from(typeSet).sort();
+    if (allTypes.length > 0) {
+        allTypes.forEach(type => {
+            const option = document.createElement('option');
+            option.value = type === 'null' ? null : type; // Store null for null
+            option.textContent = type === 'null' ? 'null' : 
+                               type.charAt(0).toUpperCase() + type.slice(1);
+            typeFilter.appendChild(option);
+        });
+    }
     
     // Set up event listeners
     const searchInput = menu.querySelector('#item-search');
     const sortFilter = menu.querySelector('#sort-filter');
     const resetButton = menu.querySelector('#reset-filters');
     
-    const updateMenu = () => updateItemMenu(menu, slotType, contentArea);
+    const updateMenu = () => updateRuneMenu(menu, slotType, contentArea);
     
     searchInput.addEventListener('input', updateMenu);
     statFilter.addEventListener('change', updateMenu);
@@ -263,21 +842,139 @@
         typeFilter.value = '';
         sortFilter.value = 'name-asc';
         updateMenu();
+        filterState.search = '';
+        filterState.stat = '';
+        filterState.type = '';
+        filterState.sort = 'name-asc';
     });
     
     // Initial population
     updateMenu();
 }
 
-function resetFilters() {
-    document.getElementById('item-search').value = '';
-    document.getElementById('stat-filter').value = '';
-    document.getElementById('type-filter').value = '';
-    document.getElementById('sort-filter').value = 'name-asc';
-    updateItemMenu();
-}
+    function initializeFilters(menu, slotType) {
+        const contentArea = menu.querySelector('.item-menu-content');
+        const statFilter = menu.querySelector('#stat-filter');
+        const typeFilter = menu.querySelector('#type-filter');
+        
+        // Clear existing options (keeping the first default option)
+        while (statFilter.options.length > 1) statFilter.remove(1);
+        while (typeFilter.options.length > 1) typeFilter.remove(1);
+        
+        // Get all unique stats and types for this slot type
+        const statSet = new Set();
+        const typeSet = new Set();
+        
+        for (const itemId in itemsDatabase[slotType]) {
+        const item = itemsDatabase[slotType][itemId];
+        
+        if (item.stats) {
+            Object.keys(item.stats).forEach(stat => statSet.add(stat));
+        }
+        
+        // Add armor to stat options if the item has armor
+        if (typeof item.armor === 'number') {
+            statSet.add('armor');
+        }
+        
+        // Add posture to stat options if the item has posture
+        if (typeof item.posture === 'number') {
+            statSet.add('posture');
+        }
+        
+        // Add damage types to stat options if the item has damage
+        if (item.damage) {
+            Object.keys(item.damage).forEach(type => {
+                statSet.add(`damage-${type}`);
+            });
+        }
+        
+        if (item.type) {
+            typeSet.add(item.type);
+        }
+    }
+    
+    // Populate stat filter with regular stats first
+    statlist.forEach(stat => {
+        if (statSet.has(stat.stat)) {
+            const option = document.createElement('option');
+            option.value = stat.stat;
+            option.textContent = stat.name;
+            statFilter.appendChild(option);
+        }
+    });
+    
+    // Add special stats (armor, posture) if they exist for this slot type
+    if (statSet.has('armor')) {
+        const option = document.createElement('option');
+        option.value = 'armor';
+        option.textContent = 'Armor';
+        statFilter.appendChild(option);
+    }
+    
+    if (statSet.has('posture')) {
+        const option = document.createElement('option');
+        option.value = 'posture';
+        option.textContent = 'Posture';
+        statFilter.appendChild(option);
+    }
+    
+    // Add damage type stats if they exist for this slot type
+    Array.from(statSet)
+        .filter(stat => stat.startsWith('damage-'))
+        .forEach(stat => {
+            const damageType = stat.replace('damage-', '');
+            const option = document.createElement('option');
+            option.value = stat;
+            option.textContent = `${damageType.charAt(0).toUpperCase() + damageType.slice(1)} Damage`;
+            statFilter.appendChild(option);
+        });
+        
+        // Populate type filter
+        Array.from(typeSet).sort().forEach(type => {
+            const option = document.createElement('option');
+            option.value = type;
+            option.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+            typeFilter.appendChild(option);
+        });
+        
+        // Set up event listeners
+        const searchInput = menu.querySelector('#item-search');
+        const sortFilter = menu.querySelector('#sort-filter');
+        const resetButton = menu.querySelector('#reset-filters');
+        
+        const updateMenu = () => updateItemMenu(menu, slotType, contentArea);
+        
+        searchInput.addEventListener('input', updateMenu);
+        statFilter.addEventListener('change', updateMenu);
+        typeFilter.addEventListener('change', updateMenu);
+        sortFilter.addEventListener('change', updateMenu);
+        resetButton.addEventListener('click', () => {
+            searchInput.value = '';
+            statFilter.value = '';
+            typeFilter.value = '';
+            sortFilter.value = 'name-asc';
+            updateMenu();
+            filterState.search = '';
+            filterState.stat = '';
+            filterState.type = '';
+            filterState.sort = 'name-asc';
+        });
+        
+        // Initial population
+        updateMenu();
+    }
 
-function updateItemMenu(menu, slotType, contentArea) {
+    function resetFilters() {
+
+        document.getElementById('item-search').value = '';
+        document.getElementById('stat-filter').value = '';
+        document.getElementById('type-filter').value = '';
+        document.getElementById('sort-filter').value = 'name-asc';
+        updateItemMenu();
+    }
+
+    function updateItemMenu(menu, slotType, contentArea) {
     const searchTerm = menu.querySelector('#item-search').value.toLowerCase();
     const selectedStat = menu.querySelector('#stat-filter').value;
     const selectedType = menu.querySelector('#type-filter').value;
@@ -286,6 +983,14 @@ function updateItemMenu(menu, slotType, contentArea) {
     // Clear current content
     contentArea.innerHTML = '';
     
+    const equippedRingNames = [];
+    for (let i = 1; i <= 4; i++) {
+        const ring = equippedItems[`ring${i}`];
+        if (ring && ring.name) {
+            equippedRingNames.push(ring.name.toLowerCase());
+        }
+    }
+
     // Get filtered and sorted items
     const items = Object.entries(itemsDatabase[slotType] || {})
         .map(([key, item]) => ({ key, item }))
@@ -296,7 +1001,16 @@ function updateItemMenu(menu, slotType, contentArea) {
             // Stat filter
             let statMatch = true;
             if (selectedStat) {
-                statMatch = item.stats && item.stats[selectedStat] !== undefined;
+                if (selectedStat === 'armor') {
+                    statMatch = typeof item.armor === 'number';
+                } else if (selectedStat === 'posture') {
+                    statMatch = typeof item.posture === 'number';
+                } else if (selectedStat.startsWith('damage-')) {
+                    const damageType = selectedStat.replace('damage-', '');
+                    statMatch = item.damage && typeof item.damage[damageType] === 'number';
+                } else {
+                    statMatch = item.stats && item.stats[selectedStat] !== undefined;
+                }
             }
             
             // Type filter
@@ -304,12 +1018,35 @@ function updateItemMenu(menu, slotType, contentArea) {
             if (selectedType) {
                 typeMatch = item.type === selectedType;
             }
+
+            // For rings, check if this item is already equipped
+            let duplicateRing = false;
+            if (slotType === 'ring') {
+                duplicateRing = equippedRingNames.includes(item.name.toLowerCase());
+            }
             
-            return nameMatch && statMatch && typeMatch;
+            return nameMatch && statMatch && typeMatch && !duplicateRing;
         })
         .sort((a, b) => {
             const itemA = a.item;
             const itemB = b.item;
+
+            const sumStats = (item) => {
+                let total = 0;
+                if (item.stats) {
+                    total += Object.values(item.stats).reduce((sum, val) => sum + val, 0);
+                }
+                if (typeof item.armor === 'number') {
+                    total += item.armor;
+                }
+                if (typeof item.posture === 'number') {
+                    total += item.posture;
+                }
+                if (item.damage) {
+                    total += Object.values(item.damage).reduce((sum, val) => sum + val, 0);
+                }
+                return total;
+            };
             
             switch (sortOption) {
                 case 'name-asc':
@@ -322,6 +1059,53 @@ function updateItemMenu(menu, slotType, contentArea) {
                 case 'rarity-desc':
                     return (rarityOrder[itemB.rarity || 'common'] || 0) - 
                            (rarityOrder[itemA.rarity || 'common'] || 0);
+                case 'stat-asc': {
+                    if (!selectedStat) {
+                        const sumA = sumStats(itemA);
+                        const sumB = sumStats(itemB);
+                        return sumA - sumB;
+                    }
+                    
+                    let statA = itemA.stats?.[selectedStat] || 0;
+                    let statB = itemB.stats?.[selectedStat] || 0;
+                    
+                    if (selectedStat === 'armor') {
+                        statA = itemA.armor || 0;
+                        statB = itemB.armor || 0;
+                    } else if (selectedStat === 'posture') {
+                        statA = itemA.posture || 0;
+                        statB = itemB.posture || 0;
+                    } else if (selectedStat.startsWith('damage-')) {
+                        const damageType = selectedStat.replace('damage-', '');
+                        statA = itemA.damage?.[damageType] || 0;
+                        statB = itemB.damage?.[damageType] || 0;
+                    }
+                    
+                    return statA - statB;
+                }
+                case 'stat-desc': {
+                    if (!selectedStat) {
+                        const sumA = sumStats(itemA);
+                        const sumB = sumStats(itemB);
+                        return sumB - sumA;
+                    }
+                    
+                    let statA = itemA.stats?.[selectedStat] || 0;
+                    let statB = itemB.stats?.[selectedStat] || 0;
+                    
+                    if (selectedStat === 'armor') {
+                        statA = itemA.armor || 0;
+                        statB = itemB.armor || 0;
+                    } else if (selectedStat === 'posture') {
+                        statA = itemA.posture || 0;
+                        statB = itemB.posture || 0;
+                    } else if (selectedStat.startsWith('damage-')) {
+                        const damageType = selectedStat.replace('damage-', '');
+                        statA = itemA.damage?.[damageType] || 0;
+                        statB = itemB.damage?.[damageType] || 0;
+                    }
+                    return statB - statA;
+                }
                 default:
                     return 0;
             }
@@ -346,7 +1130,7 @@ function updateItemMenu(menu, slotType, contentArea) {
             `;
             
             const slotKey = slot.dataset.slot === 'ring' ? 
-                `ring${Array.from(slot.parentNode.children).indexOf(slot) + 1}` : 
+                `ring${slot.dataset.ringNumber}` : 
                 slot.dataset.slot;
             equippedItems[slotKey] = item;
             
@@ -374,13 +1158,14 @@ function updateItemMenu(menu, slotType, contentArea) {
     }
 }
 
-slots.forEach(slot => {
+    slots.forEach(slot => {
     slot.addEventListener('click', () => {
         const slotType = slot.dataset.slot;
         const slotChave = normalizarSlot(slotType);
 
         // If clicking the same slot that has an open menu, close it
         if (currentOpenMenu && currentOpenMenu.slot === slot) {
+            saveCurrentFilterState();
             document.body.removeChild(currentOpenMenu.menu);
             currentOpenMenu = null;
             return;
@@ -388,13 +1173,14 @@ slots.forEach(slot => {
 
         // Close any existing menu
         if (currentOpenMenu) {
+            saveCurrentFilterState();
             document.body.removeChild(currentOpenMenu.menu);
             currentOpenMenu = null;
         }
 
         const banco = window.itemsDatabase?.[slotChave];
         if (!banco || Object.keys(banco).length === 0) {
-            alert("Nenhum item disponível para esse slot.");
+            alert("No item available for this slot.");
             return;
         }
 
@@ -418,11 +1204,11 @@ slots.forEach(slot => {
         searchInput.placeholder = 'Search items...';
         
         // Create reset button (smaller and next to search)
-const resetButton = document.createElement('button');
-resetButton.id = 'reset-filters';
-resetButton.className = 'menu-reset-button'; // Use a more specific class
-resetButton.innerHTML = 'Reset';
-resetButton.title = 'Reset filters';
+        const resetButton = document.createElement('button');
+        resetButton.id = 'reset-filters';
+        resetButton.className = 'menu-reset-button'; // Use a more specific class
+        resetButton.innerHTML = 'Reset';
+        resetButton.title = 'Reset filters';
         
         // Add search and reset to header
         menuHeader.appendChild(searchInput);
@@ -452,7 +1238,9 @@ resetButton.title = 'Reset filters';
             {value: 'name-asc', text: 'A-Z'},
             {value: 'name-desc', text: 'Z-A'},
             {value: 'rarity-asc', text: 'Rarity ↑'},
-            {value: 'rarity-desc', text: 'Rarity ↓'}
+            {value: 'rarity-desc', text: 'Rarity ↓'},
+            {value: 'stat-asc', text: 'Stat ↑'},
+            {value: 'stat-desc', text: 'Stat ↓'}
         ];
         
         sortOptions.forEach(option => {
@@ -498,12 +1286,72 @@ resetButton.title = 'Reset filters';
             slot: slot
         };
         
+        setTimeout(() => {
+            restoreFilters(menu, slotChave);
+        }, 0);
+        
+        // Track the currently open menu
+        currentOpenMenu = {
+            menu: menu,
+            slot: slot
+        };
+
         // Initialize filters for this menu
         initializeFilters(menu, slotChave);
     });
 });
 
-function emptySlot(slot, slotKey) {
+    function saveCurrentFilterState() {
+    if (!currentOpenMenu) return;
+    
+    const menu = currentOpenMenu.menu;
+    filterState.search = menu.querySelector('#item-search').value;
+    filterState.stat = menu.querySelector('#stat-filter').value;
+    filterState.type = menu.querySelector('#type-filter').value;
+    filterState.sort = menu.querySelector('#sort-filter').value;
+}
+
+    function restoreFilters(menu, slotType) {
+    const searchInput = menu.querySelector('#item-search');
+    const statFilter = menu.querySelector('#stat-filter');
+    const typeFilter = menu.querySelector('#type-filter');
+    const sortFilter = menu.querySelector('#sort-filter');
+    
+    // Always restore search and sort
+    searchInput.value = filterState.search;
+    sortFilter.value = filterState.sort;
+    
+    // Only restore stat filter if it exists in the new menu
+    if (filterState.stat) {
+        const statExists = Array.from(statFilter.options).some(
+            opt => opt.value === filterState.stat
+        );
+        if (statExists) {
+            statFilter.value = filterState.stat;
+        } else {
+            statFilter.value = '';
+            filterState.stat = ''; // Clear the saved stat if it doesn't exist
+        }
+    }
+    
+    // Only restore type filter if it exists in the new menu
+    if (filterState.type) {
+        const typeExists = Array.from(typeFilter.options).some(
+            opt => opt.value === filterState.type
+        );
+        if (typeExists) {
+            typeFilter.value = filterState.type;
+        } else {
+            typeFilter.value = '';
+            filterState.type = ''; // Clear the saved type if it doesn't exist
+        }
+    }
+    
+    // Trigger the menu update
+    updateItemMenu(menu, slotType, menu.querySelector('.item-menu-content'));
+}
+
+    function emptySlot(slot, slotKey) {
     // Reset the slot
     slot.className = 'slot';
     slot.removeAttribute('data-rarity');
@@ -517,15 +1365,19 @@ function emptySlot(slot, slotKey) {
     
     // Hide tooltip if it's showing for this item
     tooltipSystem.hideTooltip();
+
+    saveCurrentFilterState();
+    document.body.removeChild(currentOpenMenu.menu);
+    currentOpenMenu = null;
 }
 
-const tooltip = document.createElement('div');
-tooltip.className = 'tooltip';
+    const tooltip = document.createElement('div');
+    tooltip.className = 'tooltip';
 document.body.appendChild(tooltip);
 
 function createItemTooltipContent(item) {
   const tooltipContent = document.createElement('div');
-  
+
   // Create header with name and rarity
   const header = document.createElement('div');
   header.className = 'tooltip-header';
@@ -542,37 +1394,14 @@ function createItemTooltipContent(item) {
   header.appendChild(rarityElement);
   tooltipContent.appendChild(header);
   
-  // Add item class
-  const classElement = document.createElement('div');
-  classElement.className = 'tooltip-class';
-  classElement.textContent = `${item.constructor?.name || 'Item'}`;
-  tooltipContent.appendChild(classElement);
-  
-  // Add type if available (with capitalized first letter)
-  if (item.type) {
+  // For runes, add type information if available
+  if (item.type && item.type !== 'null') {
     const typeElement = document.createElement('div');
     typeElement.className = 'tooltip-type';
-    const formattedType = item.type.charAt(0).toUpperCase() + item.type.slice(1);
-    typeElement.textContent = `${formattedType}`;
+    typeElement.textContent = `${item.type.charAt(0).toUpperCase() + item.type.slice(1)}`;
     tooltipContent.appendChild(typeElement);
   }
-  
-  // Add level if available
-  if (item.level) {
-    const levelElement = document.createElement('div');
-    levelElement.className = 'tooltip-level';
-    levelElement.textContent = `Level ${item.level}`;
-    tooltipContent.appendChild(levelElement);
-  }
-  
-  // Add runeslots if available
-  if (item.runeslots !== undefined && item.runeslots !== null) {
-    const runeslotsElement = document.createElement('div');
-    runeslotsElement.className = 'tooltip-runeslots';
-    runeslotsElement.innerHTML = `Rune Slots: <span>${item.runeslots}</span>`;
-    tooltipContent.appendChild(runeslotsElement);
-  }
-  
+
   // Add stats if available
   if (item.stats && Object.keys(item.stats).length > 0) {
     const statsContainer = document.createElement('div');
@@ -599,75 +1428,6 @@ function createItemTooltipContent(item) {
     }
     
     tooltipContent.appendChild(statsContainer);
-  }
-  
-  // Add damage if available (specific to Weapon class)
-  if (item.damage && Object.keys(item.damage).length > 0) {
-    const damageContainer = document.createElement('div');
-    damageContainer.className = 'tooltip-stats';
-    
-    // Add damage header
-    const damageHeader = document.createElement('div');
-    damageHeader.className = 'tooltip-stat';
-    damageHeader.style.fontWeight = 'bold';
-    damageHeader.style.marginBottom = '5px';
-    damageHeader.textContent = 'Damage:';
-    damageContainer.appendChild(damageHeader);
-    
-    for (const [type, value] of Object.entries(item.damage)) {
-      const damageElement = document.createElement('div');
-      damageElement.className = 'tooltip-stat';
-      
-      const damageName = document.createElement('div');
-      damageName.className = 'tooltip-stat-name';
-      damageName.textContent = `${type.charAt(0).toUpperCase() + type.slice(1)}`;
-      
-      const damageValue = document.createElement('div');
-      damageValue.className = 'tooltip-stat-value positive';
-      damageValue.textContent = `${value}`;
-      
-      damageElement.appendChild(damageName);
-      damageElement.appendChild(damageValue);
-      damageContainer.appendChild(damageElement);
-    }
-    
-    tooltipContent.appendChild(damageContainer);
-  }
-  
-  // Add armor if available (specific to Armor and subclasses)
-  if (typeof item.armor === 'number') {
-    const armorElement = document.createElement('div');
-    armorElement.className = 'tooltip-stat';
-    
-    const armorName = document.createElement('div');
-    armorName.className = 'tooltip-stat-name';
-    armorName.textContent = 'Armor';
-    
-    const armorValue = document.createElement('div');
-    armorValue.className = 'tooltip-stat-value positive';
-    armorValue.textContent = `${item.armor}`;
-    
-    armorElement.appendChild(armorName);
-    armorElement.appendChild(armorValue);
-    tooltipContent.appendChild(armorElement);
-  }
-  
-  // Add posture if available (specific to Shield class)
-  if (typeof item.posture === 'number') {
-    const postureElement = document.createElement('div');
-    postureElement.className = 'tooltip-stat';
-    
-    const postureName = document.createElement('div');
-    postureName.className = 'tooltip-stat-name';
-    postureName.textContent = 'Posture';
-    
-    const postureValue = document.createElement('div');
-    postureValue.className = 'tooltip-stat-value positive';
-    postureValue.textContent = `${item.posture}`;
-    
-    postureElement.appendChild(postureName);
-    postureElement.appendChild(postureValue);
-    tooltipContent.appendChild(postureElement);
   }
   
   // Add description if available
@@ -699,15 +1459,43 @@ const tooltipSystem = {
   
   positionTooltip: function(element) {
     const rect = element.getBoundingClientRect();
-    this.currentTooltip.style.left = `${rect.right + 10}px`;
-    this.currentTooltip.style.top = `${rect.top + window.scrollY}px`;
+    const tooltip = this.currentTooltip;
     
-    // Adjust if going off-screen right
-    const tooltipRect = this.currentTooltip.getBoundingClientRect();
-    if (tooltipRect.right > window.innerWidth) {
-      this.currentTooltip.style.left = `${rect.left - tooltipRect.width - 10}px`;
+    // Position to the right by default
+    let left = rect.right + 10;
+    let top = rect.top + window.scrollY;
+    
+    // Temporarily show the tooltip to measure it
+    tooltip.style.visibility = 'hidden';
+    tooltip.style.display = 'block';
+    const tooltipRect = tooltip.getBoundingClientRect();
+    tooltip.style.visibility = '';
+    tooltip.style.display = '';
+    
+    // Check if tooltip would go off-screen right
+    if (left + tooltipRect.width > window.innerWidth) {
+        left = rect.left - tooltipRect.width - 10;
     }
-  },
+    
+    // Check if tooltip would go off-screen bottom
+    if (top + tooltipRect.height > window.innerHeight + window.scrollY) {
+        // Try to position above the element
+        top = rect.top + window.scrollY - (tooltipRect.height/2);
+        
+        // If still off-screen (very top of page), position at bottom of screen
+        if (top < window.scrollY) {
+            top = window.innerHeight + window.scrollY - tooltipRect.height - 10;
+        }
+    }
+    
+    // Check if tooltip would go off-screen top
+    if (top < window.scrollY) {
+        top = window.scrollY + 10;
+    }
+    
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+},
   
   hideTooltip: function() {
     if (this.currentTooltip) {
@@ -742,8 +1530,15 @@ document.addEventListener('mouseover', (e) => {
   const button = e.target.closest('.item-menu button');
   if (button) {
     const itemKey = button.getAttribute('data-item-key');
-    const slotType = button.getAttribute('data-slot-type'); // Get from button instead
-    const item = window.itemsDatabase?.[slotType]?.[itemKey];
+    const runeKey = button.getAttribute('data-rune-key');
+    const slotType = button.closest('.item-menu').dataset.slotType;
+    
+    let item;
+    if (itemKey && slotType !== 'rune') {
+      item = window.itemsDatabase?.[slotType]?.[itemKey];
+    } else if (runeKey && slotType === 'rune') {
+      item = window.runesDatabase?.[runeKey];
+    }
     
     if (item) {
       const tooltipContent = createItemTooltipContent(item);
@@ -758,18 +1553,253 @@ document.addEventListener('mouseout', (e) => {
   }
 }, true);
 
-    // Initialize stats display on page load
+function gatherBuildData() {
+        // Get equipped items
+        const itemsData = {};
+        for (const [slot, item] of Object.entries(equippedItems)) {
+            if (item) {
+                itemsData[slot] = {
+                    name: item.name,
+                };
+            } else {
+                itemsData[slot] = null;
+            }
+        }
+
+        // Get equipped runes
+        const runesData = {};
+        for (const [equipmentSlot, runeSlots] of Object.entries(equippedRunes)) {
+            runesData[equipmentSlot] = {};
+            for (const [slotNumber, rune] of Object.entries(runeSlots)) {
+                if (rune) {
+                    runesData[equipmentSlot][slotNumber] = {
+                        name: rune.name,
+                    };
+                } else {
+                    runesData[equipmentSlot][slotNumber] = null;
+                }
+            }
+        }
+
+        // Get class levels
+        const classLevels = {};
+        const classInputs = document.querySelectorAll('.class-level-input');
+        classInputs.forEach(input => {
+            const className = input.dataset.className;
+            const level = parseInt(input.value) || 0;
+            classLevels[className] = level;
+        });
+
+        // Get profession bonus
+        const professionBonus = document.getElementById('level60-professions').checked;
+
+        // Combine all data
+        const buildData = {
+            items: itemsData,
+            runes: runesData,
+            classes: classLevels,
+            professionBonus: professionBonus,
+            timestamp: new Date().toISOString()
+        };
+
+        return buildData;
+    }
+
+    function exportBuild() {
+        const buildData = gatherBuildData();
+        const jsonString = JSON.stringify(buildData, null, 2);
+        
+        // Create a download link
+        const blob = new Blob([jsonString], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `rune-slayer-build-${new Date().toISOString().slice(0, 10)}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    function importBuild() {
+        // Create file input element
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json';
+        
+        input.onchange = e => {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = event => {
+                try {
+                    const buildData = JSON.parse(event.target.result);
+                    loadBuildData(buildData);
+                } catch (error) {
+                    alert('Error parsing build file: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+        };
+        
+        input.click();
+    }
+
+    function loadBuildData(buildData) {
+        try {
+            // Clear all current equipment
+            for (const slot in equippedItems) {
+                equippedItems[slot] = null;
+                const slotElement = document.querySelector(`.slot[data-slot="${slot}"]`) || 
+                                    document.querySelector(`.slot[data-slot="ring"][data-ring-number="${slot.replace('ring', '')}"]`);
+                if (slotElement) {
+                    slotElement.className = slot.includes('ring') ? 'slot' : 'slot';
+                    slotElement.innerHTML = slotElement.dataset.slot.charAt(0).toUpperCase() + slotElement.dataset.slot.slice(1);
+                }
+            }
+
+            // Clear all runes
+            for (const equipmentSlot in equippedRunes) {
+                for (const slotNumber in equippedRunes[equipmentSlot]) {
+                    equippedRunes[equipmentSlot][slotNumber] = null;
+                    const runeSlot = document.querySelector(`.rune-slot[data-original-number="${slotNumber}"]`);
+                    if (runeSlot) {
+                        runeSlot.className = 'rune-slot';
+                        runeSlot.textContent = slotNumber;
+                        runeSlot.removeAttribute('data-rarity');
+                        runeSlot.removeAttribute('data-rune-key');
+                    }
+                }
+            }
+
+            // Load items
+            if (buildData.items) {
+                for (const [slot, itemData] of Object.entries(buildData.items)) {
+                    if (itemData) {
+                        const slotType = slot.includes('ring') ? 'ring' : slot;
+                        const itemKey = findItemKeyBySlotAndName(slotType, itemData.name);
+                        
+                        if (itemKey) {
+                            const item = itemsDatabase[slotType][itemKey];
+                            const slotElement = document.querySelector(`.slot[data-slot="${slot}"]`) || 
+                                                document.querySelector(`.slot[data-slot="ring"][data-ring-number="${slot.replace('ring', '')}"]`);
+                            
+                            if (slotElement) {
+                                slotElement.className = 'slot filled';
+                                slotElement.setAttribute('data-rarity', item.rarity || 'common');
+                                slotElement.innerHTML = `
+                                    <div class="slot-content">${item.name}</div>
+                                    <div class="remove-item">X</div>
+                                `;
+                                
+                                equippedItems[slot] = item;
+                                
+                                const removeBtn = slotElement.querySelector('.remove-item');
+                                removeBtn.addEventListener('click', (e) => {
+                                    e.stopPropagation();
+                                    emptySlot(slotElement, slot);
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Load runes
+            if (buildData.runes) {
+                for (const [equipmentSlot, runeSlots] of Object.entries(buildData.runes)) {
+                    for (const [slotNumber, runeData] of Object.entries(runeSlots)) {
+                        if (runeData) {
+                            const runeKey = findRuneKeyByName(runeData.name);
+                            if (runeKey) {
+                                const rune = runesDatabase[runeKey];
+                                const runeSlot = document.querySelector(`.rune-slot[data-original-number="${slotNumber}"]`);
+                                
+                                if (runeSlot) {
+                                    runeSlot.className = 'rune-slot filled';
+                                    runeSlot.setAttribute('data-rarity', rune.rarity || 'common');
+                                    runeSlot.setAttribute('data-rune-key', runeKey);
+                                    runeSlot.innerHTML = `
+                                        <div class="slot-content">${rune.name}</div>
+                                        <div class="remove-rune">X</div>
+                                    `;
+                                    
+                                    equippedRunes[equipmentSlot][slotNumber] = rune;
+                                    
+                                    const removeBtn = runeSlot.querySelector('.remove-rune');
+                                    removeBtn.addEventListener('click', (e) => {
+                                        e.stopPropagation();
+                                        emptyRuneSlot(runeSlot, equipmentSlot, slotNumber);
+                                    });
+                                    
+                                    addRuneSlotHoverEvents(runeSlot);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Load class levels
+            if (buildData.classes) {
+                const classInputs = document.querySelectorAll('.class-level-input');
+                classInputs.forEach(input => {
+                    const className = input.dataset.className;
+                    if (buildData.classes[className]) {
+                        input.value = buildData.classes[className];
+                    } else {
+                        input.value = 0;
+                    }
+                });
+            }
+
+            // Load profession bonus
+            if (buildData.professionBonus !== undefined) {
+                document.getElementById('level60-professions').checked = buildData.professionBonus;
+            }
+
+            updateTotalStatsDisplay();
+        } catch (error) {
+            console.error('Error loading build:', error);
+            alert('Error loading build: ' + error.message);
+        }
+    }
+
+    function findItemKeyBySlotAndName(slotType, name) {
+        const slotItems = itemsDatabase[slotType];
+        for (const key in slotItems) {
+            if (slotItems[key].name === name) {
+                return key;
+            }
+        }
+        return null;
+    }
+
+    function findRuneKeyByName(name) {
+        for (const key in runesDatabase) {
+            if (runesDatabase[key].name === name) {
+                return key;
+            }
+        }
+        return null;
+    }
+
+    document.getElementById('import-build-btn').addEventListener('click', importBuild);
+
+    document.getElementById('export-build-btn').addEventListener('click', exportBuild);
+
+    document.getElementById('level60-professions').addEventListener('change', updateTotalStatsDisplay);
+
     document.addEventListener('DOMContentLoaded', () => {
-    updateTotalStatsDisplay();
-    initializeFilters();
-});
+        initializeClassSystem();
+        updateTotalStatsDisplay();
+        initializeFilters();
+        document.querySelectorAll('.rune-slot.filled').forEach(slot => {
+        addRuneSlotHoverEvents(slot);
+    });
+    });
 </script>
-    <div class="total-stats-container">
-  <h2>Total Character Stats</h2>
-  <div class="stats-display">
-    <!-- Stats will be populated here -->
-  </div>
-</div>
 </body>
 
 </html>

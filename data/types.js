@@ -36,9 +36,6 @@ class Item {
     this.runeslots = runeslots || 0;
     this.description = description || null;
   }
-  getTooltip() {
-    return 1; //Fazer return com todas as informaçoes relevantes
-  }
 }
 
 class Rune {
@@ -51,13 +48,9 @@ class Rune {
   }) {
     this.name = name;
     this.rarity = rarity || 'uncommon';
-    this.type = type || null; // Helmet, Chest, Legs, Weapon, null
+    this.type = type || 'null'; // Helmet, Chest, Legs, Weapon, null (any)
     this.stats = stats || {};
     this.description = description || null
-  }
-
-  getTooltip() {
-    return `${this.name} (${this.rarity}, ${this.type}): ${this.effect}`;
   }
 }
 
@@ -81,9 +74,6 @@ class Weapon extends Item {
     this.level = level || 1;
     this.type = type;
   }
-  getTooltip() {
-    return 1; //Fazer return com todas as informaçoes relevantes
-  }
 }
 
 class Armor extends Item {
@@ -97,9 +87,6 @@ class Armor extends Item {
     this.armor = armor || 0;
     this.level = level || null;
     this.type = type;
-  }
-  getTooltip() {
-    return 1; //Fazer return com todas as informaçoes relevantes
   }
 }
 
@@ -172,5 +159,13 @@ class Ring extends Item {
   }
 }
 
+class Fairy extends Item {
+  constructor({
+    ...item
+  }) {
+    super({ ...item, runeslots: 0});
+  }
+}
 
-export { Class, Item, Rune, Weapon, Armor, Helmet, Chest, Boots, Offhand, Shield, Sash, Ring, Lantern, Back, Race };
+
+export { Fairy, Class, Item, Rune, Weapon, Armor, Helmet, Chest, Boots, Offhand, Shield, Sash, Ring, Lantern, Back, Race };
