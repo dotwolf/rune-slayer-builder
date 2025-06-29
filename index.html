@@ -595,7 +595,7 @@
 
         const professionBonus = document.getElementById('level60-professions').checked;
         if (professionBonus) {
-            ['strength', 'stamina', 'agility', 'intelligence', 'spirit'].forEach(stat => {
+            ['strength', 'stamina', 'agility', 'intellect', 'spirit'].forEach(stat => {
                 totalStats.flat[stat] = (totalStats.flat[stat] || 0) + 60;
             });
             totalStats.flat['luck'] = (totalStats.flat['luck'] || 0) + 7;
