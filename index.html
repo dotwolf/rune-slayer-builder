@@ -192,80 +192,81 @@
     });
 
     document.querySelectorAll('.rune-slot').forEach(runeSlot => {
-        runeSlot.addEventListener('click', function() {
-            const equipmentRow = this.closest('.equipment-row');
-            const equipmentSlot = equipmentRow.querySelector('.slot').dataset.slot;
-            const slotNumber = this.textContent;
-            
-            // If clicking the same slot that has an open menu, close it
-            if (currentOpenMenu && currentOpenMenu.slot === this) {
-                saveCurrentFilterState();
-                document.body.removeChild(currentOpenMenu.menu);
-                currentOpenMenu = null;
-                return;
-            }
+    runeSlot.addEventListener('click', function() {
+        const equipmentRow = this.closest('.equipment-row');
+        const equipmentSlot = equipmentRow.querySelector('.slot').dataset.slot;
+        const slotNumber = this.textContent;
+        
+        // If clicking the same slot that has an open menu, close it
+        if (currentOpenMenu && currentOpenMenu.slot === this) {
+            saveCurrentFilterState();
+            document.body.removeChild(currentOpenMenu.menu);
+            currentOpenMenu = null;
+            return;
+        }
 
-            // Close any existing menu
-            if (currentOpenMenu) {
-                saveCurrentFilterState();
-                document.body.removeChild(currentOpenMenu.menu);
-                currentOpenMenu = null;
-            }
+        // Close any existing menu
+        if (currentOpenMenu) {
+            saveCurrentFilterState();
+            document.body.removeChild(currentOpenMenu.menu);
+            currentOpenMenu = null;
+        }
 
-            const menu = document.createElement('div');
-            menu.className = 'item-menu rune-menu';
-            menu.dataset.slotType = 'rune';
+        const menu = document.createElement('div');
+        menu.className = 'item-menu rune-menu';
+        menu.dataset.slotType = 'rune';
 
-            // Create full menu structure (same as item menu)
-            menu.innerHTML = `
-                <div class="menu-header-container">
-                    <div class="item-menu-header">
-                        <input type="text" id="item-search" class="filter-input item-menu-search" 
-                            placeholder="Search runes...">
-                        <button id="reset-filters" class="menu-reset-button">Reset</button>
-                    </div>
-                    <div class="item-menu-filters">
-                        <select id="stat-filter" class="filter-select">
-                            <option value="">All Stats</option>
-                        </select>
-                        <select id="type-filter" class="filter-select">
-                            <option value="">All Types</option>
-                        </select>
-                        <select id="sort-filter" class="filter-select">
-                            <option value="name-asc">A-Z</option>
-                            <option value="name-desc">Z-A</option>
-                            <option value="rarity-asc">Rarity ↑</option>
-                            <option value="rarity-desc">Rarity ↓</option>
-                            <option value="stat-asc">Stat ↑</option>
-                            <option value="stat-desc">Stat ↓</option>
-                        </select>
-                    </div>
+        // Create full menu structure (same as item menu)
+        menu.innerHTML = `
+            <div class="menu-header-container">
+                <div class="item-menu-header">
+                    <input type="text" id="item-search" class="filter-input item-menu-search" 
+                        placeholder="Search runes...">
+                    <button id="reset-filters" class="menu-reset-button">Reset</button>
                 </div>
-                <div class="item-menu-content"></div>
-            `;
-            
-            document.body.appendChild(menu);
-            
-            // Track the currently open menu and its slot
-            currentOpenMenu = {
-                menu: menu,
-                slot: this,
-                equipmentSlot: equipmentSlot,
-                slotNumber: slotNumber
-            };
+                <div class="item-menu-filters">
+                    <select id="stat-filter" class="filter-select">
+                        <option value="">All Stats</option>
+                    </select>
+                    <select id="type-filter" class="filter-select">
+                        <option value="">All Types</option>
+                    </select>
+                    <select id="sort-filter" class="filter-select">
+                        <option value="name-asc">A-Z</option>
+                        <option value="name-desc">Z-A</option>
+                        <option value="rarity-asc">Rarity ↑</option>
+                        <option value="rarity-desc">Rarity ↓</option>
+                        <option value="stat-asc">Stat ↑</option>
+                        <option value="stat-desc">Stat ↓</option>
+                    </select>
+                </div>
+            </div>
+            <div class="item-menu-content"></div>
+        `;
+        
+        document.body.appendChild(menu);
+        
+        // Track the currently open menu and its slot
+        currentOpenMenu = {
+            menu: menu,
+            slot: this,
+            equipmentSlot: equipmentSlot,
+            slotNumber: slotNumber
+        };
 
-            // Initialize filters for this menu
-            initializeRuneFilters(menu, 'rune');
-            
-            // Restore any saved filter state
-            setTimeout(() => {
-                restoreFilters(menu, 'rune');
-            }, 0);
-        });
+        // Initialize filters for this menu
+        const contentArea = menu.querySelector('.item-menu-content');
+        initializeRuneFilters(menu, 'rune', menu.querySelector('.item-menu-content'));
+        
+        // Restore any saved filter state
+        setTimeout(() => {
+            restoreFilters(menu, 'rune');
+        }, 0);
     });
+});
 
     function updateRuneMenu(menu, slotType, contentArea) {
-     const searchTerm = menu.querySelector('#item-search').value.toLowerCase();
+    const searchTerm = menu.querySelector('#item-search').value.toLowerCase();
     const selectedStat = menu.querySelector('#stat-filter').value;
     const selectedType = menu.querySelector('#type-filter').value;
     const sortOption = menu.querySelector('#sort-filter').value;
@@ -364,50 +365,50 @@
         
         // Create rune buttons
         runes.forEach(({ key, rune }) => {
-            const button = document.createElement('button');
-        button.textContent = rune.name;
-        button.setAttribute('data-rarity', rune.rarity || 'common');
-        button.setAttribute('data-rune-key', key);
-        
-        // Add hover events for tooltip
-        button.addEventListener('mouseenter', (e) => {
-            const tooltipContent = createItemTooltipContent(rune);
-            tooltipSystem.showTooltip(tooltipContent, button);
-        });
-        
-        button.addEventListener('mouseleave', () => {
-            tooltipSystem.hideTooltip();
-        });
-        
-        button.onclick = () => {
-            const slot = currentOpenMenu.slot;
-            slot.className = 'rune-slot filled';
-            slot.setAttribute('data-rarity', rune.rarity || 'common');
-            slot.setAttribute('data-rune-key', key); // Add this line to store the rune key
-            slot.innerHTML = `
-                <div class="slot-content">${rune.name}</div>
-                <div class="remove-rune">X</div>
-            `;
-            
-            equippedRunes[currentOpenMenu.equipmentSlot][currentOpenMenu.slotNumber] = rune;
-            
-            tooltipSystem.hideTooltip();
-            document.body.removeChild(currentOpenMenu.menu);
-            currentOpenMenu = null;
-            updateTotalStatsDisplay();
-            
-            const removeBtn = slot.querySelector('.remove-rune');
-            removeBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                emptyRuneSlot(slot, currentOpenMenu.equipmentSlot, currentOpenMenu.slotNumber);
-            });
-            
-            // Add hover events for the filled rune slot
-            addRuneSlotHoverEvents(slot);
-        };
-        
-        contentArea.appendChild(button);
+    const button = document.createElement('button');
+    button.textContent = rune.name;
+    button.setAttribute('data-rarity', rune.rarity || 'common');
+    button.setAttribute('data-rune-key', key);
+    
+    // Add hover events for tooltip
+    button.addEventListener('mouseenter', (e) => {
+        const tooltipContent = createItemTooltipContent(rune);
+        tooltipSystem.showTooltip(tooltipContent, button);
     });
+    
+    button.addEventListener('mouseleave', () => {
+        tooltipSystem.hideTooltip();
+    });
+    
+    button.onclick = () => {
+        const slot = currentOpenMenu.slot;
+        slot.className = 'rune-slot filled';
+        slot.setAttribute('data-rarity', rune.rarity || 'common');
+        slot.setAttribute('data-rune-key', key); // Add this line to store the rune key
+        slot.innerHTML = `
+            <div class="slot-content">${rune.name}</div>
+            <div class="remove-rune">X</div>
+        `;
+        
+        equippedRunes[currentOpenMenu.equipmentSlot][currentOpenMenu.slotNumber] = rune;
+        
+        tooltipSystem.hideTooltip();
+        document.body.removeChild(currentOpenMenu.menu);
+        currentOpenMenu = null;
+        updateTotalStatsDisplay();
+        
+        const removeBtn = slot.querySelector('.remove-rune');
+        removeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            emptyRuneSlot(slot, currentOpenMenu.equipmentSlot, currentOpenMenu.slotNumber);
+        });
+        
+        // Add hover events for the filled rune slot
+        addRuneSlotHoverEvents(slot);
+    };
+    
+    contentArea.appendChild(button);
+});
     
     if (runes.length === 0) {
         const noItemsMsg = document.createElement('div');
@@ -415,9 +416,6 @@
         noItemsMsg.textContent = 'No runes match your filters';
         contentArea.appendChild(noItemsMsg);
     }
-        
-        contentArea.appendChild(button);
-    
     }
 
     function addRuneSlotHoverEvents(slot) {
@@ -801,8 +799,7 @@
     }
     }
 
- function initializeRuneFilters(menu, slotType) {
-    const contentArea = menu.querySelector('.item-menu-content');
+function initializeRuneFilters(menu, slotType, contentArea) {
     const statFilter = menu.querySelector('#stat-filter');
     const typeFilter = menu.querySelector('#type-filter');
     
@@ -846,20 +843,17 @@
         }
     });
     
-    // Populate type filter with only relevant types
     const allTypes = Array.from(typeSet).sort();
     if (allTypes.length > 0) {
         allTypes.forEach(type => {
             const option = document.createElement('option');
-            option.value = type === 'null' ? null : type; // Store null for null
+            option.value = type === 'null' ? null : type;
             option.textContent = type === 'null' ? 'null' : 
                                type.charAt(0).toUpperCase() + type.slice(1);
             typeFilter.appendChild(option);
         });
     }
     
-    // Rest of the function remains the same...
-    // Set up event listeners
     const searchInput = menu.querySelector('#item-search');
     const sortFilter = menu.querySelector('#sort-filter');
     const resetButton = menu.querySelector('#reset-filters');
@@ -1345,7 +1339,7 @@
     filterState.sort = menu.querySelector('#sort-filter').value;
 }
 
-    function restoreFilters(menu, slotType) {
+function restoreFilters(menu, slotType) {
     const searchInput = menu.querySelector('#item-search');
     const statFilter = menu.querySelector('#stat-filter');
     const typeFilter = menu.querySelector('#type-filter');
@@ -1381,8 +1375,13 @@
         }
     }
     
-    // Trigger the menu update
-    updateItemMenu(menu, slotType, menu.querySelector('.item-menu-content'));
+    // Trigger the menu update - check if this is a rune menu
+    const contentArea = menu.querySelector('.item-menu-content');
+    if (slotType === 'rune') {
+        updateRuneMenu(menu, slotType, contentArea);
+    } else {
+        updateItemMenu(menu, slotType, contentArea);
+    }
 }
 
     function emptySlot(slot, slotKey) {
@@ -1836,7 +1835,6 @@ function gatherBuildData() {
     document.addEventListener('DOMContentLoaded', () => {
         initializeClassSystem();
         updateTotalStatsDisplay();
-        initializeFilters();
         document.querySelectorAll('.rune-slot.filled').forEach(slot => {
         addRuneSlotHoverEvents(slot);
     });
