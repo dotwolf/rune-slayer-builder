@@ -123,6 +123,8 @@
         <div class="import-container">
             <button id="import-build-btn" class="import-button">Import Build as JSON</button>
         </div>
+        <p style="color: #888888;">This is fan-made and may have mistakes.</p>
+        <p style="color: #888888;">Last Updated: 29 Jun </p>
         </div>
     </div>
     
@@ -1434,6 +1436,62 @@ function createItemTooltipContent(item) {
     typeElement.textContent = `${item.type.charAt(0).toUpperCase() + item.type.slice(1)}`;
     tooltipContent.appendChild(typeElement);
   }
+
+  // Add armor if available
+        if (typeof item.armor === 'number') {
+            const armorElement = document.createElement('div');
+            armorElement.className = 'tooltip-stat';
+            
+            const armorName = document.createElement('div');
+            armorName.className = 'tooltip-stat-name';
+            armorName.textContent = 'Armor';
+            
+            const armorValue = document.createElement('div');
+            armorValue.className = `tooltip-stat-value ${item.armor >= 0 ? 'positive' : 'negative'}`;
+            armorValue.textContent = `${item.armor >= 0 ? '+' : ''}${item.armor}`;
+            
+            armorElement.appendChild(armorName);
+            armorElement.appendChild(armorValue);
+            tooltipContent.appendChild(armorElement);
+        }
+
+        // Add posture if available
+        if (typeof item.posture === 'number') {
+            const postureElement = document.createElement('div');
+            postureElement.className = 'tooltip-stat';
+            
+            const postureName = document.createElement('div');
+            postureName.className = 'tooltip-stat-name';
+            postureName.textContent = 'Posture';
+            
+            const postureValue = document.createElement('div');
+            postureValue.className = `tooltip-stat-value ${item.posture >= 0 ? 'positive' : 'negative'}`;
+            postureValue.textContent = `${item.posture >= 0 ? '+' : ''}${item.posture}`;
+            
+            postureElement.appendChild(postureName);
+            postureElement.appendChild(postureValue);
+            tooltipContent.appendChild(postureElement);
+        }
+
+        // Add damage types if available
+        if (item.damage && Object.keys(item.damage).length > 0) {
+            for (const [damageType, value] of Object.entries(item.damage)) {
+                const damageElement = document.createElement('div');
+                damageElement.className = 'tooltip-stat';
+                
+                const damageName = document.createElement('div');
+                damageName.className = 'tooltip-stat-name';
+                damageName.textContent = `${damageType.charAt(0).toUpperCase() + damageType.slice(1)} Damage`;
+                
+                const damageValue = document.createElement('div');
+                damageValue.className = `tooltip-stat-value ${value >= 0 ? 'positive' : 'negative'}`;
+                damageValue.textContent = `${value >= 0 ? '+' : ''}${value}`;
+                
+                damageElement.appendChild(damageName);
+                damageElement.appendChild(damageValue);
+                tooltipContent.appendChild(damageElement);
+            }
+        }
 
   // Add stats if available
   if (item.stats && Object.keys(item.stats).length > 0) {
