@@ -396,7 +396,7 @@ const runesDatabase = {
   }),
   YetiRune: new Rune({
     name: 'Yeti Rune',
-    stats: {physicalAttack: 8, strength: 15, intellect: -8, stamina: 5, magicResistance: 0.05, holyResistance: 0.03},
+    stats: {physicalAttack: 0.08, strength: 15, intellect: -8, stamina: 5, magicResistance: 0.05, holyResistance: 0.03},
     type: 'weapon',
     rarity: 'epic'
   }),

@@ -669,12 +669,13 @@
                     if (rune.stats) {
                         for (const [stat, value] of Object.entries(rune.stats)) {
                             const statInfo = statlist.find(s => s.stat === stat);
-                            if (statInfo) {
-                                if (statInfo.percentual) {
-                                    totalStats.percent[stat] = (totalStats.percent[stat] || 0) + value;
-                                } else {
-                                    totalStats.flat[stat] = (totalStats.flat[stat] || 0) + value;
-                                }
+                            if (stat === 'armor') {
+                                // Add armor to the main armor total instead of flat stats
+                                totalStats.armor += value;
+                            } else if (statInfo.percentual) {
+                                totalStats.percent[stat] = (totalStats.percent[stat] || 0) + value;
+                            } else {
+                                totalStats.flat[stat] = (totalStats.flat[stat] || 0) + value;
                             }
                         }
                     }
@@ -1427,8 +1428,6 @@ function createItemTooltipContent(item) {
         const rarityElement = document.createElement('div');
         rarityElement.className = `tooltip-rarity ${item.rarity || 'common'}`;
         rarityElement.textContent = item.rarity || 'common';
-        
-        headerRight.appendChild(rarityElement);
 
         // Add level if available
         if (typeof item.level === 'number') {
