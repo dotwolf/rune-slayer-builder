@@ -1411,33 +1411,46 @@ function restoreFilters(menu, slotType) {
 document.body.appendChild(tooltip);
 
 function createItemTooltipContent(item) {
-  const tooltipContent = document.createElement('div');
+        const tooltipContent = document.createElement('div');
 
-  // Create header with name and rarity
-  const header = document.createElement('div');
-  header.className = 'tooltip-header';
-  
-  const nameElement = document.createElement('div');
-  nameElement.className = `tooltip-name ${item.rarity || 'common'}`;
-  nameElement.textContent = item.name || 'Unnamed Item';
-  
-  const rarityElement = document.createElement('div');
-  rarityElement.className = `tooltip-rarity ${item.rarity || 'common'}`;
-  rarityElement.textContent = item.rarity || 'common';
-  
-  header.appendChild(nameElement);
-  header.appendChild(rarityElement);
-  tooltipContent.appendChild(header);
-  
-  // For runes, add type information if available
-  if (item.type && item.type !== 'null') {
-    const typeElement = document.createElement('div');
-    typeElement.className = 'tooltip-type';
-    typeElement.textContent = `${item.type.charAt(0).toUpperCase() + item.type.slice(1)}`;
-    tooltipContent.appendChild(typeElement);
-  }
+        // Create header with name, rarity, and level
+        const header = document.createElement('div');
+        header.className = 'tooltip-header';
+        
+        const nameElement = document.createElement('div');
+        nameElement.className = `tooltip-name ${item.rarity || 'common'}`;
+        nameElement.textContent = item.name || 'Unnamed Item';
+        
+        const headerRight = document.createElement('div');
+        headerRight.className = 'tooltip-header-right';
+        
+        const rarityElement = document.createElement('div');
+        rarityElement.className = `tooltip-rarity ${item.rarity || 'common'}`;
+        rarityElement.textContent = item.rarity || 'common';
+        
+        headerRight.appendChild(rarityElement);
 
-  // Add armor if available
+        // Add level if available
+        if (typeof item.level === 'number') {
+            const levelElement = document.createElement('div');
+            levelElement.className = 'tooltip-level';
+            levelElement.textContent = `Lv. ${item.level}`;
+            headerRight.appendChild(levelElement);
+        }
+        
+        header.appendChild(nameElement);
+        header.appendChild(headerRight);
+        tooltipContent.appendChild(header);
+        
+        // For runes, add type information if available
+        if (item.type && item.type !== 'null') {
+            const typeElement = document.createElement('div');
+            typeElement.className = 'tooltip-type';
+            typeElement.textContent = `${item.type.charAt(0).toUpperCase() + item.type.slice(1)}`;
+            tooltipContent.appendChild(typeElement);
+        }
+
+        // Add armor if available
         if (typeof item.armor === 'number') {
             const armorElement = document.createElement('div');
             armorElement.className = 'tooltip-stat';
@@ -1493,44 +1506,44 @@ function createItemTooltipContent(item) {
             }
         }
 
-  // Add stats if available
-  if (item.stats && Object.keys(item.stats).length > 0) {
-    const statsContainer = document.createElement('div');
-    statsContainer.className = 'tooltip-stats';
-    
-    for (const [stat, value] of Object.entries(item.stats)) {
-      const statInfo = getStatInfo(stat);
-      if (statInfo) {
-        const statElement = document.createElement('div');
-        statElement.className = 'tooltip-stat';
+        // Add stats if available
+        if (item.stats && Object.keys(item.stats).length > 0) {
+            const statsContainer = document.createElement('div');
+            statsContainer.className = 'tooltip-stats';
+            
+            for (const [stat, value] of Object.entries(item.stats)) {
+                const statInfo = getStatInfo(stat);
+                if (statInfo) {
+                    const statElement = document.createElement('div');
+                    statElement.className = 'tooltip-stat';
+                    
+                    const statName = document.createElement('div');
+                    statName.className = 'tooltip-stat-name';
+                    statName.textContent = statInfo.name;
+                    
+                    const statValue = document.createElement('div');
+                    statValue.className = `tooltip-stat-value ${value >= 0 ? 'positive' : 'negative'}`;
+                    statValue.textContent = `${value >= 0 ? '+' : ''}${formatStatValue(value, statInfo.percentual)}`;
+                    
+                    statElement.appendChild(statName);
+                    statElement.appendChild(statValue);
+                    statsContainer.appendChild(statElement);
+                }
+            }
+            
+            tooltipContent.appendChild(statsContainer);
+        }
         
-        const statName = document.createElement('div');
-        statName.className = 'tooltip-stat-name';
-        statName.textContent = statInfo.name;
+        // Add description if available
+        if (item.description) {
+            const descElement = document.createElement('div');
+            descElement.className = 'tooltip-description';
+            descElement.textContent = item.description;
+            tooltipContent.appendChild(descElement);
+        }
         
-        const statValue = document.createElement('div');
-        statValue.className = `tooltip-stat-value ${value >= 0 ? 'positive' : 'negative'}`;
-        statValue.textContent = `${value >= 0 ? '+' : ''}${formatStatValue(value, statInfo.percentual)}`;
-        
-        statElement.appendChild(statName);
-        statElement.appendChild(statValue);
-        statsContainer.appendChild(statElement);
-      }
+        return tooltipContent;
     }
-    
-    tooltipContent.appendChild(statsContainer);
-  }
-  
-  // Add description if available
-  if (item.description) {
-    const descElement = document.createElement('div');
-    descElement.className = 'tooltip-description';
-    descElement.textContent = item.description;
-    tooltipContent.appendChild(descElement);
-  }
-  
-  return tooltipContent;
-}
 
 // Tooltip system
 const tooltipSystem = {
