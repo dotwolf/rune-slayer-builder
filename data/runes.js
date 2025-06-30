@@ -47,7 +47,7 @@ const runesDatabase = {
   }),
   StaminaRune: new Rune({
     name: 'Stamina Rune',
-    stats: {stamina: 1},
+    stats: {stamina: 2},
     rarity: 'rare'
   }),
 
