@@ -97,11 +97,12 @@
         <div class="total-stats-container">
             <div class="stats-header">
                 <h2>Total Character Stats</h2>
-                <label class="professions-checkbox-label">
+                
+            </div>
+            <label class="professions-checkbox-label">
                 <input type="checkbox" id="level60-professions" class="professions-checkbox">
                 <span>Level 60 Professions</span>
                 </label>
-            </div>
             <div class="stats-display">
                 <!-- Stats will be populated here -->
             </div>
@@ -124,7 +125,7 @@
             <button id="import-build-btn" class="import-button">Import Build as JSON</button>
         </div>
         <p style="color: #888888;">This is fan-made and may have mistakes.</p>
-        <p style="color: #888888;">Last Updated: 29 Jun </p>
+        <p style="color: #888888;">Last Updated: 30 Jun </p>
         </div>
     </div>
     
@@ -199,7 +200,6 @@
         const equipmentSlot = equipmentRow.querySelector('.slot').dataset.slot;
         const slotNumber = this.textContent;
         
-        // If clicking the same slot that has an open menu, close it
         if (currentOpenMenu && currentOpenMenu.slot === this) {
             saveCurrentFilterState();
             document.body.removeChild(currentOpenMenu.menu);
@@ -207,7 +207,6 @@
             return;
         }
 
-        // Close any existing menu
         if (currentOpenMenu) {
             saveCurrentFilterState();
             document.body.removeChild(currentOpenMenu.menu);
@@ -218,7 +217,6 @@
         menu.className = 'item-menu rune-menu';
         menu.dataset.slotType = 'rune';
 
-        // Create full menu structure (same as item menu)
         menu.innerHTML = `
             <div class="menu-header-container">
                 <div class="item-menu-header">
@@ -248,7 +246,6 @@
         
         document.body.appendChild(menu);
         
-        // Track the currently open menu and its slot
         currentOpenMenu = {
             menu: menu,
             slot: this,
@@ -256,11 +253,9 @@
             slotNumber: slotNumber
         };
 
-        // Initialize filters for this menu
         const contentArea = menu.querySelector('.item-menu-content');
         initializeRuneFilters(menu, 'rune', menu.querySelector('.item-menu-content'));
         
-        // Restore any saved filter state
         setTimeout(() => {
             restoreFilters(menu, 'rune');
         }, 0);
@@ -289,10 +284,8 @@
     const runes = Object.entries(runesDatabase)
         .map(([key, rune]) => ({ key, rune }))
         .filter(({ rune }) => {
-            // Name filter
             const nameMatch = rune.name.toLowerCase().includes(searchTerm);
             
-            // Stat filter
             let statMatch = true;
             if (selectedStat) {
                 statMatch = rune.stats && rune.stats[selectedStat] !== undefined;
@@ -365,14 +358,12 @@
                 }
             });
         
-        // Create rune buttons
         runes.forEach(({ key, rune }) => {
     const button = document.createElement('button');
     button.textContent = rune.name;
     button.setAttribute('data-rarity', rune.rarity || 'common');
     button.setAttribute('data-rune-key', key);
     
-    // Add hover events for tooltip
     button.addEventListener('mouseenter', (e) => {
         const tooltipContent = createItemTooltipContent(rune);
         tooltipSystem.showTooltip(tooltipContent, button);
@@ -386,7 +377,7 @@
         const slot = currentOpenMenu.slot;
         slot.className = 'rune-slot filled';
         slot.setAttribute('data-rarity', rune.rarity || 'common');
-        slot.setAttribute('data-rune-key', key); // Add this line to store the rune key
+        slot.setAttribute('data-rune-key', key);
         slot.innerHTML = `
             <div class="slot-content">${rune.name}</div>
             <div class="remove-rune">X</div>
@@ -405,7 +396,6 @@
             emptyRuneSlot(slot, currentOpenMenu.equipmentSlot, currentOpenMenu.slotNumber);
         });
         
-        // Add hover events for the filled rune slot
         addRuneSlotHoverEvents(slot);
     };
     
@@ -436,7 +426,6 @@
             tooltipSystem.hideTooltip();
         });
         
-        // Prevent tooltip from showing on the remove button
         const removeBtn = slot.querySelector('.remove-rune');
         removeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -448,40 +437,40 @@
     }
 
     function emptyRuneSlot(slot, equipmentSlot, slotNumber) {
-    if (!equipmentSlot || !slotNumber) {
-        const equipmentRow = slot.closest('.equipment-row');
-        if (equipmentRow) {
-            equipmentSlot = equipmentSlot || equipmentRow.querySelector('.slot').dataset.slot;
-            // Get the slot number from the data attribute or text content
-            slotNumber = slotNumber || slot.dataset.originalNumber || slot.textContent.trim();
+        if (!equipmentSlot || !slotNumber) {
+            const equipmentRow = slot.closest('.equipment-row');
+            if (equipmentRow) {
+                equipmentSlot = equipmentSlot || equipmentRow.querySelector('.slot').dataset.slot;
+                slotNumber = slotNumber || slot.dataset.originalNumber || slot.textContent.trim();
+            }
+        }
+
+        const originalSlotNumber = slot.dataset.originalNumber || slotNumber;
+        
+        slot.className = 'rune-slot';
+        slot.removeAttribute('data-rarity');
+        slot.removeAttribute('data-rune-key');
+        slot.textContent = originalSlotNumber;
+        
+        if (equipmentSlot && slotNumber && equippedRunes[equipmentSlot]) {
+            equippedRunes[equipmentSlot][slotNumber] = null;
+        }
+        
+        updateTotalStatsDisplay();
+        tooltipSystem.hideTooltip();
+
+         if (currentOpenMenu) {
+            saveCurrentFilterState();
+            document.body.removeChild(currentOpenMenu.menu);
+            currentOpenMenu = null;
         }
     }
 
-    const originalSlotNumber = slot.dataset.originalNumber || slotNumber;
-    
-    slot.className = 'rune-slot';
-    slot.removeAttribute('data-rarity');
-    slot.removeAttribute('data-rune-key');
-    slot.textContent = originalSlotNumber;
-    
-    if (equipmentSlot && slotNumber && equippedRunes[equipmentSlot]) {
-        equippedRunes[equipmentSlot][slotNumber] = null;
-    }
-    
-    updateTotalStatsDisplay();
-    tooltipSystem.hideTooltip();
-
-    saveCurrentFilterState();
-    document.body.removeChild(currentOpenMenu.menu);
-    currentOpenMenu = null;
-    return;
-}
     function initializeClassSystem() {
         const classList = document.getElementById('class-list');
         const totalLevelsDisplay = document.getElementById('total-levels');
         let totalLevels = 0;
         
-        // Create UI for each class
         Object.entries(classesDatabase).forEach(([className, classData]) => {
             const classItem = document.createElement('div');
             classItem.className = 'class-item';
@@ -498,7 +487,6 @@
             input.value = 0;
             input.dataset.className = className;
             
-            // Tooltip showing stat bonuses
             nameSpan.title = Object.entries(classData.stats)
                 .map(([stat, value]) => `${stat}: +${value} per level`)
                 .join('\n');
@@ -507,7 +495,6 @@
             classItem.appendChild(input);
             classList.appendChild(classItem);
             
-            // Add event listener
             input.addEventListener('change', updateClassLevels);
         });
         
@@ -515,13 +502,11 @@
             let newTotal = 0;
             const inputs = document.querySelectorAll('.class-level-input');
             
-            // Calculate new total
             inputs.forEach(input => {
                 const value = parseInt(input.value) || 0;
                 newTotal += value;
             });
             
-            // Enforce 50 level cap
             if (newTotal > 50) {
                 this.value = Math.max(0, 50 - (newTotal - parseInt(this.value)));
                 newTotal = 50;
@@ -670,13 +655,12 @@
                         for (const [stat, value] of Object.entries(rune.stats)) {
                             const statInfo = statlist.find(s => s.stat === stat);
                             if (stat === 'armor') {
-                                // Add armor to the main armor total instead of flat stats
-                                totalStats.armor += value;
-                            } else if (statInfo.percentual) {
-                                totalStats.percent[stat] = (totalStats.percent[stat] || 0) + value;
-                            } else {
-                                totalStats.flat[stat] = (totalStats.flat[stat] || 0) + value;
-                            }
+                            totalStats.armor += value;
+                        } else if (statInfo.percentual) {
+                            totalStats.percent[stat] = (totalStats.percent[stat] || 0) + value;
+                        } else {
+                            totalStats.flat[stat] = (totalStats.flat[stat] || 0) + value;
+                        }
                         }
                     }
                 }
@@ -702,7 +686,16 @@
         const totalStats = calculateTotalStats();
         const statsDisplay = document.querySelector('.stats-display');
         
-        statsDisplay.innerHTML = '';
+         statsDisplay.innerHTML = `
+            <div class="stats-column" id="column1"></div>
+            <div class="stats-column" id="column2"></div>
+        `;
+        
+        const column1 = document.getElementById('column1');
+        const column2 = document.getElementById('column2');
+        
+        const column1Sections = ['Main', 'Critical', 'Attack', 'Mobility'];
+        const column2Sections = ['Resistance', 'Duration', 'Resource', 'Miscellaneous'];
         
         const sections = {
             'Main': [],
@@ -775,51 +768,57 @@
             isPercent: false
         });
         }
-        for (const [sectionName, stats] of Object.entries(sections)) {
-        if (stats.length > 0) {
-            // Add section divider
-            const sectionDivider = document.createElement('div');
-            sectionDivider.className = 'stat-section';
-            sectionDivider.textContent = sectionName;
-            statsDisplay.appendChild(sectionDivider);
-            
-            // Add stats for this section
-            stats.forEach(({statInfo, value, isPercent}) => {
-                const statElement = document.createElement('div');
-                statElement.className = 'stat-item stat-update'; // Add animation class
-                statElement.innerHTML = `
-                    <span class="stat-name">${statInfo.name}</span>
-                    <span class="stat-value ${value < 0 ? 'negative' : ''}">${value >= 0 ? '+' : ''}${formatStatValue(value, isPercent)}</span>
-                `;
-                statsDisplay.appendChild(statElement);
-                
-                // Remove animation class after animation completes
-                setTimeout(() => {
-                    statElement.classList.remove('stat-update');
-                }, 300);
-            });
-        }
+
+         column1Sections.forEach(sectionName => {
+            const stats = sections[sectionName];
+            if (stats.length > 0) {
+                addStatsSection(column1, sectionName, stats);
+            }
+        });
+
+        column2Sections.forEach(sectionName => {
+            const stats = sections[sectionName];
+            if (stats.length > 0) {
+                addStatsSection(column2, sectionName, stats);
+            }
+        });
     }
-    }
+
+    function addStatsSection(column, sectionName, stats) {
+    const sectionDivider = document.createElement('div');
+    sectionDivider.className = 'stat-section';
+    sectionDivider.textContent = sectionName;
+    column.appendChild(sectionDivider);
+    
+    stats.forEach(({statInfo, value, isPercent}) => {
+        const statElement = document.createElement('div');
+        statElement.className = 'stat-item stat-update';
+        statElement.innerHTML = `
+            <span class="stat-name">${statInfo.name}</span>
+            <span class="stat-value ${value < 0 ? 'negative' : ''}">${value >= 0 ? '+' : ''}${formatStatValue(value, isPercent)}</span>
+        `;
+        column.appendChild(statElement);
+        
+        setTimeout(() => {
+            statElement.classList.remove('stat-update');
+        }, 300);
+    });
+}
 
 function initializeRuneFilters(menu, slotType, contentArea) {
     const statFilter = menu.querySelector('#stat-filter');
     const typeFilter = menu.querySelector('#type-filter');
     
-    // Clear existing options (keeping the first default option)
     while (statFilter.options.length > 1) statFilter.remove(1);
     while (typeFilter.options.length > 1) typeFilter.remove(1);
     
-    // Get all unique stats and types for runes that match this slot
     const statSet = new Set();
     const typeSet = new Set();
     const equipmentSlot = currentOpenMenu?.equipmentSlot;
     
-    // First collect all possible stats and types for this slot
     for (const runeId in runesDatabase) {
         const rune = runesDatabase[runeId];
         
-        // Only consider runes that can be equipped in this slot
         const normalizedRuneType = normalizarSlot(rune.type);
         const normalizedEquipmentSlot = normalizarSlot(equipmentSlot);
         
@@ -828,15 +827,12 @@ function initializeRuneFilters(menu, slotType, contentArea) {
                 Object.keys(rune.stats).forEach(stat => statSet.add(stat));
             }
             
-            // Only add to type filter if it's a null rune (type === null) 
-            // or matches the current equipment slot
             if (normalizedRuneType !== 'null' || normalizedRuneType === normalizedEquipmentSlot) {
                 typeSet.add(normalizedRuneType === 'null' ? 'null' : normalizedRuneType);
             }
         }
     }
     
-    // Populate stat filter
     statlist.forEach(stat => {
         if (statSet.has(stat.stat)) {
             const option = document.createElement('option');
@@ -879,7 +875,6 @@ function initializeRuneFilters(menu, slotType, contentArea) {
         filterState.sort = 'name-asc';
     });
     
-    // Initial population
     updateMenu();
 }
 
@@ -888,11 +883,9 @@ function initializeRuneFilters(menu, slotType, contentArea) {
         const statFilter = menu.querySelector('#stat-filter');
         const typeFilter = menu.querySelector('#type-filter');
         
-        // Clear existing options (keeping the first default option)
         while (statFilter.options.length > 1) statFilter.remove(1);
         while (typeFilter.options.length > 1) typeFilter.remove(1);
         
-        // Get all unique stats and types for this slot type
         const statSet = new Set();
         const typeSet = new Set();
         
@@ -903,17 +896,14 @@ function initializeRuneFilters(menu, slotType, contentArea) {
             Object.keys(item.stats).forEach(stat => statSet.add(stat));
         }
         
-        // Add armor to stat options if the item has armor
         if (typeof item.armor === 'number') {
             statSet.add('armor');
         }
         
-        // Add posture to stat options if the item has posture
         if (typeof item.posture === 'number') {
             statSet.add('posture');
         }
         
-        // Add damage types to stat options if the item has damage
         if (item.damage) {
             Object.keys(item.damage).forEach(type => {
                 statSet.add(`damage-${type}`);
@@ -925,7 +915,6 @@ function initializeRuneFilters(menu, slotType, contentArea) {
         }
     }
     
-    // Populate stat filter with regular stats first
     statlist.forEach(stat => {
         if (statSet.has(stat.stat)) {
             const option = document.createElement('option');
@@ -935,7 +924,6 @@ function initializeRuneFilters(menu, slotType, contentArea) {
         }
     });
     
-    // Add special stats (armor, posture) if they exist for this slot type
     if (statSet.has('armor')) {
         const option = document.createElement('option');
         option.value = 'armor';
@@ -950,7 +938,6 @@ function initializeRuneFilters(menu, slotType, contentArea) {
         statFilter.appendChild(option);
     }
     
-    // Add damage type stats if they exist for this slot type
     Array.from(statSet)
         .filter(stat => stat.startsWith('damage-'))
         .forEach(stat => {
@@ -961,7 +948,6 @@ function initializeRuneFilters(menu, slotType, contentArea) {
             statFilter.appendChild(option);
         });
         
-        // Populate type filter
         Array.from(typeSet).sort().forEach(type => {
             const option = document.createElement('option');
             option.value = type;
@@ -969,7 +955,6 @@ function initializeRuneFilters(menu, slotType, contentArea) {
             typeFilter.appendChild(option);
         });
         
-        // Set up event listeners
         const searchInput = menu.querySelector('#item-search');
         const sortFilter = menu.querySelector('#sort-filter');
         const resetButton = menu.querySelector('#reset-filters');
@@ -992,7 +977,6 @@ function initializeRuneFilters(menu, slotType, contentArea) {
             filterState.sort = 'name-asc';
         });
         
-        // Initial population
         updateMenu();
     }
 
@@ -1011,7 +995,6 @@ function initializeRuneFilters(menu, slotType, contentArea) {
     const selectedType = menu.querySelector('#type-filter').value;
     const sortOption = menu.querySelector('#sort-filter').value;
     
-    // Clear current content
     contentArea.innerHTML = '';
     
     const equippedRingNames = [];
@@ -1022,14 +1005,11 @@ function initializeRuneFilters(menu, slotType, contentArea) {
         }
     }
 
-    // Get filtered and sorted items
     const items = Object.entries(itemsDatabase[slotType] || {})
         .map(([key, item]) => ({ key, item }))
         .filter(({ item }) => {
-            // Name filter
             const nameMatch = item.name.toLowerCase().includes(searchTerm);
             
-            // Stat filter
             let statMatch = true;
             if (selectedStat) {
                 if (selectedStat === 'armor') {
@@ -1044,13 +1024,11 @@ function initializeRuneFilters(menu, slotType, contentArea) {
                 }
             }
             
-            // Type filter
             let typeMatch = true;
             if (selectedType) {
                 typeMatch = item.type === selectedType;
             }
 
-            // For rings, check if this item is already equipped
             let duplicateRing = false;
             if (slotType === 'ring') {
                 duplicateRing = equippedRingNames.includes(item.name.toLowerCase());
@@ -1142,7 +1120,6 @@ function initializeRuneFilters(menu, slotType, contentArea) {
             }
         });
     
-    // Rebuild menu content with filtered items
     items.forEach(({ key, item }) => {
         const nome = item.name || key;
         const botao = document.createElement('button');
@@ -1180,7 +1157,6 @@ function initializeRuneFilters(menu, slotType, contentArea) {
         contentArea.appendChild(botao);
     });
     
-    // Show message if no items match filters
     if (items.length === 0) {
         const noItemsMsg = document.createElement('div');
         noItemsMsg.className = 'no-items-message';
@@ -1194,7 +1170,6 @@ function initializeRuneFilters(menu, slotType, contentArea) {
         const slotType = slot.dataset.slot;
         const slotChave = normalizarSlot(slotType);
 
-        // If clicking the same slot that has an open menu, close it
         if (currentOpenMenu && currentOpenMenu.slot === slot) {
             saveCurrentFilterState();
             document.body.removeChild(currentOpenMenu.menu);
@@ -1202,7 +1177,6 @@ function initializeRuneFilters(menu, slotType, contentArea) {
             return;
         }
 
-        // Close any existing menu
         if (currentOpenMenu) {
             saveCurrentFilterState();
             document.body.removeChild(currentOpenMenu.menu);
@@ -1219,52 +1193,42 @@ function initializeRuneFilters(menu, slotType, contentArea) {
         menu.className = 'item-menu';
         menu.dataset.slotType = slotChave;
 
-        // Create menu header container
         const headerContainer = document.createElement('div');
         headerContainer.className = 'menu-header-container';
 
-        // Create menu header with search and reset button
         const menuHeader = document.createElement('div');
         menuHeader.className = 'item-menu-header';
         
-        // Create search input
         const searchInput = document.createElement('input');
         searchInput.type = 'text';
         searchInput.id = 'item-search';
         searchInput.className = 'filter-input item-menu-search';
         searchInput.placeholder = 'Search items...';
         
-        // Create reset button (smaller and next to search)
         const resetButton = document.createElement('button');
         resetButton.id = 'reset-filters';
-        resetButton.className = 'menu-reset-button'; // Use a more specific class
+        resetButton.className = 'menu-reset-button';
         resetButton.innerHTML = 'Reset';
         resetButton.title = 'Reset filters';
         
-        // Add search and reset to header
         menuHeader.appendChild(searchInput);
         menuHeader.appendChild(resetButton);
         
-        // Create filters container
         const filtersContainer = document.createElement('div');
         filtersContainer.className = 'item-menu-filters';
         
-        // Create stat filter
         const statFilter = document.createElement('select');
         statFilter.id = 'stat-filter';
         statFilter.className = 'filter-select';
         
-        // Create type filter
         const typeFilter = document.createElement('select');
         typeFilter.id = 'type-filter';
         typeFilter.className = 'filter-select';
         
-        // Create sort filter
         const sortFilter = document.createElement('select');
         sortFilter.id = 'sort-filter';
         sortFilter.className = 'filter-select';
         
-        // Add options to sort filter
         const sortOptions = [
             {value: 'name-asc', text: 'A-Z'},
             {value: 'name-desc', text: 'Z-A'},
@@ -1281,7 +1245,6 @@ function initializeRuneFilters(menu, slotType, contentArea) {
             sortFilter.appendChild(optElement);
         });
         
-        // Add default option to stat and type filters
         const addDefaultOption = (select, text) => {
             const option = document.createElement('option');
             option.value = '';
@@ -1292,26 +1255,21 @@ function initializeRuneFilters(menu, slotType, contentArea) {
         addDefaultOption(statFilter, 'All Stats');
         addDefaultOption(typeFilter, 'All Types');
         
-        // Build the filters container
         filtersContainer.appendChild(statFilter);
         filtersContainer.appendChild(typeFilter);
         filtersContainer.appendChild(sortFilter);
         
-        // Build the header container
         headerContainer.appendChild(menuHeader);
         headerContainer.appendChild(filtersContainer);
         
-        // Create content area
         const menuContent = document.createElement('div');
         menuContent.className = 'item-menu-content';
         
-        // Add elements to menu
         menu.appendChild(headerContainer);
         menu.appendChild(menuContent);
         
         document.body.appendChild(menu);
         
-        // Track the currently open menu and its slot
         currentOpenMenu = {
             menu: menu,
             slot: slot
@@ -1321,13 +1279,11 @@ function initializeRuneFilters(menu, slotType, contentArea) {
             restoreFilters(menu, slotChave);
         }, 0);
         
-        // Track the currently open menu
         currentOpenMenu = {
             menu: menu,
             slot: slot
         };
 
-        // Initialize filters for this menu
         initializeFilters(menu, slotChave);
     });
 });
@@ -1348,11 +1304,9 @@ function restoreFilters(menu, slotType) {
     const typeFilter = menu.querySelector('#type-filter');
     const sortFilter = menu.querySelector('#sort-filter');
     
-    // Always restore search and sort
     searchInput.value = filterState.search;
     sortFilter.value = filterState.sort;
     
-    // Only restore stat filter if it exists in the new menu
     if (filterState.stat) {
         const statExists = Array.from(statFilter.options).some(
             opt => opt.value === filterState.stat
@@ -1361,11 +1315,10 @@ function restoreFilters(menu, slotType) {
             statFilter.value = filterState.stat;
         } else {
             statFilter.value = '';
-            filterState.stat = ''; // Clear the saved stat if it doesn't exist
+            filterState.stat = '';
         }
     }
     
-    // Only restore type filter if it exists in the new menu
     if (filterState.type) {
         const typeExists = Array.from(typeFilter.options).some(
             opt => opt.value === filterState.type
@@ -1374,11 +1327,10 @@ function restoreFilters(menu, slotType) {
             typeFilter.value = filterState.type;
         } else {
             typeFilter.value = '';
-            filterState.type = ''; // Clear the saved type if it doesn't exist
+            filterState.type = '';
         }
     }
     
-    // Trigger the menu update - check if this is a rune menu
     const contentArea = menu.querySelector('.item-menu-content');
     if (slotType === 'rune') {
         updateRuneMenu(menu, slotType, contentArea);
@@ -1388,24 +1340,18 @@ function restoreFilters(menu, slotType) {
 }
 
     function emptySlot(slot, slotKey) {
-    // Reset the slot
-    slot.className = 'slot';
-    slot.removeAttribute('data-rarity');
-    slot.innerHTML = slot.dataset.slot.charAt(0).toUpperCase() + slot.dataset.slot.slice(1);
-    
-    // Clear the equipped item
-    equippedItems[slotKey] = null;
-    
-    // Update stats
-    updateTotalStatsDisplay();
-    
-    // Hide tooltip if it's showing for this item
-    tooltipSystem.hideTooltip();
-
-    saveCurrentFilterState();
-    document.body.removeChild(currentOpenMenu.menu);
-    currentOpenMenu = null;
-}
+        slot.className = 'slot';
+        slot.removeAttribute('data-rarity');
+        slot.innerHTML = slot.dataset.slot.charAt(0).toUpperCase() + slot.dataset.slot.slice(1);
+        equippedItems[slotKey] = null;
+        updateTotalStatsDisplay();
+        tooltipSystem.hideTooltip();
+        if (currentOpenMenu) {
+            saveCurrentFilterState();
+            document.body.removeChild(currentOpenMenu.menu);
+            currentOpenMenu = null;
+        }
+    }
 
     const tooltip = document.createElement('div');
     tooltip.className = 'tooltip';
@@ -1414,7 +1360,6 @@ document.body.appendChild(tooltip);
 function createItemTooltipContent(item) {
         const tooltipContent = document.createElement('div');
 
-        // Create header with name, rarity, and level
         const header = document.createElement('div');
         header.className = 'tooltip-header';
         
@@ -1429,7 +1374,6 @@ function createItemTooltipContent(item) {
         rarityElement.className = `tooltip-rarity ${item.rarity || 'common'}`;
         rarityElement.textContent = item.rarity || 'common';
 
-        // Add level if available
         if (typeof item.level === 'number') {
             const levelElement = document.createElement('div');
             levelElement.className = 'tooltip-level';
@@ -1441,7 +1385,6 @@ function createItemTooltipContent(item) {
         header.appendChild(headerRight);
         tooltipContent.appendChild(header);
         
-        // For runes, add type information if available
         if (item.type && item.type !== 'null') {
             const typeElement = document.createElement('div');
             typeElement.className = 'tooltip-type';
@@ -1449,7 +1392,6 @@ function createItemTooltipContent(item) {
             tooltipContent.appendChild(typeElement);
         }
 
-        // Add armor if available
         if (typeof item.armor === 'number') {
             const armorElement = document.createElement('div');
             armorElement.className = 'tooltip-stat';
@@ -1460,14 +1402,13 @@ function createItemTooltipContent(item) {
             
             const armorValue = document.createElement('div');
             armorValue.className = `tooltip-stat-value ${item.armor >= 0 ? 'positive' : 'negative'}`;
-            armorValue.textContent = `${item.armor >= 0 ? '+' : ''}${item.armor}`;
+            armorValue.textContent = `${item.armor}`;
             
             armorElement.appendChild(armorName);
             armorElement.appendChild(armorValue);
             tooltipContent.appendChild(armorElement);
         }
 
-        // Add posture if available
         if (typeof item.posture === 'number') {
             const postureElement = document.createElement('div');
             postureElement.className = 'tooltip-stat';
@@ -1478,14 +1419,13 @@ function createItemTooltipContent(item) {
             
             const postureValue = document.createElement('div');
             postureValue.className = `tooltip-stat-value ${item.posture >= 0 ? 'positive' : 'negative'}`;
-            postureValue.textContent = `${item.posture >= 0 ? '+' : ''}${item.posture}`;
+            postureValue.textContent = `${item.posture}`;
             
             postureElement.appendChild(postureName);
             postureElement.appendChild(postureValue);
             tooltipContent.appendChild(postureElement);
         }
 
-        // Add damage types if available
         if (item.damage && Object.keys(item.damage).length > 0) {
             for (const [damageType, value] of Object.entries(item.damage)) {
                 const damageElement = document.createElement('div');
@@ -1497,7 +1437,7 @@ function createItemTooltipContent(item) {
                 
                 const damageValue = document.createElement('div');
                 damageValue.className = `tooltip-stat-value ${value >= 0 ? 'positive' : 'negative'}`;
-                damageValue.textContent = `${value >= 0 ? '+' : ''}${value}`;
+                damageValue.textContent = `${value}`;
                 
                 damageElement.appendChild(damageName);
                 damageElement.appendChild(damageValue);
@@ -1505,7 +1445,6 @@ function createItemTooltipContent(item) {
             }
         }
 
-        // Add stats if available
         if (item.stats && Object.keys(item.stats).length > 0) {
             const statsContainer = document.createElement('div');
             statsContainer.className = 'tooltip-stats';
@@ -1522,7 +1461,7 @@ function createItemTooltipContent(item) {
                     
                     const statValue = document.createElement('div');
                     statValue.className = `tooltip-stat-value ${value >= 0 ? 'positive' : 'negative'}`;
-                    statValue.textContent = `${value >= 0 ? '+' : ''}${formatStatValue(value, statInfo.percentual)}`;
+                    statValue.textContent = `${formatStatValue(value, statInfo.percentual)}`;
                     
                     statElement.appendChild(statName);
                     statElement.appendChild(statValue);
@@ -1533,7 +1472,6 @@ function createItemTooltipContent(item) {
             tooltipContent.appendChild(statsContainer);
         }
         
-        // Add description if available
         if (item.description) {
             const descElement = document.createElement('div');
             descElement.className = 'tooltip-description';
@@ -1544,7 +1482,6 @@ function createItemTooltipContent(item) {
         return tooltipContent;
     }
 
-// Tooltip system
 const tooltipSystem = {
   currentTooltip: null,
   
@@ -1564,34 +1501,27 @@ const tooltipSystem = {
     const rect = element.getBoundingClientRect();
     const tooltip = this.currentTooltip;
     
-    // Position to the right by default
     let left = rect.right + 10;
     let top = rect.top + window.scrollY;
     
-    // Temporarily show the tooltip to measure it
     tooltip.style.visibility = 'hidden';
     tooltip.style.display = 'block';
     const tooltipRect = tooltip.getBoundingClientRect();
     tooltip.style.visibility = '';
     tooltip.style.display = '';
     
-    // Check if tooltip would go off-screen right
     if (left + tooltipRect.width > window.innerWidth) {
         left = rect.left - tooltipRect.width - 10;
     }
     
-    // Check if tooltip would go off-screen bottom
     if (top + tooltipRect.height > window.innerHeight + window.scrollY) {
-        // Try to position above the element
         top = rect.top + window.scrollY - (tooltipRect.height/2);
         
-        // If still off-screen (very top of page), position at bottom of screen
         if (top < window.scrollY) {
             top = window.innerHeight + window.scrollY - tooltipRect.height - 10;
         }
     }
     
-    // Check if tooltip would go off-screen top
     if (top < window.scrollY) {
         top = window.scrollY + 10;
     }
@@ -1608,7 +1538,6 @@ const tooltipSystem = {
   }
 };
 
-// Slot hover events
 slots.forEach(slot => {
   slot.addEventListener('mouseenter', (e) => {
     const slotType = slot.dataset.slot;
@@ -1628,7 +1557,6 @@ slots.forEach(slot => {
   });
 });
 
-// Menu button hover events
 document.addEventListener('mouseover', (e) => {
   const button = e.target.closest('.item-menu button');
   if (button) {
@@ -1657,7 +1585,6 @@ document.addEventListener('mouseout', (e) => {
 }, true);
 
 function gatherBuildData() {
-        // Get equipped items
         const itemsData = {};
         for (const [slot, item] of Object.entries(equippedItems)) {
             if (item) {
@@ -1669,7 +1596,6 @@ function gatherBuildData() {
             }
         }
 
-        // Get equipped runes
         const runesData = {};
         for (const [equipmentSlot, runeSlots] of Object.entries(equippedRunes)) {
             runesData[equipmentSlot] = {};
@@ -1684,7 +1610,6 @@ function gatherBuildData() {
             }
         }
 
-        // Get class levels
         const classLevels = {};
         const classInputs = document.querySelectorAll('.class-level-input');
         classInputs.forEach(input => {
@@ -1693,10 +1618,8 @@ function gatherBuildData() {
             classLevels[className] = level;
         });
 
-        // Get profession bonus
         const professionBonus = document.getElementById('level60-professions').checked;
 
-        // Combine all data
         const buildData = {
             items: itemsData,
             runes: runesData,
@@ -1712,7 +1635,6 @@ function gatherBuildData() {
         const buildData = gatherBuildData();
         const jsonString = JSON.stringify(buildData, null, 2);
         
-        // Create a download link
         const blob = new Blob([jsonString], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -1725,7 +1647,6 @@ function gatherBuildData() {
     }
 
     function importBuild() {
-        // Create file input element
         const input = document.createElement('input');
         input.type = 'file';
         input.accept = '.json';
@@ -1748,10 +1669,9 @@ function gatherBuildData() {
         
         input.click();
     }
-
+    import { Weapon, Item } from './data/types.js';
     function loadBuildData(buildData) {
         try {
-            // Clear all current equipment
             for (const slot in equippedItems) {
                 equippedItems[slot] = null;
                 const slotElement = document.querySelector(`.slot[data-slot="${slot}"]`) || 
@@ -1762,62 +1682,77 @@ function gatherBuildData() {
                 }
             }
 
-            // Clear all runes
             for (const equipmentSlot in equippedRunes) {
                 for (const slotNumber in equippedRunes[equipmentSlot]) {
                     equippedRunes[equipmentSlot][slotNumber] = null;
-                    const runeSlot = document.querySelector(`.rune-slot[data-original-number="${slotNumber}"]`);
-                    if (runeSlot) {
-                        runeSlot.className = 'rune-slot';
-                        runeSlot.textContent = slotNumber;
-                        runeSlot.removeAttribute('data-rarity');
-                        runeSlot.removeAttribute('data-rune-key');
-                    }
-                }
-            }
-
-            // Load items
-            if (buildData.items) {
-                for (const [slot, itemData] of Object.entries(buildData.items)) {
-                    if (itemData) {
-                        const slotType = slot.includes('ring') ? 'ring' : slot;
-                        const itemKey = findItemKeyBySlotAndName(slotType, itemData.name);
-                        
-                        if (itemKey) {
-                            const item = itemsDatabase[slotType][itemKey];
-                            const slotElement = document.querySelector(`.slot[data-slot="${slot}"]`) || 
-                                                document.querySelector(`.slot[data-slot="ring"][data-ring-number="${slot.replace('ring', '')}"]`);
-                            
-                            if (slotElement) {
-                                slotElement.className = 'slot filled';
-                                slotElement.setAttribute('data-rarity', item.rarity || 'common');
-                                slotElement.innerHTML = `
-                                    <div class="slot-content">${item.name}</div>
-                                    <div class="remove-item">X</div>
-                                `;
-                                
-                                equippedItems[slot] = item;
-                                
-                                const removeBtn = slotElement.querySelector('.remove-item');
-                                removeBtn.addEventListener('click', (e) => {
-                                    e.stopPropagation();
-                                    emptySlot(slotElement, slot);
-                                });
-                            }
+                    const equipmentRow = document.querySelector(`.slot[data-slot="${equipmentSlot}"]`).closest('.equipment-row');
+                    if (equipmentRow) {
+                        const runeSlot = equipmentRow.querySelector(`.rune-slot[data-original-number="${slotNumber}"]`);
+                        if (runeSlot) {
+                            runeSlot.className = 'rune-slot';
+                            runeSlot.textContent = slotNumber;
+                            runeSlot.removeAttribute('data-rarity');
+                            runeSlot.removeAttribute('data-rune-key');
                         }
                     }
                 }
             }
 
-            // Load runes
-            if (buildData.runes) {
-                for (const [equipmentSlot, runeSlots] of Object.entries(buildData.runes)) {
+            if (buildData.items) {
+            for (const [slot, itemData] of Object.entries(buildData.items)) {
+                if (itemData) {
+                    let item = null;
+                    let itemKey = null;
+                    
+                    const slotType = slot.startsWith('ring') ? 'ring' : 
+                                     slot === 'weapon1' || slot === 'weapon2' ? 'weapon' : 
+                                     slot;
+                    
+                    if (itemsDatabase[slotType]) {
+                        for (const [key, dbItem] of Object.entries(itemsDatabase[slotType])) {
+                            if (dbItem.name === itemData.name) {
+                                item = dbItem;
+                                itemKey = key;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if (item) {
+                        equippedItems[slot] = item;
+                        
+                        const slotElement = document.querySelector(`.slot[data-slot="${slot}"]`) || 
+                                           document.querySelector(`.slot[data-slot="ring"][data-ring-number="${slot.replace('ring', '')}"]`);
+                        
+                        if (slotElement) {
+                            slotElement.className = 'slot filled';
+                            slotElement.setAttribute('data-rarity', item.rarity || 'common');
+                            slotElement.innerHTML = `
+                                <div class="slot-content">${item.name}</div>
+                                <div class="remove-item">X</div>
+                            `;
+                            
+                            const removeBtn = slotElement.querySelector('.remove-item');
+                            removeBtn.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                emptySlot(slotElement, slot);
+                            });
+                        }
+                    }
+                }
+            }
+        }
+             if (buildData.runes) {
+            for (const [equipmentSlot, runeSlots] of Object.entries(buildData.runes)) {
+                const equipmentRow = document.querySelector(`.slot[data-slot="${equipmentSlot}"]`)?.closest('.equipment-row');
+                
+                if (equipmentRow) {
                     for (const [slotNumber, runeData] of Object.entries(runeSlots)) {
                         if (runeData) {
                             const runeKey = findRuneKeyByName(runeData.name);
                             if (runeKey) {
                                 const rune = runesDatabase[runeKey];
-                                const runeSlot = document.querySelector(`.rune-slot[data-original-number="${slotNumber}"]`);
+                                const runeSlot = equipmentRow.querySelector(`.rune-slot[data-original-number="${slotNumber}"]`);
                                 
                                 if (runeSlot) {
                                     runeSlot.className = 'rune-slot filled';
@@ -1843,10 +1778,10 @@ function gatherBuildData() {
                     }
                 }
             }
+        }
 
-            // Load class levels
             if (buildData.classes) {
-            let totalImportedLevels = 0; // Track total levels from imported data
+            let totalImportedLevels = 0;
             
             const classInputs = document.querySelectorAll('.class-level-input');
             classInputs.forEach(input => {
@@ -1860,12 +1795,10 @@ function gatherBuildData() {
                 }
             });
 
-            // Update the total levels display
             const totalLevelsDisplay = document.getElementById('total-levels');
             totalLevelsDisplay.textContent = totalImportedLevels;
         }
 
-            // Load profession bonus
             if (buildData.professionBonus !== undefined) {
                 document.getElementById('level60-professions').checked = buildData.professionBonus;
             }
@@ -1875,16 +1808,6 @@ function gatherBuildData() {
             console.error('Error loading build:', error);
             alert('Error loading build: ' + error.message);
         }
-    }
-
-    function findItemKeyBySlotAndName(slotType, name) {
-        const slotItems = itemsDatabase[slotType];
-        for (const key in slotItems) {
-            if (slotItems[key].name === name) {
-                return key;
-            }
-        }
-        return null;
     }
 
     function findRuneKeyByName(name) {

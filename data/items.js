@@ -166,8 +166,10 @@ const itemsDatabaseHelmet = {
   }),
   LightYetiBeads: new Helmet({
     name: 'Light Yeti Beads',
-    stats: {strength: 22, stamina: 11, coldResistance: 0.1, buffDuration: 0.03},
-    armor: 362,
+    stats: {strength: 16, stamina: 6, coldResistance: 0.12, buffDuration: 0.13,
+      tundraVisibility: 0.1
+    },
+    armor: 278,
     type: 'light',
     level: 45,
     rarity: 'epic'
@@ -235,7 +237,7 @@ const itemsDatabaseHelmet = {
     name: 'Dire Wolf Hood',
     stats: {castSpeed: 0.05, coldResistance: 0.07, intellect: 9,
       tundraVisibility: 0.07},
-    armor: 237,
+    armor: 85,
     type: 'light',
     level: 42,
     rarity: 'epic'
@@ -1780,6 +1782,14 @@ const itemsDatabaseWeapons = {
     level: 45,
     rarity: 'legendary',
     description: 'Chance on hit to make your target bleed.'
+  }),
+  YetiGauntlets: new Weapon({
+    name: 'Yeti Gauntlets',
+    damage: {physical: 15},
+    stats: {strength: 28, spirit: 5, stamina: 10, physicalPierce: 0.06},
+    type: 'gauntlet',
+    level: 48,
+    rarity: 'legendary',
   }),
 
 
