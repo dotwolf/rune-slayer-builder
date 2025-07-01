@@ -42,7 +42,7 @@ const runesDatabase = {
   }),
   SpiritRune: new Rune({
     name: 'Spirit Rune',
-    stats: {spirit: 3},
+    stats: {spirit: 6},
     rarity: 'rare'
   }),
   StaminaRune: new Rune({
