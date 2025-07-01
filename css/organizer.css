@@ -607,7 +607,7 @@ h2 {
 
 /* Section dividers */
 .stat-section {
-    margin: 0 0 10px 0;
+    margin: 0 0 0 0;
     padding-bottom: 5px;
     border-bottom: 1px solid rgba(255, 204, 0, 0.2);
     color: #ffcc00;
