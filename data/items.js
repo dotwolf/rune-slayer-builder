@@ -1035,6 +1035,7 @@ const itemsDatabaseBoots = {
     armor: 20,
     type: 'light',
     level: 7,
+    description: 'Reduces fall damage by 35%.'
   }),
   FlaxPants: new Boots({
     name: 'Flax Pants',
@@ -1101,7 +1102,7 @@ const itemsDatabaseBoots = {
   CocoleafPants: new Boots({
     name: 'Cocoleaf Pants',
     stats: {intellect: 11, spirit: 1},
-    armor: 185,
+    armor: 93,
     type: 'light',
     level: 42,
     rarity: 'uncommon'
@@ -1109,7 +1110,7 @@ const itemsDatabaseBoots = {
   CocoleafGiPants: new Boots({
     name: 'Cocoleaf Gi Pants',
     stats: {strength: 11, stamina: 1},
-    armor: 372,
+    armor: 206,
     type: 'light',
     level: 42,
     rarity: 'uncommon'
