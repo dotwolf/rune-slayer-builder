@@ -135,7 +135,7 @@ class Shield extends Armor {
     posture,
     ...item
   }) {
-    super({ ...item, runeslots: 0});
+    super({ ...item, runeslots: 3});
     this.posture = posture;
   }
 }
@@ -144,7 +144,7 @@ class Sash extends Item {
   constructor({
     ...item
   }) {
-    super({ ...item, runeslots: 0});
+    super({ ...item, runeslots: 3});
   }
 }
 

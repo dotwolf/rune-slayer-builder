@@ -1590,6 +1590,7 @@ function gatherBuildData() {
             if (item) {
                 itemsData[slot] = {
                     name: item.name,
+                    runeslots: item.runeslots || 0
                 };
             } else {
                 itemsData[slot] = null;
@@ -1597,18 +1598,26 @@ function gatherBuildData() {
         }
 
         const runesData = {};
-        for (const [equipmentSlot, runeSlots] of Object.entries(equippedRunes)) {
-            runesData[equipmentSlot] = {};
-            for (const [slotNumber, rune] of Object.entries(runeSlots)) {
-                if (rune) {
-                    runesData[equipmentSlot][slotNumber] = {
-                        name: rune.name,
-                    };
-                } else {
-                    runesData[equipmentSlot][slotNumber] = null;
-                }
+        const validSlotNumbers = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+    
+    for (const [equipmentSlot, runeSlots] of Object.entries(equippedRunes)) {
+        runesData[equipmentSlot] = {};
+        const maxSlots = itemsData[equipmentSlot]?.runeslots || 0;
+        
+        // Only process valid slot numbers up to the max slots
+        for (let i = 0; i < Math.min(maxSlots, validSlotNumbers.length); i++) {
+            const slotNumber = validSlotNumbers[i];
+            const rune = runeSlots[slotNumber];
+            
+            if (rune) {
+                runesData[equipmentSlot][slotNumber] = {
+                    name: rune.name
+                };
+            } else {
+                runesData[equipmentSlot][slotNumber] = null;
             }
         }
+    }
 
         const classLevels = {};
         const classInputs = document.querySelectorAll('.class-level-input');
@@ -1632,19 +1641,51 @@ function gatherBuildData() {
     }
 
     function exportBuild() {
-        const buildData = gatherBuildData();
-        const jsonString = JSON.stringify(buildData, null, 2);
+    const buildData = gatherBuildData();
+    
+    // Deep clean the rune data to ensure no malformed keys
+    const cleanedRunes = {};
+    const validSlotNumbers = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+    
+    for (const [equipmentSlot, runeSlots] of Object.entries(buildData.runes)) {
+        cleanedRunes[equipmentSlot] = {};
+        const maxSlots = buildData.items[equipmentSlot]?.runeslots || 0;
         
-        const blob = new Blob([jsonString], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `rune-slayer-build-${new Date().toISOString().slice(0, 10)}.json`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+        // Only include valid slot numbers
+        for (let i = 0; i < Math.min(maxSlots, validSlotNumbers.length); i++) {
+            const slotNumber = validSlotNumbers[i];
+            if (runeSlots[slotNumber]) {
+                cleanedRunes[equipmentSlot][slotNumber] = runeSlots[slotNumber];
+            }
+        }
     }
+    
+    // Create final cleaned build data
+    const cleanedBuildData = {
+        ...buildData,
+        runes: cleanedRunes
+    };
+    
+    // Stringify with proper formatting
+    const jsonString = JSON.stringify(cleanedBuildData, (key, value) => {
+        // Remove any properties with HTML-looking values
+        if (typeof key === 'string' && key.includes('\n')) {
+            return undefined;
+        }
+        return value;
+    }, 2);
+    
+    // Create download
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `rune-slayer-build-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
 
     function importBuild() {
         const input = document.createElement('input');
