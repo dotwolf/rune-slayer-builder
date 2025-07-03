@@ -125,7 +125,7 @@
             <button id="import-build-btn" class="import-button">Import Build as JSON</button>
         </div>
         <p style="color: #888888;">This is fan-made and may have mistakes.</p>
-        <p style="color: #888888;">Last Updated: 30 Jun </p>
+        <p style="color: #888888;">Last Updated: Jul 3 </p>
         </div>
     </div>
     
@@ -924,13 +924,6 @@ function initializeRuneFilters(menu, slotType, contentArea) {
         }
     });
     
-    if (statSet.has('armor')) {
-        const option = document.createElement('option');
-        option.value = 'armor';
-        option.textContent = 'Armor';
-        statFilter.appendChild(option);
-    }
-    
     if (statSet.has('posture')) {
         const option = document.createElement('option');
         option.value = 'posture';
@@ -1143,6 +1136,7 @@ function initializeRuneFilters(menu, slotType, contentArea) {
             equippedItems[slotKey] = item;
             
             tooltipSystem.hideTooltip();
+            saveCurrentFilterState();
             document.body.removeChild(currentOpenMenu.menu);
             currentOpenMenu = null;
             updateTotalStatsDisplay();
@@ -1866,12 +1860,24 @@ function gatherBuildData() {
 
     document.getElementById('level60-professions').addEventListener('change', updateTotalStatsDisplay);
 
+    document.addEventListener('click', (e) => {
+        if (currentOpenMenu && 
+            !e.target.closest('.item-menu') && 
+            !e.target.closest('.slot') && 
+            !e.target.closest('.rune-slot')) {
+            
+            saveCurrentFilterState();
+            document.body.removeChild(currentOpenMenu.menu);
+            currentOpenMenu = null;
+        }
+    });
+
     document.addEventListener('DOMContentLoaded', () => {
         initializeClassSystem();
         updateTotalStatsDisplay();
         document.querySelectorAll('.rune-slot.filled').forEach(slot => {
-        addRuneSlotHoverEvents(slot);
-    });
+            addRuneSlotHoverEvents(slot);
+        });
     });
 </script>
 </body>

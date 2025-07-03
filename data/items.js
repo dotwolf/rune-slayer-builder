@@ -821,7 +821,7 @@ const itemsDatabaseChest = {
     rarity: 'epic'
   }),
   MammothSagesGarbs: new Chest({
-    name: 'MammothSage\'s Garbs',
+    name: 'Mammoth Sage\'s Garbs',
     stats: {intellect: 25, spirit: 20, holyResistance: 0.05,
       castSpeed: 0.03, coldResistance: 0.25
     },
@@ -2666,7 +2666,7 @@ const itemsDatabaseWeapons = {
     type: 'staff',
     level: 40,
     rarity: 'legendary',
-    description: 'Perfect strikes create healing circles.'
+    description: 'A beacon of light. Landing a Magical ability has a 25% chance to proc a massive healing circle, healing you and your allies. Holy abilities will instead have a 33% chance. This passive\'s healing scales off of your priest level. Furthermore, it has a 30 second cooldown.'
   })
 };
 
