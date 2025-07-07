@@ -1069,7 +1069,7 @@ const itemsDatabaseBoots = {
   }),
   LilyleafPants: new Boots({
     name: 'Lilyleaf Pants',
-    stats: {intellect: 8},
+    stats: {intellect: 6},
     armor: 80,
     type: 'light',
     level: 27,
@@ -1077,7 +1077,7 @@ const itemsDatabaseBoots = {
   }),
   LilyleafGiPants: new Boots({
     name: 'Lilyleaf Gi Pants',
-    stats: {strength: 8},
+    stats: {strength: 6},
     armor: 160,
     type: 'light',
     level: 27,
@@ -2299,7 +2299,7 @@ const itemsDatabaseWeapons = {
     type: 'katana',
     level: 24,
     rarity: 'rare',
-    description: '10% chance to poison target.'
+    description: '15% chance to poison target.'
   }),
   Shizukari: new Weapon({
     name: 'Shizukari',
@@ -2497,7 +2497,7 @@ const itemsDatabaseWeapons = {
     type: 'bow',
     level: 40,
     rarity: 'legendary',
-    description: 'Critical hits summon a bee companion (40s duration, 5s cooldown).'
+    description: 'Landing a critical hit with your M1/Weapon Art will cause Hiveseeker to summon a bee that fights for you. Disappears after 40 seconds, 5 second cooldown.'
   }),
   Boreastria: new Weapon({
     name: 'Boreastria',
@@ -2983,6 +2983,35 @@ const itemsDatabaseBack = {
     armor: 110,
     rarity: 'epic'
   }),
+
+  FifthFlame: new Back({
+    name: 'Fifth Flame',
+    stats: {intellect: 30, spirit: 15, coldResistance: 0.07},
+    armor: 100,
+    rarity: 'epic',
+    description: 'Obtainable during 2025 July Event.'
+  }),
+  DivineCalling: new Back({
+    name: 'Divine Calling',
+    stats: {intellect: 30, spirit: 15, coldResistance: 0.07},
+    armor: 100,
+    rarity: 'epic',
+    description: 'Obtainable during 2025 July Event.'
+  }),
+  FrostPrinceCape: new Back({
+    name: 'Frost Prince Cape',
+    stats: {intellect: 30, spirit: 15, coldResistance: 0.07},
+    armor: 100,
+    rarity: 'epic',
+    description: 'Obtainable during 2025 July Event.'
+  }),
+  Oculus: new Back({
+    name: 'Oculus',
+    stats: {intellect: 30, spirit: 15, coldResistance: 0.07},
+    armor: 100,
+    rarity: 'epic',
+    description: 'Obtainable during 2025 July Event.'
+  }),
 };
 
 const itemsDatabaseRings = {
@@ -3251,7 +3280,7 @@ const itemsDatabaseRings = {
   }),
   DariusFavour: new Ring({
     name: 'Darius\' Favour',
-    stats: {physicalAttack: 0.015, fireAttack: 0.025},
+    stats: {physicalAttack: 0.03, fireAttack: 0.05},
     rarity: 'legendary',
   }),
 

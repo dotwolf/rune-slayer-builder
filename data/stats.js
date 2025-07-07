@@ -51,7 +51,7 @@ const statlist = [
   { name: "Cast Speed", stat: "castSpeed", percentual: true, category: 'Duration' },
   { name: "Cast Time", stat: "castTime", percentual: false, category: 'Duration' },
 
-  { name: "Mana", stat: "mana", percentual: true, category: 'Resource' },
+  { name: "Total Mana", stat: "mana", percentual: true, category: 'Resource' },
   { name: "Focus", stat: "focus", percentual: true, category: 'Resource' },
   { name: "Mana Efficiency", stat: "manaEfficiency", percentual: false, category: 'Resource' },
   { name: "Focus Efficiency", stat: "focusEfficiency", percentual: false, category: 'Resource' },

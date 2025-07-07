@@ -125,7 +125,7 @@
             <button id="import-build-btn" class="import-button">Import Build as JSON</button>
         </div>
         <p style="color: #888888;">This is fan-made and may have mistakes.</p>
-        <p style="color: #888888;">Last Updated: Jul 3 </p>
+        <p style="color: #888888;">Last Updated: Jul 7 </p>
         </div>
     </div>
     
@@ -1532,24 +1532,29 @@ const tooltipSystem = {
   }
 };
 
-slots.forEach(slot => {
-  slot.addEventListener('mouseenter', (e) => {
-    const slotType = slot.dataset.slot;
-    const slotKey = slotType === 'ring' ? 
-      `ring${Array.from(slot.parentNode.children).indexOf(slot) + 1}` : 
-      slotType;
-    
-    const item = equippedItems[slotKey];
-    if (item) {
-      const tooltipContent = createItemTooltipContent(item);
-      tooltipSystem.showTooltip(tooltipContent, slot);
-    }
-  });
-  
-  slot.addEventListener('mouseleave', () => {
-    tooltipSystem.hideTooltip();
-  });
-});
+    slots.forEach(slot => {
+      slot.addEventListener('mouseenter', (e) => {
+        const slotType = slot.dataset.slot;
+        let slotKey;
+        
+        if (slotType === 'ring') {
+          // For rings, use the ring-number attribute to get the correct key
+          slotKey = `ring${slot.dataset.ringNumber}`;
+        } else {
+          slotKey = slotType;
+        }
+        
+        const item = equippedItems[slotKey];
+        if (item) {
+          const tooltipContent = createItemTooltipContent(item);
+          tooltipSystem.showTooltip(tooltipContent, slot);
+        }
+      });
+      
+      slot.addEventListener('mouseleave', () => {
+        tooltipSystem.hideTooltip();
+      });
+    });
 
 document.addEventListener('mouseover', (e) => {
   const button = e.target.closest('.item-menu button');

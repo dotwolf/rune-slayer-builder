@@ -199,10 +199,22 @@ const runesDatabase = {
     type: 'chest',
     rarity: 'epic'
   }),
+  BarracudaRune: new Rune({
+    name: 'Barracuda Rune',
+    stats: {stamina: 1, physicalPierce: 0.02},
+    type: 'chest',
+    rarity: 'epic'
+  }),
 
 
 
 
+  MandrakeRune: new Rune({
+    name: 'Mandrake Rune',
+    stats: {spirit: 4, intellect: 5, stamina: 3},
+    type: 'boots',
+    rarity: 'epic'
+  }),
   PurityRune: new Rune({
     name: 'Purity Rune',
     stats: {spirit: 5, holyAttack: 0.05},
@@ -400,16 +412,43 @@ const runesDatabase = {
     type: 'weapon',
     rarity: 'epic'
   }),
+  SlimeKingRune: new Rune({
+    name: 'Slime King Rune',
+    stats: {intellect: 6, stamina: -15, castSpeed: 0.025, mana: 0.1},
+    type: 'weapon',
+    rarity: 'epic'
+  }),
 
 
 
   
+  DireSnowWolfRune: new Rune({
+    name: 'Dire Snow Wolf Rune',
+    stats: {physicalAttack: 0.03, strength: 7, agility: 6},
+    rarity: 'legendary',
+    type: 'helmet'
+  }),
+
+  CoconutCrabRune: new Rune({
+    name: 'Coconut Crab Rune',
+    stats: {armor: 90, strength: 2, stamina: 8, buffDuration: 0.02},
+    rarity: 'legendary',
+    type: 'chest'
+  }),
+
+  SnowWolfRune: new Rune({
+    name: 'Snow Wolf Rune',
+    stats: {intellect: 6, stamina: 4, speedBoost: 0.01},
+    rarity: 'legendary',
+    type: 'boots'
+  }),
+
   IskaelRune: new Rune({
     name: 'Iskael, Lord of Endless Frost',
     stats: {physicalAttack: 0.05, magicAttack: 0.05, cdReduction: 0.1},
     rarity: 'legendary',
     type: 'weapon'
-  })
+  }),
 
 };
 
