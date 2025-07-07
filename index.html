@@ -1643,6 +1643,8 @@ function showNotification(message, isError = false) {
     notification.textContent = message;
     document.body.appendChild(notification);
     
+    void notification.offsetWidth;
+    
     setTimeout(() => {
         notification.classList.add('fade-out');
         setTimeout(() => {
