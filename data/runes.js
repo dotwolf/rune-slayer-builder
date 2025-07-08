@@ -103,6 +103,12 @@ const runesDatabase = {
     type: 'helmet',
     rarity: 'epic'
   }),
+  DireSnowWolfRune: new Rune({
+    name: 'Dire Snow Wolf Rune',
+    stats: {physicalAttack: 0.03, strength: 7, agility: 6},
+    rarity: 'epic',
+    type: 'helmet'
+  }),
   
 
 
@@ -422,12 +428,6 @@ const runesDatabase = {
 
 
   
-  DireSnowWolfRune: new Rune({
-    name: 'Dire Snow Wolf Rune',
-    stats: {physicalAttack: 0.03, strength: 7, agility: 6},
-    rarity: 'legendary',
-    type: 'helmet'
-  }),
 
   CoconutCrabRune: new Rune({
     name: 'Coconut Crab Rune',
