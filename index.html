@@ -269,24 +269,17 @@
     });
 });
 
-    function updateRuneMenu(menu, slotType, contentArea) {
+function updateRuneMenu(menu, slotType, contentArea) {
     const searchTerm = menu.querySelector('#item-search').value.toLowerCase();
     const selectedStat = menu.querySelector('#stat-filter').value;
     const selectedType = menu.querySelector('#type-filter').value;
     const sortOption = menu.querySelector('#sort-filter').value;
     const equipmentSlot = currentOpenMenu?.equipmentSlot;
+    const currentSlotNumber = currentOpenMenu?.slotNumber;
     
     contentArea.innerHTML = '';
     
-    const equippedNonNullRunes = [];
-    if (equipmentSlot && equippedRunes[equipmentSlot]) {
-        for (const [slotNumber, rune] of Object.entries(equippedRunes[equipmentSlot])) {
-            if (rune && rune.type !== 'null') {
-                equippedNonNullRunes.push(rune.name.toLowerCase());
-            }
-        }
-    }
-    
+    console.debug(equippedRunes);
 
     const runes = Object.entries(runesDatabase)
         .map(([key, rune]) => ({ key, rune }))
@@ -299,7 +292,6 @@
             }
             
             const nType = normalizarSlot(rune.type);
-
             const slotMatch = nType === 'null' || nType === normalizarSlot(equipmentSlot);
             
             let typeMatch = true;
@@ -311,9 +303,24 @@
                 }
             }
 
-            const isDuplicateNonNull = nType !== 'null' && equippedNonNullRunes.includes(rune.name.toLowerCase());
+            // Check for duplicates across all equipment slots
+            let isDuplicate = false;
+            if (nType !== 'null') {
+                for (const [eqSlot, runeSlots] of Object.entries(equippedRunes)) {
+                    for (const [slotNum, equippedRune] of Object.entries(runeSlots)) {
+                        if (equippedRune && equippedRune.name.toLowerCase() === rune.name.toLowerCase()) {
+                            // Skip if this is the same rune in the same slot (we're replacing it)
+                            if (!(eqSlot === equipmentSlot && slotNum === currentSlotNumber)) {
+                                isDuplicate = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (isDuplicate) break;
+                }
+            }
             
-            return nameMatch && statMatch && slotMatch && typeMatch && !isDuplicateNonNull;;
+            return nameMatch && statMatch && slotMatch && typeMatch && !isDuplicate;
         })
             .sort((a, b) => {
                 const runeA = a.rune;
@@ -379,33 +386,47 @@
     button.addEventListener('mouseleave', () => {
         tooltipSystem.hideTooltip();
     });
-    
+   
     button.onclick = () => {
-        const slot = currentOpenMenu.slot;
-        slot.className = 'rune-slot filled';
-        slot.setAttribute('data-rarity', rune.rarity || 'common');
-        slot.setAttribute('data-rune-key', key);
-        slot.innerHTML = `
-            <div class="slot-content">${rune.name}</div>
-            <div class="remove-rune">X</div>
-        `;
-        
-        equippedRunes[currentOpenMenu.equipmentSlot][currentOpenMenu.slotNumber] = rune;
-        
-        tooltipSystem.hideTooltip();
-        document.body.removeChild(currentOpenMenu.menu);
-        currentOpenMenu = null;
-        updateTotalStatsDisplay();
-        
-        const removeBtn = slot.querySelector('.remove-rune');
-        removeBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            emptyRuneSlot(slot, currentOpenMenu.equipmentSlot, currentOpenMenu.slotNumber);
-        });
-        
-        addRuneSlotHoverEvents(slot);
-    };
+    const slot = currentOpenMenu.slot;
+    const equipmentSlot = currentOpenMenu.equipmentSlot;
+    // Get the original slot number from data attribute instead of currentOpenMenu
+    const slotNumber = slot.dataset.originalNumber; 
     
+    // Update the slot with new rune
+    slot.className = 'rune-slot filled';
+    slot.setAttribute('data-rarity', rune.rarity || 'common');
+    slot.setAttribute('data-rune-key', key);
+    
+    // Clear and rebuild the slot content safely
+    slot.innerHTML = '';
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'slot-content';
+    contentDiv.textContent = rune.name;
+    slot.appendChild(contentDiv);
+    
+    const removeDiv = document.createElement('div');
+    removeDiv.className = 'remove-rune';
+    removeDiv.textContent = 'X';
+    slot.appendChild(removeDiv);
+    
+    // Update equippedRunes with the new rune using the preserved slot number
+    equippedRunes[equipmentSlot][slotNumber] = rune;
+    
+    tooltipSystem.hideTooltip();
+    document.body.removeChild(currentOpenMenu.menu);
+    currentOpenMenu = null;
+    updateTotalStatsDisplay();
+    
+    const removeBtn = slot.querySelector('.remove-rune');
+    removeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        emptyRuneSlot(slot, equipmentSlot, slotNumber);
+    });
+    
+    addRuneSlotHoverEvents(slot);
+};
+
     contentArea.appendChild(button);
 });
     
@@ -443,35 +464,36 @@
         });
     }
 
+    
     function emptyRuneSlot(slot, equipmentSlot, slotNumber) {
-        if (!equipmentSlot || !slotNumber) {
-            const equipmentRow = slot.closest('.equipment-row');
-            if (equipmentRow) {
-                equipmentSlot = equipmentSlot || equipmentRow.querySelector('.slot').dataset.slot;
-                slotNumber = slotNumber || slot.dataset.originalNumber || slot.textContent.trim();
-            }
-        }
-
-        const originalSlotNumber = slot.dataset.originalNumber || slotNumber;
-        
-        slot.className = 'rune-slot';
-        slot.removeAttribute('data-rarity');
-        slot.removeAttribute('data-rune-key');
-        slot.textContent = originalSlotNumber;
-        
-        if (equipmentSlot && slotNumber && equippedRunes[equipmentSlot]) {
-            equippedRunes[equipmentSlot][slotNumber] = null;
-        }
-        
-        updateTotalStatsDisplay();
-        tooltipSystem.hideTooltip();
-
-         if (currentOpenMenu) {
-            saveCurrentFilterState();
-            document.body.removeChild(currentOpenMenu.menu);
-            currentOpenMenu = null;
+    if (!equipmentSlot || !slotNumber) {
+        const equipmentRow = slot.closest('.equipment-row');
+        if (equipmentRow) {
+            equipmentSlot = equipmentSlot || equipmentRow.querySelector('.slot').dataset.slot;
+            slotNumber = slotNumber || slot.dataset.originalNumber;
         }
     }
+
+    // Clear the slot
+    slot.className = 'rune-slot';
+    slot.removeAttribute('data-rarity');
+    slot.removeAttribute('data-rune-key');
+    slot.textContent = slot.dataset.originalNumber || slotNumber;
+    
+    // Clear from equippedRunes
+    if (equipmentSlot && slotNumber && equippedRunes[equipmentSlot]) {
+        equippedRunes[equipmentSlot][slotNumber] = null;
+    }
+    
+    updateTotalStatsDisplay();
+    tooltipSystem.hideTooltip();
+
+    if (currentOpenMenu) {
+        saveCurrentFilterState();
+        document.body.removeChild(currentOpenMenu.menu);
+        currentOpenMenu = null;
+    }
+}
 
     function initializeClassSystem() {
         const classList = document.getElementById('class-list');
@@ -875,7 +897,6 @@ function initializeRuneFilters(menu, slotType, contentArea) {
         statFilter.value = '';
         typeFilter.value = '';
         sortFilter.value = 'name-asc';
-        updateMenu();
         filterState.search = '';
         filterState.stat = '';
         filterState.type = '';
@@ -1671,24 +1692,26 @@ function decompressBuildData(compressedString) {
 }
 
 function gatherBuildData() {
-        const itemsData = {};
-        for (const [slot, item] of Object.entries(equippedItems)) {
-            if (item) {
-                itemsData[slot] = {
-                    name: item.name,
-                    runeslots: item.runeslots || 0
-                };
-            } else {
-                itemsData[slot] = null;
-            }
+    const itemsData = {};
+    for (const [slot, item] of Object.entries(equippedItems)) {
+        if (item) {
+            itemsData[slot] = {
+                name: item.name,
+                runeslots: item.runeslots || 0
+            };
+        } else {
+            itemsData[slot] = null;
         }
+    }
 
-        const runesData = {};
-        const validSlotNumbers = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+    const runesData = {};
+    const validSlotNumbers = ['I', 'II', 'III', 'IV', 'V', 'VI'];
     
     for (const [equipmentSlot, runeSlots] of Object.entries(equippedRunes)) {
         runesData[equipmentSlot] = {};
-        const maxSlots = itemsData[equipmentSlot]?.runeslots || 0;
+        
+        // Get max slots from equipped item or default to 0
+        const maxSlots = equippedItems[equipmentSlot]?.runeslots || 0;
         
         // Only process valid slot numbers up to the max slots
         for (let i = 0; i < Math.min(maxSlots, validSlotNumbers.length); i++) {
@@ -1705,26 +1728,26 @@ function gatherBuildData() {
         }
     }
 
-        const classLevels = {};
-        const classInputs = document.querySelectorAll('.class-level-input');
-        classInputs.forEach(input => {
-            const className = input.dataset.className;
-            const level = parseInt(input.value) || 0;
-            classLevels[className] = level;
-        });
+    const classLevels = {};
+    const classInputs = document.querySelectorAll('.class-level-input');
+    classInputs.forEach(input => {
+        const className = input.dataset.className;
+        const level = parseInt(input.value) || 0;
+        classLevels[className] = level;
+    });
 
-        const professionBonus = document.getElementById('level60-professions').checked;
+    const professionBonus = document.getElementById('level60-professions').checked;
 
-        const buildData = {
-            items: itemsData,
-            runes: runesData,
-            classes: classLevels,
-            professionBonus: professionBonus,
-            timestamp: new Date().toISOString()
-        };
+    const buildData = {
+        items: itemsData,
+        runes: runesData,
+        classes: classLevels,
+        professionBonus: professionBonus,
+        timestamp: new Date().toISOString()
+    };
 
-        return buildData;
-    }
+    return buildData;
+}
 
     function exportBuild() {
     const buildData = gatherBuildData();
@@ -1799,13 +1822,20 @@ function gatherBuildData() {
     
     function loadBuildData(buildData) {
         try {
-            for (const slot in equippedItems) {
-                equippedItems[slot] = null;
-                const slotElement = document.querySelector(`.slot[data-slot="${slot}"]`) || 
-                                    document.querySelector(`.slot[data-slot="ring"][data-ring-number="${slot.replace('ring', '')}"]`);
-                if (slotElement) {
-                    slotElement.className = slot.includes('ring') ? 'slot' : 'slot';
-                    slotElement.innerHTML = slotElement.dataset.slot.charAt(0).toUpperCase() + slotElement.dataset.slot.slice(1);
+            // Clear existing runes first
+            for (const equipmentSlot in equippedRunes) {
+                for (const slotNumber in equippedRunes[equipmentSlot]) {
+                    equippedRunes[equipmentSlot][slotNumber] = null;
+                    const equipmentRow = document.querySelector(`.slot[data-slot="${equipmentSlot}"]`)?.closest('.equipment-row');
+                    if (equipmentRow) {
+                        const runeSlot = equipmentRow.querySelector(`.rune-slot[data-original-number="${slotNumber}"]`);
+                        if (runeSlot) {
+                            runeSlot.className = 'rune-slot';
+                            runeSlot.textContent = slotNumber;
+                            runeSlot.removeAttribute('data-rarity');
+                            runeSlot.removeAttribute('data-rune-key');
+                        }
+                    }
                 }
             }
 
@@ -1869,43 +1899,53 @@ function gatherBuildData() {
                 }
             }
         }
-             if (buildData.runes) {
-            for (const [equipmentSlot, runeSlots] of Object.entries(buildData.runes)) {
-                const equipmentRow = document.querySelector(`.slot[data-slot="${equipmentSlot}"]`)?.closest('.equipment-row');
-                
-                if (equipmentRow) {
-                    for (const [slotNumber, runeData] of Object.entries(runeSlots)) {
-                        if (runeData) {
-                            const runeKey = findRuneKeyByName(runeData.name);
-                            if (runeKey) {
-                                const rune = runesDatabase[runeKey];
-                                const runeSlot = equipmentRow.querySelector(`.rune-slot[data-original-number="${slotNumber}"]`);
-                                
-                                if (runeSlot) {
-                                    runeSlot.className = 'rune-slot filled';
-                                    runeSlot.setAttribute('data-rarity', rune.rarity || 'common');
-                                    runeSlot.setAttribute('data-rune-key', runeKey);
-                                    runeSlot.innerHTML = `
-                                        <div class="slot-content">${rune.name}</div>
-                                        <div class="remove-rune">X</div>
-                                    `;
+             
+            if (buildData.runes) {
+                for (const [equipmentSlot, runeSlots] of Object.entries(buildData.runes)) {
+                    const equipmentRow = document.querySelector(`.slot[data-slot="${equipmentSlot}"]`)?.closest('.equipment-row');
+                    
+                    if (equipmentRow) {
+                        for (const [slotNumber, runeData] of Object.entries(runeSlots)) {
+                            if (runeData && runeData.name) {  // Ensure runeData has a name property
+                                const runeKey = findRuneKeyByName(runeData.name);
+                                if (runeKey) {
+                                    const rune = runesDatabase[runeKey];
+                                    const runeSlot = equipmentRow.querySelector(`.rune-slot[data-original-number="${slotNumber}"]`);
                                     
-                                    equippedRunes[equipmentSlot][slotNumber] = rune;
-                                    
-                                    const removeBtn = runeSlot.querySelector('.remove-rune');
-                                    removeBtn.addEventListener('click', (e) => {
-                                        e.stopPropagation();
-                                        emptyRuneSlot(runeSlot, equipmentSlot, slotNumber);
-                                    });
-                                    
-                                    addRuneSlotHoverEvents(runeSlot);
+                                    if (runeSlot) {
+                                        runeSlot.className = 'rune-slot filled';
+                                        runeSlot.setAttribute('data-rarity', rune.rarity || 'common');
+                                        runeSlot.setAttribute('data-rune-key', runeKey);
+                                        
+                                        // Clear and rebuild the slot content safely
+                                        runeSlot.innerHTML = '';
+                                        
+                                        const contentDiv = document.createElement('div');
+                                        contentDiv.className = 'slot-content';
+                                        contentDiv.textContent = rune.name;
+                                        runeSlot.appendChild(contentDiv);
+                                        
+                                        const removeDiv = document.createElement('div');
+                                        removeDiv.className = 'remove-rune';
+                                        removeDiv.textContent = 'X';
+                                        runeSlot.appendChild(removeDiv);
+                                        
+                                        equippedRunes[equipmentSlot][slotNumber] = rune;
+                                        
+                                        const removeBtn = runeSlot.querySelector('.remove-rune');
+                                        removeBtn.addEventListener('click', (e) => {
+                                            e.stopPropagation();
+                                            emptyRuneSlot(runeSlot, equipmentSlot, slotNumber);
+                                        });
+                                        
+                                        addRuneSlotHoverEvents(runeSlot);
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-        }
 
             if (buildData.classes) {
             let totalImportedLevels = 0;

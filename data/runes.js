@@ -289,7 +289,7 @@ const runesDatabase = {
     rarity: 'epic'
   }),
   BeaverRune: new Rune({
-    name: 'Snowman Rune',
+    name: 'Beaver Rune',
     stats: {spirit: 3, agility: 6},
     type: 'boots',
     rarity: 'epic'
