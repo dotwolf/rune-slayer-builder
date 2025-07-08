@@ -1748,54 +1748,94 @@ function gatherBuildData() {
 
     return buildData;
 }
-
-    function exportBuild() {
-    const buildData = gatherBuildData();
-    
-    // Deep clean the rune data to ensure no malformed keys
-    const cleanedRunes = {};
-    const validSlotNumbers = ['I', 'II', 'III', 'IV', 'V', 'VI'];
-    
-    for (const [equipmentSlot, runeSlots] of Object.entries(buildData.runes)) {
-        cleanedRunes[equipmentSlot] = {};
-        const maxSlots = buildData.items[equipmentSlot]?.runeslots || 0;
-        
-        // Only include valid slot numbers
-        for (let i = 0; i < Math.min(maxSlots, validSlotNumbers.length); i++) {
-            const slotNumber = validSlotNumbers[i];
-            if (runeSlots[slotNumber]) {
-                cleanedRunes[equipmentSlot][slotNumber] = runeSlots[slotNumber];
+    async function exportBuild() {
+        try {
+            const buildData = gatherBuildData();
+            
+            // Deep clean the rune data (your existing cleaning code)
+            const cleanedRunes = {};
+            const validSlotNumbers = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+            
+            for (const [equipmentSlot, runeSlots] of Object.entries(buildData.runes)) {
+                cleanedRunes[equipmentSlot] = {};
+                const maxSlots = buildData.items[equipmentSlot]?.runeslots || 0;
+                
+                for (let i = 0; i < Math.min(maxSlots, validSlotNumbers.length); i++) {
+                    const slotNumber = validSlotNumbers[i];
+                    if (runeSlots[slotNumber]) {
+                        cleanedRunes[equipmentSlot][slotNumber] = runeSlots[slotNumber];
+                    }
+                }
             }
+            
+            const cleanedBuildData = {
+                ...buildData,
+                runes: cleanedRunes
+            };
+            
+            const jsonString = JSON.stringify(cleanedBuildData, (key, value) => {
+                if (typeof key === 'string' && key.includes('\n')) {
+                    return undefined;
+                }
+                return value;
+            }, 2);
+            
+            // Default filename (same as your current one)
+            const date = new Date();
+            const dateString = date.toISOString().slice(0, 10);
+            const timeString = date.toTimeString().slice(0, 8).replace(/:/g, '-');
+            const defaultFilename = `rune-slayer-build-${dateString}_${timeString}.json`;
+            
+            // Try using the File System Access API
+            if ('showSaveFilePicker' in window) {
+                try {
+                    const handle = await window.showSaveFilePicker({
+                        suggestedName: defaultFilename,
+                        types: [{
+                            description: 'JSON Files',
+                            accept: {
+                                'application/json': ['.json'],
+                            },
+                        }],
+                    });
+                    
+                    const writable = await handle.createWritable();
+                    await writable.write(jsonString);
+                    await writable.close();
+                    
+                    showNotification('Build exported successfully!');
+                    return;
+                } catch (err) {
+                    // User canceled the save dialog
+                    if (err.name !== 'AbortError') {
+                        console.error('Error using File System Access API:', err);
+                        // Fall through to legacy method
+                    } else {
+                        return; // User cancelled, do nothing
+                    }
+                }
+            }
+            
+            // Fallback for browsers that don't support File System Access API
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = URL.createObjectURL(blob);
+            a.download = defaultFilename;
+            document.body.appendChild(a);
+            a.click();
+            
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(a.href);
+            }, 100);
+            
+            showNotification('Build exported successfully!');
+        } catch (error) {
+            console.error('Error exporting build:', error);
+            showNotification('Error exporting build!', 'error');
         }
     }
-    
-    // Create final cleaned build data
-    const cleanedBuildData = {
-        ...buildData,
-        runes: cleanedRunes
-    };
-    
-    // Stringify with proper formatting
-    const jsonString = JSON.stringify(cleanedBuildData, (key, value) => {
-        // Remove any properties with HTML-looking values
-        if (typeof key === 'string' && key.includes('\n')) {
-            return undefined;
-        }
-        return value;
-    }, 2);
-    
-    // Create download
-    const blob = new Blob([jsonString], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `rune-slayer-build-${new Date().toISOString().slice(0, 10)}.json`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
-
     function importBuild() {
         const input = document.createElement('input');
         input.type = 'file';
