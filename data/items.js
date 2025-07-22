@@ -1881,8 +1881,7 @@ const itemsDatabaseWeapons = {
     stats: {strength: 8, stamina: 3},
     type: 'sword',
     level: 30,
-    rarity: 'rare',
-    description: 'The more hungry you are the bigger the physical damage buff.'
+    rarity: 'rare'
   }),
   BeastmanSword: new Weapon({
     name: 'Beastman Sword',
@@ -3462,29 +3461,17 @@ const racesDatabase = {
   HalfGolem,
   SiegeGolem: new Race({
     name: 'Half Golem: Siege Body',
-    stats: {...HalfGolem.stats,
-        speedBoost: HalfGolem.stats.speedBoost-0.1,
-        damageReduction: HalfGolem.stats.damageReduction+0.1,
-        maxWeight: HalfGolem.stats.maxWeight+25,
-        robustness: HalfGolem.stats.robustness+0.25},
+    stats: {speedBoost: -0.1, damageReduction: 0.1, maxWeight: 25, robustness: 0.25},
     rarity: 'epic'
   }),
   AssaultGolem: new Race({
     name: 'Half Golem: Assault Body',
-    stats: {...HalfGolem.stats,
-        speedBoost: HalfGolem.stats.speedBoost+0.06,
-        damageReduction: HalfGolem.stats.damageReduction-0.1,
-        attackPower: 0.12,
-        robustness: HalfGolem.stats.robustness+0.25},
+    stats: {speedBoost: 0.06, damageReduction: -0.1, attackPower: 0.12, robustness: 0.25},
     rarity: 'epic'
   }),
   CrystalGolem: new Race({
     name: 'Half Golem: Crystal Body',
-    stats: {...HalfGolem.stats,
-        speedBoost: HalfGolem.stats.speedBoost+0.06,
-        damageReduction: HalfGolem.stats.damageReduction-0.1,
-        magicPower: 0.12,
-        robustness: HalfGolem.stats.robustness+0.25},
+    stats: {speedBoost: 0.06, damageReduction: -0.1, magicPower: 0.12, robustness: 0.25},
     rarity: 'epic'
   }),
 
