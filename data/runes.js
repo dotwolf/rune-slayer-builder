@@ -120,7 +120,7 @@ const runesDatabase = {
     rarity: 'epic'
   }),
   LycantharRune: new Rune({
-    name: 'King Mandrake Rune',
+    name: 'Lycanthar Rune',
     stats: {strength: 8, intellect: -5, stamina: -3, magicResistance: 0.05},
     type: 'chest',
     rarity: 'epic'

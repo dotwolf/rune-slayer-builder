@@ -3461,7 +3461,7 @@ const racesDatabase = {
   HalfGolem,
   SiegeGolem: new Race({
     name: 'Half Golem: Siege Body',
-    stats: {speedBoost: -0.1, damageReduction: 0.1, maxWeight: 25, robustness: 0.25},
+    stats: {speedBoost: -0.1, damageReduction: 0.1, magicResistance: 0.05, maxWeight: 25, robustness: 0.25},
     rarity: 'epic'
   }),
   AssaultGolem: new Race({
