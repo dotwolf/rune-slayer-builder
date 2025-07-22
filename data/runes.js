@@ -384,7 +384,7 @@ const runesDatabase = {
   }),
   SpiderQueenRune: new Rune({
     name: 'Spider Queen Rune',
-    stats: {intellect: 5, spirit: 5, castTime: 20},
+    stats: {intellect: 5, spirit: 5, castSpeed: 0.15},
     type: 'weapon',
     rarity: 'epic'
   }),
