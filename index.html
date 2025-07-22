@@ -614,9 +614,10 @@ function updateRuneMenu(menu, slotType, contentArea) {
 
         const professionBonus = document.getElementById('level60-professions').checked;
         if (professionBonus) {
-            ['strength', 'stamina', 'agility', 'intellect', 'spirit'].forEach(stat => {
+            ['strength', 'stamina', 'agility', 'intellect'].forEach(stat => {
                 totalStats.flat[stat] = (totalStats.flat[stat] || 0) + 60;
             });
+            totalStats.flat['spirit'] = (totalStats.flat['spirit'] || 0) + 30;
             totalStats.flat['luck'] = (totalStats.flat['luck'] || 0) + 7;
             totalStats.flat['maxWeight'] = (totalStats.flat['maxWeight'] || 0) + 150;
         }
