@@ -121,7 +121,7 @@ const runesDatabase = {
   }),
   LycantharRune: new Rune({
     name: 'Lycanthar Rune',
-    stats: {strength: 8, intellect: -5, stamina: -3, magicResistance: 0.05},
+    stats: {strength: 8, intellect: -5, stamina: 3, magicResistance: 0.05},
     type: 'chest',
     rarity: 'epic'
   }),
@@ -336,7 +336,7 @@ const runesDatabase = {
   }),
   SpiderRune: new Rune({
     name: 'Spider Rune',
-    stats: {agility: 5, physicalAttack: 0.02},
+    stats: {stamina: 9, agility: 6, physicalAttack: 0.03},
     type: 'weapon',
     rarity: 'epic'
   }),
