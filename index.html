@@ -303,13 +303,19 @@ function updateRuneMenu(menu, slotType, contentArea) {
                 }
             }
 
-            // Check for duplicates across all equipment slots
+            // Check for duplicates across all equipment slots (TODO: Offhand is for future update if were changing dual wield to offhand)
             let isDuplicate = false;
             if (nType !== 'null') {
                 for (const [eqSlot, runeSlots] of Object.entries(equippedRunes)) {
+                    const isCurrentSlotWeapon = equipmentSlot === 'weapon1' || equipmentSlot === 'weapon2' || equipmentSlot === 'offhand';
+                    const isOtherSlotWeapon = eqSlot === 'weapon1' || eqSlot === 'weapon2' || eqSlot === 'offhand';
+
+                    if (isCurrentSlotWeapon && isOtherSlotWeapon) {
+                        continue; // Skip duplicate check between weapons
+                    }
+
                     for (const [slotNum, equippedRune] of Object.entries(runeSlots)) {
                         if (equippedRune && equippedRune.name.toLowerCase() === rune.name.toLowerCase()) {
-                            // Skip if this is the same rune in the same slot (we're replacing it)
                             if (!(eqSlot === equipmentSlot && slotNum === currentSlotNumber)) {
                                 isDuplicate = true;
                                 break;
