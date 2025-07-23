@@ -69,7 +69,7 @@
                     <div class="slot" data-slot="back">Back</div>
                 </div>
                 <div class="equipment-row">
-                    <div class="slot" data-slot="weapon1">Weapon 1</div>
+                    <div class="slot" data-slot="weapon1">Weapon</div>
                     <div class="rune-slots">
                         <div class="rune-slot" data-original-number="I">I</div>
                         <div class="rune-slot" data-original-number="II">II</div>
@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 <div class="equipment-row">
-                    <div class="slot" data-slot="weapon2">Weapon 2</div>
+                    <div class="slot" data-slot="weapon2">Secondary</div>
                     <div class="rune-slots">
                         <div class="rune-slot" data-original-number="I">I</div>
                         <div class="rune-slot" data-original-number="II">II</div>
@@ -653,6 +653,8 @@ function updateRuneMenu(menu, slotType, contentArea) {
         }
 
         for (const [slot, item] of Object.entries(equippedItems)) {
+            // weapon2 = secondary this makes it so that stats from secondary are skipped
+            if (slot === 'weapon2') continue;
             if (item) {
             if (item.stats) {
                 for (const [stat, value] of Object.entries(item.stats)) {
@@ -683,7 +685,9 @@ function updateRuneMenu(menu, slotType, contentArea) {
             }
         }
 
-            for (const [equipmentSlot, runeSlots] of Object.entries(equippedRunes)) {
+        for (const [equipmentSlot, runeSlots] of Object.entries(equippedRunes)) {
+            // Skip runes from secondary weapon
+            if (equipmentSlot === 'weapon2') continue;
             for (const [slotNumber, rune] of Object.entries(runeSlots)) {
                 if (rune) {
                     if (rune.stats) {
