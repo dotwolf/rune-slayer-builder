@@ -339,7 +339,7 @@ const itemsDatabaseHelmet = {
     rarity: 'epic'
   }),
   CyclopsMediumHood: new Helmet({
-    name: 'Cyclop sMedium Hood',
+    name: 'Cyclops Medium Hood',
     stats: {agility: 7, stamina: 3, critChance: 0.02,
       coldResistance: 0.08, tundraVisibility: 0.05
     },
@@ -867,16 +867,6 @@ const itemsDatabaseChest = {
     level: 45,
     rarity: 'epic'
   }),
-  MammothWarriorsPlate: new Chest({
-    name: 'Mammoth Warriors Plate',
-    stats: {strength: 29, stamina: 15, speedBoost: -0.05,
-      damageReduction: 0.08, coldResistance: 0.35
-    },
-    armor: 1400,
-    type: 'medium',
-    level: 45,
-    rarity: 'epic'
-  }),
   
 
 
@@ -984,6 +974,16 @@ const itemsDatabaseChest = {
     type: 'heavy',
     level: 45,
     rarity: 'uncommon'
+  }),
+  MammothWarriorsPlate: new Chest({
+    name: 'Mammoth Warriors Plate',
+    stats: {strength: 29, stamina: 15, speedBoost: -0.05,
+      damageReduction: 0.08, coldResistance: 0.35
+    },
+    armor: 1400,
+    type: 'heavy',
+    level: 45,
+    rarity: 'epic'
   }),
   BrimfrostChestplate: new Chest({
     name: 'Brimfrost Chestplate',
