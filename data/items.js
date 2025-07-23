@@ -3246,7 +3246,7 @@ const itemsDatabaseRings = {
   }),
 
   RefinedThievesRing: new Ring({
-    name: 'Frostfire Ring',
+    name: 'Refined Thieves Ring',
     stats: {agility: 20},
     rarity: 'uncommon'
   }),
