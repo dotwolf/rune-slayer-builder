@@ -1171,14 +1171,6 @@ const itemsDatabaseBoots = {
     level: 40,
     rarity: 'epic'
   }),
-  MammothRangersPants: new Boots({
-    name: 'Mammoth Ranger\'s Pants',
-    stats: {agility: 18, stamina: 8, cdReduction: 0.03, coldResistance: 0.13},
-    armor: 263,
-    type: 'light',
-    level: 45,
-    rarity: 'epic'
-  }),
   BorealInquisitorPants: new Boots({
     name: 'Boreal Inquisitor Pants',
     stats: {intellect: 18, magicCritChance: 0.03, coldResistance: 0.12},
@@ -1330,6 +1322,14 @@ const itemsDatabaseBoots = {
     name: 'Medium Yeti Boots',
     stats: {agility: 23, strength: 4, critChance: 0.02, coldResistance: 0.13},
     armor: 252,
+    type: 'medium',
+    level: 45,
+    rarity: 'epic'
+  }),
+  MammothRangersPants: new Boots({
+    name: 'Mammoth Ranger\'s Pants',
+    stats: {agility: 18, stamina: 8, cdReduction: 0.03, coldResistance: 0.13},
+    armor: 263,
     type: 'medium',
     level: 45,
     rarity: 'epic'
