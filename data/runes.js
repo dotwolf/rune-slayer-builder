@@ -211,6 +211,12 @@ const runesDatabase = {
     type: 'chest',
     rarity: 'epic'
   }),
+  CoconutCrabRune: new Rune({
+    name: 'Coconut Crab Rune',
+    stats: {armor: 90, strength: 2, stamina: 8, buffDuration: 0.02},
+    rarity: 'epic',
+    type: 'chest'
+  }),
 
 
 
@@ -299,6 +305,12 @@ const runesDatabase = {
     stats: {spirit: 3, agility: 6},
     type: 'boots',
     rarity: 'epic'
+  }),
+  SnowWolfRune: new Rune({
+    name: 'Snow Wolf Rune',
+    stats: {intellect: 6, stamina: 4, speedBoost: 0.01},
+    rarity: 'epic',
+    type: 'boots'
   }),
 
 
@@ -428,20 +440,6 @@ const runesDatabase = {
 
 
   
-
-  CoconutCrabRune: new Rune({
-    name: 'Coconut Crab Rune',
-    stats: {armor: 90, strength: 2, stamina: 8, buffDuration: 0.02},
-    rarity: 'legendary',
-    type: 'chest'
-  }),
-
-  SnowWolfRune: new Rune({
-    name: 'Snow Wolf Rune',
-    stats: {intellect: 6, stamina: 4, speedBoost: 0.01},
-    rarity: 'legendary',
-    type: 'boots'
-  }),
 
   IskaelRune: new Rune({
     name: 'Iskael, Lord of Endless Frost',
