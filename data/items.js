@@ -3360,13 +3360,13 @@ const HalfGolem = new Race({
 
 const Seraphim = new Race({
   name: 'Seraphim',
-  stats: {luck: 1, fireResistance: 0.025},
+  stats: {luck: 1, fireResistance: -0.05, coldResistance: 0.1},
   rarity: 'legendary'
 });
 
 const Infernim = new Race({
   name: 'Infernim',
-  stats: {luck: 1, fireResistance: 0.1, holyResistance: -0.05},
+  stats: {luck: 1, holyResistance: -0.05, heatResistance: 0.1},
   rarity: 'legendary'
 });
 
