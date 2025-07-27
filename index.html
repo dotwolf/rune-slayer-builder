@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
 </head>
 <body>
+    <div id="custom-tooltip" style="display: none; position: absolute; z-index: 1000;"></div>
     <h1>Rune Slayer Builder</h1>
     <div class="main-container">
         <div class="LayoutEquipments">
@@ -706,6 +707,10 @@ function updateRuneMenu(menu, slotType, contentArea) {
             }
         }
 
+        if (totalStats.flat.agility) {
+            const critChanceFromAgility = totalStats.flat.agility * 0.00033;
+            totalStats.percent.critChance = (totalStats.percent.critChance || 0) + critChanceFromAgility;
+        }
 
         return totalStats;
         }
@@ -836,6 +841,26 @@ function updateRuneMenu(menu, slotType, contentArea) {
             <span class="stat-name">${statInfo.name}</span>
             <span class="stat-value ${value < 0 ? 'negative' : ''}">${value >= 0 ? '+' : ''}${formatStatValue(value, isPercent)}</span>
         `;
+
+        if (statInfo.stat === 'critChance') {
+            const tooltip = document.getElementById('custom-tooltip');
+            const tooltipText = 'Crit chance is calculated with agility using the formula 1 agility = 0.033% crit. Please note that this may be incorrect.';
+
+            statElement.addEventListener('mouseover', (event) => {
+                tooltip.innerHTML = tooltipText;
+                tooltip.style.display = 'block';
+            });
+
+            statElement.addEventListener('mousemove', (event) => {
+                tooltip.style.left = (event.pageX + 15) + 'px';
+                tooltip.style.top = (event.pageY + 15) + 'px';
+            });
+
+            statElement.addEventListener('mouseout', () => {
+                tooltip.style.display = 'none';
+            });
+        }
+
         column.appendChild(statElement);
         
         setTimeout(() => {
