@@ -339,7 +339,7 @@ const itemsDatabaseHelmet = {
     rarity: 'epic'
   }),
   CyclopsMediumHood: new Helmet({
-    name: 'Cyclop sMedium Hood',
+    name: 'Cyclops Medium Hood',
     stats: {agility: 7, stamina: 3, critChance: 0.02,
       coldResistance: 0.08, tundraVisibility: 0.05
     },
@@ -867,16 +867,6 @@ const itemsDatabaseChest = {
     level: 45,
     rarity: 'epic'
   }),
-  MammothWarriorsPlate: new Chest({
-    name: 'Mammoth Warriors Plate',
-    stats: {strength: 29, stamina: 15, speedBoost: -0.05,
-      damageReduction: 0.08, coldResistance: 0.35
-    },
-    armor: 1400,
-    type: 'medium',
-    level: 45,
-    rarity: 'epic'
-  }),
   
 
 
@@ -984,6 +974,16 @@ const itemsDatabaseChest = {
     type: 'heavy',
     level: 45,
     rarity: 'uncommon'
+  }),
+  MammothWarriorsPlate: new Chest({
+    name: 'Mammoth Warriors Plate',
+    stats: {strength: 29, stamina: 15, speedBoost: -0.05,
+      damageReduction: 0.08, coldResistance: 0.35
+    },
+    armor: 1400,
+    type: 'heavy',
+    level: 45,
+    rarity: 'epic'
   }),
   BrimfrostChestplate: new Chest({
     name: 'Brimfrost Chestplate',
@@ -1171,14 +1171,6 @@ const itemsDatabaseBoots = {
     level: 40,
     rarity: 'epic'
   }),
-  MammothRangersPants: new Boots({
-    name: 'Mammoth Ranger\'s Pants',
-    stats: {agility: 18, stamina: 8, cdReduction: 0.03, coldResistance: 0.13},
-    armor: 263,
-    type: 'light',
-    level: 45,
-    rarity: 'epic'
-  }),
   BorealInquisitorPants: new Boots({
     name: 'Boreal Inquisitor Pants',
     stats: {intellect: 18, magicCritChance: 0.03, coldResistance: 0.12},
@@ -1330,6 +1322,14 @@ const itemsDatabaseBoots = {
     name: 'Medium Yeti Boots',
     stats: {agility: 23, strength: 4, critChance: 0.02, coldResistance: 0.13},
     armor: 252,
+    type: 'medium',
+    level: 45,
+    rarity: 'epic'
+  }),
+  MammothRangersPants: new Boots({
+    name: 'Mammoth Ranger\'s Pants',
+    stats: {agility: 18, stamina: 8, cdReduction: 0.03, coldResistance: 0.13},
+    armor: 263,
     type: 'medium',
     level: 45,
     rarity: 'epic'
@@ -1881,8 +1881,7 @@ const itemsDatabaseWeapons = {
     stats: {strength: 8, stamina: 3},
     type: 'sword',
     level: 30,
-    rarity: 'rare',
-    description: 'The more hungry you are the bigger the physical damage buff.'
+    rarity: 'rare'
   }),
   BeastmanSword: new Weapon({
     name: 'Beastman Sword',
@@ -3247,7 +3246,7 @@ const itemsDatabaseRings = {
   }),
 
   RefinedThievesRing: new Ring({
-    name: 'Frostfire Ring',
+    name: 'Refined Thieves Ring',
     stats: {agility: 20},
     rarity: 'uncommon'
   }),
@@ -3361,13 +3360,13 @@ const HalfGolem = new Race({
 
 const Seraphim = new Race({
   name: 'Seraphim',
-  stats: {luck: 1, fireResistance: 0.025},
+  stats: {luck: 1, fireResistance: -0.05, coldResistance: 0.1},
   rarity: 'legendary'
 });
 
 const Infernim = new Race({
   name: 'Infernim',
-  stats: {luck: 1, fireResistance: 0.1, holyResistance: -0.05},
+  stats: {luck: 1, holyResistance: -0.05, heatResistance: 0.1},
   rarity: 'legendary'
 });
 
@@ -3462,29 +3461,17 @@ const racesDatabase = {
   HalfGolem,
   SiegeGolem: new Race({
     name: 'Half Golem: Siege Body',
-    stats: {...HalfGolem.stats,
-        speedBoost: HalfGolem.stats.speedBoost-0.1,
-        damageReduction: HalfGolem.stats.damageReduction+0.1,
-        maxWeight: HalfGolem.stats.maxWeight+25,
-        robustness: HalfGolem.stats.robustness+0.25},
+    stats: {speedBoost: -0.1, damageReduction: 0.1, magicResistance: 0.05, maxWeight: 25, robustness: 0.25},
     rarity: 'epic'
   }),
   AssaultGolem: new Race({
     name: 'Half Golem: Assault Body',
-    stats: {...HalfGolem.stats,
-        speedBoost: HalfGolem.stats.speedBoost+0.06,
-        damageReduction: HalfGolem.stats.damageReduction-0.1,
-        attackPower: 0.12,
-        robustness: HalfGolem.stats.robustness+0.25},
+    stats: {speedBoost: 0.06, damageReduction: -0.1, attackPower: 0.12, robustness: 0.25},
     rarity: 'epic'
   }),
   CrystalGolem: new Race({
     name: 'Half Golem: Crystal Body',
-    stats: {...HalfGolem.stats,
-        speedBoost: HalfGolem.stats.speedBoost+0.06,
-        damageReduction: HalfGolem.stats.damageReduction-0.1,
-        magicPower: 0.12,
-        robustness: HalfGolem.stats.robustness+0.25},
+    stats: {speedBoost: 0.06, damageReduction: -0.1, magicPower: 0.12, robustness: 0.25},
     rarity: 'epic'
   }),
 

@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
 </head>
 <body>
+    <div id="custom-tooltip" style="display: none; position: absolute; z-index: 1000;"></div>
     <h1>Rune Slayer Builder</h1>
     <div class="main-container">
         <div class="LayoutEquipments">
@@ -69,7 +70,7 @@
                     <div class="slot" data-slot="back">Back</div>
                 </div>
                 <div class="equipment-row">
-                    <div class="slot" data-slot="weapon1">Weapon 1</div>
+                    <div class="slot" data-slot="weapon1">Weapon</div>
                     <div class="rune-slots">
                         <div class="rune-slot" data-original-number="I">I</div>
                         <div class="rune-slot" data-original-number="II">II</div>
@@ -85,7 +86,7 @@
                     </div>
                 </div>
                 <div class="equipment-row">
-                    <div class="slot" data-slot="weapon2">Weapon 2</div>
+                    <div class="slot" data-slot="weapon2">Secondary</div>
                     <div class="rune-slots">
                         <div class="rune-slot" data-original-number="I">I</div>
                         <div class="rune-slot" data-original-number="II">II</div>
@@ -307,10 +308,15 @@ function updateRuneMenu(menu, slotType, contentArea) {
             let isDuplicate = false;
             if (nType !== 'null') {
                 for (const [eqSlot, runeSlots] of Object.entries(equippedRunes)) {
+                    // Only check for duplicates within the same equipment slot
+                    if (eqSlot !== equipmentSlot) {
+                        continue;
+                    }
+                    
                     for (const [slotNum, equippedRune] of Object.entries(runeSlots)) {
                         if (equippedRune && equippedRune.name.toLowerCase() === rune.name.toLowerCase()) {
                             // Skip if this is the same rune in the same slot (we're replacing it)
-                            if (!(eqSlot === equipmentSlot && slotNum === currentSlotNumber)) {
+                            if (!(slotNum === currentSlotNumber)) {
                                 isDuplicate = true;
                                 break;
                             }
@@ -609,9 +615,10 @@ function updateRuneMenu(menu, slotType, contentArea) {
 
         const professionBonus = document.getElementById('level60-professions').checked;
         if (professionBonus) {
-            ['strength', 'stamina', 'agility', 'intellect', 'spirit'].forEach(stat => {
+            ['strength', 'stamina', 'agility', 'intellect'].forEach(stat => {
                 totalStats.flat[stat] = (totalStats.flat[stat] || 0) + 60;
             });
+            totalStats.flat['spirit'] = (totalStats.flat['spirit'] || 0) + 30;
             totalStats.flat['luck'] = (totalStats.flat['luck'] || 0) + 7;
             totalStats.flat['maxWeight'] = (totalStats.flat['maxWeight'] || 0) + 150;
         }
@@ -647,6 +654,8 @@ function updateRuneMenu(menu, slotType, contentArea) {
         }
 
         for (const [slot, item] of Object.entries(equippedItems)) {
+            // weapon2 = secondary this makes it so that stats from secondary are skipped
+            if (slot === 'weapon2') continue;
             if (item) {
             if (item.stats) {
                 for (const [stat, value] of Object.entries(item.stats)) {
@@ -677,7 +686,9 @@ function updateRuneMenu(menu, slotType, contentArea) {
             }
         }
 
-            for (const [equipmentSlot, runeSlots] of Object.entries(equippedRunes)) {
+        for (const [equipmentSlot, runeSlots] of Object.entries(equippedRunes)) {
+            // Skip runes from secondary weapon
+            if (equipmentSlot === 'weapon2') continue;
             for (const [slotNumber, rune] of Object.entries(runeSlots)) {
                 if (rune) {
                     if (rune.stats) {
@@ -696,6 +707,10 @@ function updateRuneMenu(menu, slotType, contentArea) {
             }
         }
 
+        if (totalStats.flat.agility) {
+            const critChanceFromAgility = totalStats.flat.agility * 0.00033;
+            totalStats.percent.critChance = (totalStats.percent.critChance || 0) + critChanceFromAgility;
+        }
 
         return totalStats;
         }
@@ -826,6 +841,26 @@ function updateRuneMenu(menu, slotType, contentArea) {
             <span class="stat-name">${statInfo.name}</span>
             <span class="stat-value ${value < 0 ? 'negative' : ''}">${value >= 0 ? '+' : ''}${formatStatValue(value, isPercent)}</span>
         `;
+
+        if (statInfo.stat === 'critChance') {
+            const tooltip = document.getElementById('custom-tooltip');
+            const tooltipText = 'Crit chance is calculated with agility using the formula 1 agility = 0.033% crit. Please note that this may be incorrect.';
+
+            statElement.addEventListener('mouseover', (event) => {
+                tooltip.innerHTML = tooltipText;
+                tooltip.style.display = 'block';
+            });
+
+            statElement.addEventListener('mousemove', (event) => {
+                tooltip.style.left = (event.pageX + 15) + 'px';
+                tooltip.style.top = (event.pageY + 15) + 'px';
+            });
+
+            statElement.addEventListener('mouseout', () => {
+                tooltip.style.display = 'none';
+            });
+        }
+
         column.appendChild(statElement);
         
         setTimeout(() => {

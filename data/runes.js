@@ -120,8 +120,8 @@ const runesDatabase = {
     rarity: 'epic'
   }),
   LycantharRune: new Rune({
-    name: 'King Mandrake Rune',
-    stats: {strength: 8, intellect: -5, stamina: -3, magicResistance: 0.05},
+    name: 'Lycanthar Rune',
+    stats: {strength: 8, intellect: -5, stamina: 3, magicResistance: 0.05},
     type: 'chest',
     rarity: 'epic'
   }),
@@ -210,6 +210,12 @@ const runesDatabase = {
     stats: {stamina: 1, physicalPierce: 0.02},
     type: 'chest',
     rarity: 'epic'
+  }),
+  CoconutCrabRune: new Rune({
+    name: 'Coconut Crab Rune',
+    stats: {armor: 90, strength: 2, stamina: 8, buffDuration: 0.02},
+    rarity: 'epic',
+    type: 'chest'
   }),
 
 
@@ -300,6 +306,12 @@ const runesDatabase = {
     type: 'boots',
     rarity: 'epic'
   }),
+  SnowWolfRune: new Rune({
+    name: 'Snow Wolf Rune',
+    stats: {intellect: 6, stamina: 4, speedBoost: 0.01},
+    rarity: 'epic',
+    type: 'boots'
+  }),
 
 
 
@@ -336,7 +348,7 @@ const runesDatabase = {
   }),
   SpiderRune: new Rune({
     name: 'Spider Rune',
-    stats: {agility: 5, physicalAttack: 0.02},
+    stats: {stamina: 9, agility: 6, physicalAttack: 0.03},
     type: 'weapon',
     rarity: 'epic'
   }),
@@ -384,7 +396,7 @@ const runesDatabase = {
   }),
   SpiderQueenRune: new Rune({
     name: 'Spider Queen Rune',
-    stats: {intellect: 5, spirit: 5, castTime: 20},
+    stats: {intellect: 5, spirit: 5, castSpeed: 0.15},
     type: 'weapon',
     rarity: 'epic'
   }),
@@ -428,20 +440,6 @@ const runesDatabase = {
 
 
   
-
-  CoconutCrabRune: new Rune({
-    name: 'Coconut Crab Rune',
-    stats: {armor: 90, strength: 2, stamina: 8, buffDuration: 0.02},
-    rarity: 'legendary',
-    type: 'chest'
-  }),
-
-  SnowWolfRune: new Rune({
-    name: 'Snow Wolf Rune',
-    stats: {intellect: 6, stamina: 4, speedBoost: 0.01},
-    rarity: 'legendary',
-    type: 'boots'
-  }),
 
   IskaelRune: new Rune({
     name: 'Iskael, Lord of Endless Frost',
