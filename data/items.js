@@ -996,7 +996,7 @@ const itemsDatabaseChest = {
   }),
   CyclopsHeavyChestplate: new Chest({
     name: 'Cyclops Heavy Chestplate',
-    stats: {strength: 36, critChance: 0.07, coldResistance: 0.15,
+    stats: {strength: 36, critDamage: 0.07, coldResistance: 0.15,
       buffDuration: 0.06},
     armor: 800,
     type: 'heavy',
@@ -3259,9 +3259,9 @@ const itemsDatabaseRings = {
 
   IceGolemRing: new Ring({
     name: 'Ice Golem Ring',
-    stats: {strength: 10, stamina: 5},
+    stats: {intellect: 10, stamina: 5},
     rarity: 'uncommon',
-    description: 'Every hit with Mana Damage builds Lesser Frostbite. 3 second cooldown per proc.'
+    description: 'Every hit with Mana Damage builds Lesser Frostbite. 1 second cooldown per proc.'
   }),
 
   YetiRing: new Ring({
